@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Email envoyé pour inscription | {{ parent() }}{% endblock %}
+{% block meta_description %}Un email de bienvenue a été envoyé sur votre boite mail personnelle.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Email envoyé pour inscription</h1>
+{% endblock %}
+
+{% block title_page %}registration{% endblock %}
+
+{% block content %}
+	
+	<div class="alert alert-success fade in margin-bottom-40">
+        {{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}
+    </div>
+
+{% endblock %}

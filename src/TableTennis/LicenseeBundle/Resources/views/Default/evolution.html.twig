@@ -1,0 +1,62 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Progressions mensuelles | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici les progressions mensuelles des joueurs par mois.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennislicensee/css/evolution.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}licensee{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Les progressions mensuelles de {{ lastMonthPoint }} {{ current_date | date('Y') }}</h1>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Place</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Points {{ previous_date | date('m/Y') }}</th>
+            <th>Points {{ current_date | date('m/Y') }}</th>
+            <th>Progression</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for licensee in licensee_point_list %}
+            
+        {% if licensee.monthly_increase > 0 %}
+            <tr class="l_{{ loop.index%2 }} positive">
+        {% elseif licensee.monthly_increase < 0 %}
+            <tr class="l_{{ loop.index%2 }} negative">
+        {% else %}
+            <tr class="l_{{ loop.index%2 }}">
+        {% endif %}
+            <td>{{ loop.index }}</td>
+            <td>{{ licensee.lastname }}</td>
+            <td>{{ licensee.firstname }}</td>
+            <td>{{ ( licensee.nb_current_points - licensee.monthly_increase ) | number_format(2, '.', '') }}</td>
+            <td>{{ licensee.nb_current_points | number_format(2, '.', '') }}</td>
+            <td>
+                <div class="arrow"></div>
+                {% if licensee.monthly_increase > 0 %}
+                    +{{ licensee.monthly_increase }}
+                {% else %}
+                    {{ licensee.monthly_increase }}
+                {% endif %}
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Aucune donnée n'a été trouvé.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

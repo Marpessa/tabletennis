@@ -1,0 +1,148 @@
+ivory_google_map:
+    map:
+        # Prefix used for the generation of the map javascript variable
+        prefix_javascript_variable: "map_"
+
+        # HTML container ID used for the map container
+        html_container: "map_canvas"
+
+        # If this flag is enabled, the map will load asynchronous
+        async: true
+
+        # If this flag is enabled, the map will autozoom on the overlays added
+        auto_zoom: false
+
+        # Center coordinate of the map
+        # If the autozoom flag is enabled, the center is not used
+        center:
+            latitude: 46.747274
+            longitude: -1.618447
+            no_wrap: true
+
+        # Zoom of the map
+        # If the autozoom flag is enabled, the zoom is not used
+        zoom: 15
+
+        # Bound of the map
+        # If the auto zoom flag is not enabled, the bound is not used
+        # If the bound extends overlays, coordinates of the overlays extended are used instead of these coordinates
+        # By default, there is no bound
+        bound:
+            south_west:
+                latitude: -2.1
+                longitude: -3.9
+                no_wrap: true
+            north_east:
+                latitude: 2.6
+                longitude: 1.4
+                no_wrap: true
+
+        # Default map type
+        # Available map type : hybrid, roadmap, satellite, terrain
+        type: "roadmap"
+
+        # Map width
+        width: "100%"
+
+        # Map height
+        height: "250px"
+
+        # Custom map options
+        # By default, there is no map options
+        map_options:
+            disableDefaultUI: true
+            disableDoubleClickZoom: true
+            scrollwheel: false
+            draggable: false
+
+        # Custom stylesheet options
+        # By default, there is no stylesheet options except width & height
+        stylesheet_options:
+            border: "1px solid #000"
+            background-color: "#fff"
+
+        # google map Api language, default en
+        language: fr
+   
+    map_type_control:
+      map_type_ids: ["roadmap", "satellite"]
+      control_position: "top_right"
+      map_type_control_style: "default"
+    
+    zoom_control:
+      control_position: "top_left"
+      zoom_control_style: "default"
+      
+    pan_control:
+      control_position: "top_left"
+    
+    scale_control:
+      control_position: "bottom_left"
+    
+    street_view_control:
+      control_position: "top_left"
+    
+    marker:
+        # Prefix used for the generation of the marker javascript variable
+        prefix_javascript_variable: "marker_"
+
+        # Position of the marker
+        position:
+            latitude: 46.747274
+            longitude: -1.618447
+            no_wrap: true
+
+        # Marker animation
+        # Available animation: bounce, drop
+        # By default, there is no animation
+        animation: "drop"
+
+        # Custom marker options
+        # By default there is no marker options
+        options:
+            clickable: false
+            flat: true
+
+    info_window:
+        # Prefix used for the generation of the info window javascript variable
+        prefix_javascript_variable: "info_window_"
+
+        # Position of the info window
+        # It is used if the info window is directly added to the map
+        # If you add an info window to a marker, it will not be used
+        position:
+            latitude: 46.747274
+            longitude: -1.618447
+            no_wrap: true
+
+        # Info window pixel offset
+        # By default, there is no pixel offset
+        pixel_offset:
+            width: 1.1
+            height: 2.1
+            width_unit: "px"
+            height_unit: "pt"
+
+        # Info window content
+        content: "<p><strong>Complexe Sportif<br/>de La Galerne-Noro&icirc;t</strong><br/>Aizenay<br/>Tel : 02 51 48 31 51</p>"
+
+        # Info window default open state
+        # TRUE if the info window is opened else FALSE
+        open: false
+
+        # This flag is only used if you link an info window to a marker
+        # If it is enabled, an event will be generated for allowing you to open the info window when you trigger the event configured below on the linked marker
+        auto_open: true
+
+        # Info window open event
+        # Available open event : click, dblclick, mouseup, mousedown, mouseover, mouseout
+        open_event: "click"
+
+        # If it is enabled, the info window will be closed each time an info window configurated with the auto open flag is opened.
+        auto_close: false
+
+        # Custom info window options
+        # By default, there is no options
+        options:
+            disableAutoPan: true
+            zIndex: 10

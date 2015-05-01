@@ -1,0 +1,509 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Profil de {{ licensee.lastname }} {{ licensee.firstname }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Informations, progressions, matchs, perfs/contres de {{ licensee.lastname }} {{ licensee.firstname }}.{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/profile.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('http://code.highcharts.com/2.2/highcharts.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            var colors = Highcharts.getOptions().colors;
+
+            if( $('#evolutionGraph').length > 0 ) {
+                // Graph Line
+                var options = {
+                    chart: {
+                        renderTo: 'evolutionGraph',
+                        zoomType: 'x',
+                        spacingRight: 20
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: {{graphCategories|json_encode()|raw}}
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Points'
+                        }
+                    },
+                    legend: {
+                         layout: 'vertical',
+                         align: 'top',
+                         verticalAlign: 'top',
+                         x: -10,
+                         y: 0,
+                         borderWidth: '2px'
+                    },
+                    series: [{
+                        name: 'Points mensuels',
+                        data: {{graphData|json_encode()}}
+                    }]
+                };
+            
+                var chart = new Highcharts.Chart(options);
+            }
+        });
+    </script>
+
+    {% if pieData.nbPerfDataPerc is defined and pieData.perfData is defined and pieData.nbConsDataPerc is defined and pieData.consData is defined %}
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+
+                var colors = Highcharts.getOptions().colors;
+
+                if( $('#matchsPie').length > 0 ) {
+                    // Pie chart
+                    var categories = ['Perfs', 'Contres'];
+                    var data = [{
+                            y: {{pieData.nbPerfDataPerc|json_encode()}},
+                            color: colors[0],
+                            drilldown: {
+                                name: 'Perfs classement',
+                                categories: {{pieData.perfData|json_encode()}},
+                                data: {{pieData.perfDataPerc|json_encode()}},
+                                color: colors[0]
+                            }
+                        }, {
+                            y: {{pieData.nbConsDataPerc|json_encode()}},
+                            color: colors[1],
+                            drilldown: {
+                                name: 'Contres classement',
+                                categories: {{pieData.consData|json_encode()}},
+                                data: {{pieData.consDataPerc|json_encode()}},
+                                color: colors[1]
+                            }
+                        }];
+
+
+                        // Build the data arrays
+                        var browserData = [];
+                        var versionsData = [];
+                        for (var i = 0; i < data.length; i++) {
+
+                            // add browser data
+                            browserData.push({
+                                name: categories[i],
+                                y: data[i].y,
+                                color: data[i].color
+                            });
+
+                            // add version data
+                            for (var j = 0; j < data[i].drilldown.data.length; j++) {
+                                var brightness = 0.2 - (j / data[i].drilldown.data.length) / 5 ;
+                                versionsData.push({
+                                    name: data[i].drilldown.categories[j],
+                                    y: data[i].drilldown.data[j],
+                                    color: Highcharts.Color(data[i].color).brighten(brightness).get()
+                                });
+                            }
+                        }
+
+                        // Create the chart
+                        chart2 = new Highcharts.Chart({
+                            chart: {
+                                renderTo: 'matchsPie',
+                                type: 'pie'
+                            },
+                            title: {
+                                text: ''
+                            },
+                            yAxis: {
+                                title: {
+                                    text: 'Total percent market share'
+                                }
+                            },
+                            plotOptions: {
+                                pie: {
+                                    shadow: false
+                                }
+                            },
+                            tooltip: {
+                                    valueSuffix: '%'
+                            },
+                            series: [{
+                                name: 'Matchs joués',
+                                data: browserData,
+                                size: '50%',
+                                dataLabels: {
+                                    formatter: function() {
+                                        return this.y > 5 ? this.point.name : null;
+                                    },
+                                    color: 'white',
+                                    distance: -25
+                                }
+                            }, {
+                                name: 'Matchs joués',
+                                data: versionsData,
+                                innerSize: '50%',
+                                dataLabels: {
+                                    formatter: function() {
+                                        //return null;
+                                        // display only if larger than 1
+                                        return this.y > 1 ? '<b>'+ this.point.name +'</b>' : null;
+                                    },
+                                    //color: 'white',
+                                    distance: 10
+                                }
+                            }]
+                        });
+                    }
+                });
+        </script>
+    {% endif %}
+
+{% endblock %}
+
+{% block title_page %}user{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Profil de {{ licensee.lastname }} {{ licensee.firstname }}</h1>
+{% endblock %}
+
+{% block content %}
+    
+    <div class="profile">
+        <div class="profile-body clearfix">
+
+            <div class="panel-heading overflow-h">
+                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-user"></i> Informations</h2>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and user is not empty and user.username is not empty and app.user.username == user.username %}
+                    <a href='{{ path('_sonataUserEditProfileGeneralInfos') }}' title="Modifier mes informations générales"><i class="fa fa-cog pull-right"></i></a>
+                {% endif %}
+
+            </div>
+
+            <div class="profile-bio">
+
+                <div class="row">
+                    <div class="col-md-5">
+
+                        {% set height = null %}
+                        {% if user.mediaId.width is defined and user.mediaId.width is not empty %}
+                            {% set height = user.mediaId.height * media_formats["avatar_big"]["width"] // user.mediaId.width %}
+                        {% endif %}
+
+                        {% if height is defined and height is not empty %}
+                            <img class="img-responsive md-margin-bottom-10 avatar" src='{% path user.mediaId, 'big' %}' title='{{ licensee.lastname }}' alt='{{ licensee.lastname }}' width='{{ media_formats["avatar_big"]["width"] }}' height='{{ height }}' />
+                        {% else %}
+                            <img class="img-responsive md-margin-bottom-10 avatar" src="{{ asset('/images/default/noavatar.png') }}" title="{{ licensee.lastname }}" alt="{{ licensee.lastname }}" width="309" height="256" />
+                        {% endif %}
+
+                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and user is not empty and user.username is not empty and app.user.username == user.username %}
+                            <a class="btn-u btn-u-sm" href='{{ path('_sonataUserEditProfileAvatar') }}' title="Modifier mon avatar">Modifier mon avatar</a>
+                        {% endif %}
+
+                    </div>
+                    <div class="col-md-7">
+
+                        {% if user is not empty and user.username is not empty %}
+                            <h2>{{ user.username }}</h2>
+                        {% else %}
+                            <h2>Anonyme</h2>
+                        {% endif %}
+
+                        {% if user is not empty and user.lastname is not empty %}
+                            <span><strong>Nom:</strong> {{ user.lastname }}</span>
+                        {% else %}
+                            <span><strong>Nom:</strong> {{ licensee.lastname }}</span>
+                        {% endif %}
+
+                        {% if user is not empty and user.firstname is not empty %}
+                            <span><strong>Prénom:</strong> {{ user.firstname }}</span>
+                        {% else %}
+                            <span><strong>Prénom:</strong> {{ licensee.firstname }}</span>
+                        {% endif %}
+
+                        <hr>
+
+                        <span><strong>N° licence :</strong> {{ licensee.licensee_number }}</span>
+                        <span><strong>Catégorie :</strong> {{ licensee.category }}</span>
+                        <span><strong>Valeur début de saison :</strong> {{ startSeasonMensualPoint }}</span>
+                        <span><strong>Points mensuels :</strong> {{ mensualPoint }}</span>
+                        <span><strong>Progression mensuelle :</strong> {{ evoMensualPoint }}</span>
+
+                        {#}<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse eget massa nec turpis congue bibendum. Integer nulla felis, porta suscipit nulla et, dignissim commodo nunc. Morbi a semper nulla.</p>
+                        <p>Proin mauris odio, pharetra quis ligula non, vulputate vehicula quam. Nunc in libero vitae nunc ultricies tincidunt ut sed leo. Sed luctus dui ut congue consequat. Cras consequat nisl ante, nec malesuada velit pellentesque ac. Pellentesque nec arcu in ipsum iaculis convallis.</p>{#}
+                    </div>
+                </div>    
+            </div>
+
+            <hr />
+
+            {% set startDate = date() %}
+            {% set enDate = date() %}
+
+            {% if lastMatch and firstMatch is defined %}
+                {% set startDate = lastMatch.datetime_match %}
+                {% set enDate = firstMatch.datetime_match %}
+            {% endif %}
+
+            <div class="panel-heading overflow-h">
+                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-trophy"></i>Derniers matchs joués</h2>
+                <a class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right" href='{{ path('_sonataUserMatchsList', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' title='Voir les derniers matchs joués'>Voir tout</a>
+            </div>
+
+            <div class="table-search-v1">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>V/D</th>
+                                <th>Adversaire</th>
+                                <th>Classement</th>
+                                <th>Gain/Perte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for match in licenseeMatch_list %}
+                            <tr>
+                                <td class="category">{{ match.category }}</td>
+                                <td>{{ match.opponent_lastname }} {{ match.opponent_firstname }}</td>
+                                <td>{{ match.opponent_ranking }}</td>
+                                <td>{{ match.points_evaluation }}</td>
+                            </tr>
+                             {% else %}
+                                <tr>
+                                    <td colspan="4">Aucun match n'a encore été joué.</td>
+                                </tr>
+                                {% endfor %}
+                        </tbody>
+                    </table>
+                </div>    
+            </div>
+
+            <hr />
+
+            <div class="col-sm-6">
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-bar-chart-o"></i>Evolution</h2>
+                        <a class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right" href='{{ path('_sonataUserEvolution', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' title="Voir l'évolution du mois">Voir l'évolution du mois</a>
+                    </div>
+
+                    {% set startDate = date() %}
+                    {% set enDate = date() %}
+
+                    <div class="panel-body">
+                        <div id="evolutionGraph"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <h2 class="panel-title heading-sm pull-left"><i class="fa fa-star-o"></i>Perfs/contres</h2>
+                        <a class="btn-u btn-brd btn-brd-hover btn-u-dark btn-u-xs pull-right" href='{{ path('_sonataUserMatchsPie', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' title='Voir les perfs/contres du mois'>Voir les perfs/contres du mois</a>
+                    </div>
+
+                    {% set startDate = date() %}
+                    {% set enDate = date() %}
+
+                    {% if lastMatch and firstMatch is defined %}
+                        {% set startDate = lastMatch.datetime_match %}
+                        {% set enDate = firstMatch.datetime_match %}
+                    {% endif %}
+
+                    <div class="panel-body">
+                        {% if ( pieData.nbPerfData is defined and pieData.nbPerfData > 0 ) or ( pieData.nbConsData is defined and pieData.nbConsData > 0 ) %}
+                            <div id="matchsPie"></div>
+                        {% else %}
+                            <p>Aucun match n'a encore été joué.</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {#}
+
+        <ul class="dashboard">
+            <li class="l_0 general_infos">
+                <h2>Informations générales</h2>
+
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and user is not empty and user.username is not empty and app.user.username == user.username %}
+                    <a href='{{ path('_sonataUserEditProfileGeneralInfos') }}' class='wheel' title="Modifier mes informations générales">Modifier mes informations générales</a>
+                {% endif %}
+
+                <div class="avatar">
+                    
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") and user is not empty and user.username is not empty and app.user.username == user.username %}
+                        <a href='{{ path('_sonataUserEditProfileAvatar') }}' class='wheel' title="Modifier mon avatar">Modifier mon avatar</a>
+                    {% endif %}
+
+                    {% set height = null %}
+                    {% if user.mediaId.width is defined and user.mediaId.width is not empty %}
+                        {% set height = user.mediaId.height * media_formats["avatar_big"]["width"] // user.mediaId.width %}
+                    {% endif %}
+
+                    {% if height is defined and height is not empty %}
+                        <img src='{% path user.mediaId, 'big' %}' title='{{ licensee.lastname }}' alt='{{ licensee.lastname }}' width='{{ media_formats["avatar_big"]["width"] }}' height='{{ height }}' />
+                    {% else %}
+                        <img src="/images/default/noavatar.png" title="{{ licensee.lastname }}" alt="{{ licensee.lastname }}" width="92" height="92" />
+                    {% endif %}
+                </div>
+
+                <table>
+                    <tr>
+                        <th>Pseudo : </th>
+                        {% if user is not empty and user.username is not empty %}
+                            <td>{{ user.username }}</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Nom : </th>
+                        {% if user is not empty and user.lastname is not empty %}
+                            <td>{{ user.lastname }}</td>
+                        {% else %}
+                            <td>{{ licensee.lastname }}</td>
+                        {% endif %}
+                    </tr>
+                    <tr>
+                        <th>Prénom : </th>
+                        {% if user is not empty and user.firstname is not empty %}
+                            <td>{{ user.firstname }}</td>
+                        {% else %}
+                            <td>{{ licensee.firstname }}</td>
+                        {% endif %}
+                    </tr>
+                </table>
+            </li>
+            <li class="l_1">
+                <h2>Informations tennis de table</h2>
+
+                {#% if is_granted("IS_AUTHENTICATED_REMEMBERED") and user is not empty and user.username is not empty and app.user.username == user.username %}
+                    <a href='{{ path('_sonataUserEditProfileTableTennisInfos') }}' class='wheel' title="Modifier mes informations de tennis de table">Modifier mes informations de tennis de table</a>
+                {% endif %#}
+                   {#} 
+                <table>
+                    <tr>
+                        <th>N° licence : </th>
+                        <td>{{ licensee.licensee_number }}</td>
+                    </tr>
+                    <tr>
+                        <th>Catégorie : </th>
+                        <td>{{ licensee.category }}</td>
+                    </tr>
+                    {#<tr>
+                        <th>Club : </th>
+                        {% if licensee.club_name is not empty %}
+                            <td>{{ licensee.club_name }}</td>
+                        {% else %}
+                            <td>-</td>
+                        {% endif %}
+                    </tr>#}
+                    {#} <tr>
+                        <th>Valeur début de saison : </th>
+                        <td>{{ startSeasonMensualPoint }}</td>
+                    </tr>
+                    <tr>
+                        <th>Points mensuels : </th>
+                        <td>{{ mensualPoint }}</td>
+                    </tr>
+                    <tr>
+                        <th>Progression mensuelle : </th>
+                        <td>{{ evoMensualPoint }}</td>
+                    </tr>
+                </table>
+
+            </li>
+            <li class="l_0 matchsList">
+                <h2>Derniers matchs joués</h2>
+
+                {% set startDate = date() %}
+                {% set enDate = date() %}
+
+                {% if lastMatch and firstMatch is defined %}
+                    {% set startDate = lastMatch.datetime_match %}
+                    {% set enDate = firstMatch.datetime_match %}
+                {% endif %}
+                
+                <a href='{{ path('_sonataUserMatchsList', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' class='wheel' title='Voir les derniers matchs joués'>Voir les derniers matchs joués</a>
+
+                <table>
+                    <thead>
+                        <th>V/D</th>
+                        <th>Adversaire</th>
+                        <th>Classement</th>
+                        <th>Gain/Perte</th>
+                    </thead>
+
+                    <tbody>
+                        {% for match in licenseeMatch_list %}
+                        <tr class="m_{{ loop.index%2 }} cat_{{ match.category|lower }}">
+                            <td class="category">{{ match.category }}</td>
+                            <td>{{ match.opponent_lastname }} {{ match.opponent_firstname }}</td>
+                            <td>{{ match.opponent_ranking }}</td>
+                            <td>{{ match.points_evaluation }}</td>
+                        </tr>
+                        {% else %}
+                        <tr>
+                            <td colspan="4">Aucun match n'a encore été joué.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </li>
+            <li class="l_0 clearer evolution">
+                <h2>Evolution</h2>
+
+                {% set startDate = date() %}
+                {% set enDate = date() %}
+
+                <a href='{{ path('_sonataUserEvolution', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' class='wheel' title="Voir l'évolution du mois">Voir l'évolution du mois</a>
+
+                <div id="evolutionGraph"></div>
+
+            </li>
+            <li class="l_1">
+                <h2>Dernières Perfs/contres</h2>
+
+                {% set startDate = date() %}
+                {% set enDate = date() %}
+
+                {% if lastMatch and firstMatch is defined %}
+                    {% set startDate = lastMatch.datetime_match %}
+                    {% set enDate = firstMatch.datetime_match %}
+                {% endif %}
+
+                <a href='{{ path('_sonataUserMatchsPie', { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : startDate|date('Y-m'), "end_date": enDate|date('Y-m') } ) }}' class='wheel' title='Voir les perfs/contres du mois'>Voir les dernières perfs/contres</a>
+
+                {% if ( pieData.nbPerfData is defined and pieData.nbPerfData > 0 ) or ( pieData.nbConsData is defined and pieData.nbConsData > 0 ) %}
+                    <div id="matchsPie"></div>
+                {% else %}
+                    <p>Aucun match n'a encore été joué.</p>
+                {% endif %}
+
+            </li>
+        </ul>
+            {#} 
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {% include "ApplicationSonataUserBundle:Default:sidebar-avatar.html.twig" with { 'user': user } %}
+    
+    {% include "ApplicationSonataUserBundle:Default:sidebar-menu.html.twig" with { 'active_item_menu': 'profile' } %}
+
+    {{ parent() }}
+
+{% endblock %}

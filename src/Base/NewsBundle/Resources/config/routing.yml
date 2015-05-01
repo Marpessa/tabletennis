@@ -1,0 +1,27 @@
+_baseNewsIndex:
+    defaults: { _controller: BaseNewsBundle:Default:index, culture: fr }
+    pattern: /{culture}/actualites/
+    requirements:
+        format: html
+        culture: fr
+
+_baseNewsShow:
+    defaults: { _controller: BaseNewsBundle:Default:show, year: 2000, culture: fr }
+    pattern: /{culture}/actualites/{year}/{month}/{slug}.html
+    requirements:
+        culture: fr
+#        year:  \d{4}
+
+_baseNewsRss:
+    defaults: { _controller: BaseNewsBundle:Default:feed, culture: fr }
+    pattern: /{culture}/actualites-rss.xml
+    requirements:
+        culture: fr
+        format: xml
+
+# esi routing
+_homeNews:
+    defaults:     { _controller: BaseNewsBundle:Default:homeHighlight, culture: fr }
+    pattern:      /{culture}/esi/actualites-home.html
+    requirements:
+        culture: fr

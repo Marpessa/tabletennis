@@ -1,0 +1,175 @@
+<div id="comments" class="profile">
+    <div class="profile-body">
+        <div class="panel panel-profile">
+            <div class="panel-heading overflow-h">
+                <h2 class="panel-title heading-sm pull-left"><i class="fa fa-comments"></i>{{ comment_list|length }} Commentaire{% if comment_list|length > 1 %}s{% endif %}</h2>
+            </div>
+
+
+            <form action="{{ path('_baseValidComment') }}" method="post" {{ form_enctype(form) }} class="sky-form">
+
+                {% for flashMessage in app.session.flashbag.get('flash-error') %}
+                    <div class="alert alert-danger fade in">
+                        {{ flashMessage[0] }}
+                    </div>
+                {% endfor %}
+
+                <fieldset>
+
+                    <div class="col-md-3">
+                        {% if app.user.mediaId is defined and app.user.mediaId is not empty %}
+                            <img class="rounded-2x img-responsive profile-img margin-bottom-20" data-role="user-avatar" src="{% path app.user.mediaId, 'small' %}" alt="{{ app.user.mediaId }}" width="200" height="200" />
+                        {% else %}
+                            <img class="rounded-2x img-responsive profile-img margin-bottom-20" src="{{ asset('/assets/img/testimonials/user.jpg') }}" alt="Avatar" width="200" height="200">
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-9">
+                        <label class="textarea">
+                            <i class="icon-append fa fa-comment"></i>
+                            {{ form_widget(form.content) }}
+                        </label>
+                    </div>
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") != TRUE %}
+                        <div class="col-md-9">
+                            <label class="input captcha">
+                                <i class="icon-append fa fa-check"></i>
+                                {{ form_widget(form.captcha) }}
+                            </label>
+                        </div>
+                    {% endif %}
+                </fieldset>
+
+                    {#}
+                    <div class="textarea-wrapper" data-role="textarea">
+                        <div class="textarea" contenteditable="true" tabindex="0" role="textbox" aria-multiline="true" style="overflow: auto; max-height: 350px; ">
+                            <span class="placeholder">Laissez un message...</span>
+                        </div>
+                        {{ form_widget(form.content) }}
+                    </div>
+                    {#}
+
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+                        {#}
+                        <div class="logged-in">
+                            <input type="submit" class="btn submit" value="valider" />
+                        </div>
+                        {#}
+
+                    {% else %}
+
+                        <fieldset>
+
+                            <div class="col-md-3 servive-block servive-block-blue">
+                                <h2 class="heading-md">Connectez-vous</h2>
+                                <br/>
+                                <a href="{{ path("fos_user_security_login") }}" title="Se connecter sur CPF Aizenay" class="btn-u btn-u-default">Se connecter</a>
+                            </div>
+
+                            <div class="col-md-9 servive-block servive-block-default">
+                                <h2 class="heading-md">Ou mettez vos identifiants</h2>
+
+                                <label class="input">
+                                    <i class="icon-append fa fa-user"></i>
+                                    {{ form_widget(form.name) }}
+                                </label>
+
+                                <label class="input">
+                                    <i class="icon-append fa fa-envelope"></i>
+                                    {{ form_widget(form.email) }}
+                                 </label>
+                            </div>
+
+                        </fieldset>
+
+                        
+
+                        {#}
+                        <div class="logged-out auth-section">
+                            <div class="connect">
+                                <div class='title'>Connectez vous</div>
+                                <a href="{{ path("fos_user_security_login") }}" title="Se connecter sur CPF Aizenay">
+                                    <img src="/images/default/login.png" alt="Se connecter" width="32" height="32" />
+                                </a>
+                            </div>
+                            <div class="guest">
+                                <div class='title'>Ou mettez vos identifiants</div>
+                                <p class="input-wrapper">
+                                    {{ form_widget(form.name) }}
+                                </p>
+                                <div class="guest-details " data-role="guest-details">
+                                    <p class="input-wrapper">
+                                        {{ form_widget(form.email) }}
+                                    </p>
+                                    <div class="proceed">
+                                        <input type="submit" class="btn submit" value="valider" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {#}
+                    {% endif %}
+
+                    <footer>
+                        <button type="submit" class="button" />Valider mon commentaire</button>
+                    </footer>
+
+                    {{ form_widget(form.link) }}
+                    {{ form_widget(form._token) }}
+            </form>
+
+            {#}<hr class='separator' />{#}
+
+            <div class='panel-body margin-bottom-50'>
+                {% for comment in comment_list %}
+                    {% set comment_name = comment.name %}
+                    {% if comment.u_username is not empty %}
+                        {% set comment_name = comment.u_username %}
+                    {% endif %}
+                    <div class="media media-v2">
+                        {% set height = null %}
+                        {% if comment.m_width is defined and comment.m_width is not empty %}
+                            {% set height = comment.m_height * media_formats["avatar_small"]["width"] // comment.m_width %}
+                        {% endif %}
+
+                        {% if height is defined and height is not empty %}
+                            <img class="pull-left media-object rounded-x" src='{% path comment.m_id, 'small' %}' alt='{{ comment_name }}' title='{{ comment_name }}' width='{{ media_formats["avatar_small"]["width"] }}' height='{{ height }}' />
+                        {% else %}
+                            <img class="pull-left media-object rounded-x" title="{{ comment_name }}" alt="{{ comment_name }}" width="36" height="37" style="margin-top: 2px; margin-left: 1px" src="{{ asset('/assets/img/testimonials/user.jpg') }}" />
+                        {% endif %}
+
+                        <div class="media-body">
+
+                            <h4 class="media-heading">
+                                <strong>{{ comment_name }}</strong>
+                                <small>Le {{ comment.createdAt|date('d/m/Y H:i') }}</small>
+                            </h4>
+
+                            <div id="comment_{{ comment.id }}">
+                                {{ comment.content | raw }}
+                            </div>
+
+                            {#}
+                            <div class="author">
+                                <a name="{{ loop.index }}" class="ancre" href="#comment_{{ comment.id }}">#{{ loop.index }}</a> écrit par {{ comment_name }}
+                                <span class="date">Le {{ comment.createdAt|date('d/m/Y H:i') }}</span>
+                            </div>
+
+                            <div class="comment-body" id="comment_{{ comment.id }}">{{ comment.content | raw }}</div>
+                            {#}
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% for flashMessage in app.session.flashbag.get('flash-notice') %}
+                    <div class="alert alert-success fade in">
+                        {{ flashMessage }}
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+</div>

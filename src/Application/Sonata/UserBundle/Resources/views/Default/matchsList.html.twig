@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Matchs joués de {{ licensee.lastname }} {{ licensee.firstname }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez les matchs joués de {{ licensee.lastname }} {{ licensee.firstname }}.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/monthNav.css') }}" type="text/css" media="screen" />
+    {#}
+    <link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/matchsList.css') }}" type="text/css" media="screen" />
+    {#}
+{% endblock %}
+
+{% block title_page %}user{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Matchs joués de {{ licensee.lastname }} {{ licensee.firstname }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-md-2">
+
+        {% include "ApplicationSonataUserBundle:Default:monthNav.html.twig" with {'licensee': licensee, 'monthsNav': monthsNav, 'startDate': startDate, 'endDate': endDate, 'internal_uri': '_sonataUserMatchsList'} %}
+
+    </div>
+
+    <div class="col-md-10">
+
+        <table class="table table-hover">
+            <thead>
+                <th>V/D</th>
+                <th>Date</th>
+                <th>Adversaire</th>
+                <th>Classement</th>
+                <th>Coefficient</th>
+                <th>Gain/Perte</th>
+            </thead>
+
+            <tbody>
+                {% for match in licenseeMatch_list %}
+                    <tr class="m_{{ loop.index%2 }} cat_{{ match.category|lower }}">
+                        <td class="category">{{ match.category }}</td>
+                        <td>{{ match.datetime_match|date("d/m/Y") }}</td>
+                        <td>{{ match.opponent_lastname }} {{ match.opponent_firstname }}</td>
+                        <td>{{ match.opponent_ranking }}</td>
+                        <td>{{ match.coefficient }}</td>
+                        <td>{{ match.points_evaluation }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6">Aucun match n'a encore été joué ce mois-ci.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    
+     {% include "ApplicationSonataUserBundle:Default:sidebar-menu.html.twig" with { 'active_item_menu': 'matchs' } %}
+
+    {{ parent() }}
+
+{% endblock %}

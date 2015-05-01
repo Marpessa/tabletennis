@@ -1,0 +1,12 @@
+services:
+    tabletennis.partner.admin.partner:
+        class: TableTennis\PartnerBundle\Admin\PartnerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Partenaires du club" }
+        arguments: 
+            - ~
+            - TableTennis\PartnerBundle\Entity\Partner
+            - TableTennisPartnerBundle:PartnerAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisPartnerBundle]]

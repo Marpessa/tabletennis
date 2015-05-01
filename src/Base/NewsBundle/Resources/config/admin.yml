@@ -1,0 +1,12 @@
+services:
+    base.page.admin.news:
+        class: Base\NewsBundle\Admin\NewsAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.article", label: "Actualités" }
+        arguments: 
+            - ~
+            - Base\NewsBundle\Entity\News
+            - BaseNewsBundle:NewsAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseNewsBundle]]

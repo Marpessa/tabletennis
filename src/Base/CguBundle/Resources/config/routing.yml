@@ -1,0 +1,5 @@
+_baseCguIndex:
+    defaults: { _controller: BaseCguBundle:Default:index, culture: fr }
+    pattern: /{culture}/conditions-generales-utilisation.html
+    requirements:
+        culture: fr

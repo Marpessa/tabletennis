@@ -1,0 +1,8 @@
+eko_feed:
+    feeds:
+        article:
+            title:       'Les actualités'
+            description: 'Les dernières actualités de CPF Aizenay'
+            link:        'http://cpfaizenay.com'
+            encoding:    'utf-8'
+            author:      'CPF Aizenay' # Only required for Atom feeds

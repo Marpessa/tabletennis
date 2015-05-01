@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Actualités | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez toute l'actualité de votre club de tennis de table{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/pages/feature_timeline2.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basenews/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}news{% endblock %}
+
+{% block h1 %}
+  <h1 class="pull-left">Actualités</h1>
+{% endblock %}
+ 
+{% block content %}
+
+
+  {% if news_list|length > 0 %}
+
+    <ul class="timeline-v2">
+      {% for news in news_list %}
+        <li>
+            <time class="cbp_tmtime" datetime=""><span>Par {{ news.u_username | truncate(40) | raw }}</span> <span>{{ news[0].updatedAt|date("d/m/Y") }}</span></time>
+            <i class="cbp_tmicon rounded-x hidden-xs"></i>
+            <div class="cbp_tmlabel">
+                <h2>
+                  <a href="{{ path('_baseNewsShow', {"slug": news[0].slug, "year": news[0].updatedAt|date("Y"), "month": news[0].updatedAt|date("m") } ) }}">{{ news[0].title | truncate(45) | raw }}</a>
+                </h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <img class="img-responsive" src='{% path news.m_id, 'small' %}' alt='{{ news[0].title }}' title='{{ news[0].title }}' width='63' />
+                        <div class="md-margin-bottom-20"></div>
+                    </div>
+                    <div class="col-md-8">
+                        <p>{{ news[0].content | striptags | truncate(160) | raw }}</p>
+                    </div>
+                </div>        
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {{ pagerfanta(news_list, 'twitter_bootstrap3', {'proximity': 3, 'prev_message': '«', 'next_message': '»'}) }}
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Publier une photo dans la galerie photos | {{ parent() }}{% endblock %}
+{% block meta_description %}Publiez votre photo.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/basepics/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}picture{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Déposer une photo</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% for flashMessage in app.session.flashbag.get('flash-notice') %}
+        <div class="alert alert-success fade in">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger fade in">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('_basePicsPostPhoto') }}" method="post" {{ form_enctype(form) }} class='sky-form'>
+
+        <header>Compléter ce formulaire afin de déposer votre photo</header>
+        <fieldset>
+
+            <section>
+                {{ form_label(form.media_id) }}<span class="color-red">*</span>
+                {{ form_widget(form.media_id) }}
+            </section>
+
+            {{ form_rest(form) }}
+
+        </fieldset>
+
+        <footer>
+            <button type="submit" class="button" />Envoyer votre photo</button>
+        </footer>
+    </form>
+
+{% endblock %}

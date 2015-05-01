@@ -1,0 +1,304 @@
+BasePageBundle:
+    resource: "@BasePageBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseNewsBundle:
+    resource: "@BaseNewsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseEventBundle:
+    resource: "@BaseEventBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseCommentBundle:
+    resource: "@BaseCommentBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BasePicsBundle:
+    resource: "@BasePicsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseVideosBundle:
+    resource: "@BaseVideosBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseGoogleMapBundle:
+    resource: "@BaseGoogleMapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseSiteMapBundle:
+    resource: "@BaseSiteMapBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseContactBundle:
+    resource: "@BaseContactBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseCguBundle:
+    resource: "@BaseCguBundle/Resources/config/routing.yml"
+    prefix:   /
+
+BaseGoogleAgendaBundle:
+    resource: "@BaseGoogleAgendaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisLicenseeBundle:
+    resource: "@TableTennisLicenseeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisTeamBundle:
+    resource: "@TableTennisTeamBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisClubBundle:
+    resource: "@TableTennisClubBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisScoringTableBundle:
+    resource: "@TableTennisScoringTableBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisMatchTypeBundle:
+    resource: "@TableTennisMatchTypeBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisFfttFeedBundle:
+    resource: "@TableTennisFfttFeedBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisFfttBundle:
+    resource: "@TableTennisFfttBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisPartnerBundle:
+    resource: "@TableTennisPartnerBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisPointsCalculationBundle:
+    resource: "@TableTennisPointsCalculationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+TableTennisUsefulInformationBundle:
+    resource: "@TableTennisUsefulInformationBundle/Resources/config/routing.yml"
+    prefix:   /
+
+_homepage:
+    defaults: { _controller: TableTennisHomePageFrontendBundle:Default:index, culture: fr }
+    pattern:  /{culture}
+    requirements:
+        culture:  fr
+
+#admin
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# Profile
+_sonataUserDashboard:
+    defaults: { _controller: SonataUserBundle:Default:dashboard, culture: fr }
+    pattern: /{culture}/profil/{licensee_number}/{slug}/
+    requirements:
+        culture: fr
+
+_sonataUserProfileDashboard:
+    defaults: { _controller: SonataUserBundle:Default:profileDashboard, culture: fr }
+    pattern: /{culture}/mon-profil/
+    requirements:
+        culture: fr
+
+_sonataUserMatchsList:
+    defaults: { _controller: SonataUserBundle:Default:matchsList, culture: fr }
+    pattern: /{culture}/profil/{licensee_number}/{slug}/{start_date}/{end_date}/matchs-joues.html
+    requirements:
+        culture: fr
+
+_sonataUserProfileMatchsList:
+    defaults: { _controller: SonataUserBundle:Default:profileMatchsList, culture: fr }
+    pattern: /{culture}/mon-profil/matchs-joues.html
+    requirements:
+        culture: fr
+
+_sonataUserEvolution:
+    defaults: { _controller: SonataUserBundle:Default:evolution, culture: fr }
+    pattern: /{culture}/profil/{licensee_number}/{slug}/{start_date}/{end_date}/evolution.html
+    requirements:
+        culture: fr
+
+_sonataUserProfileEvolution:
+    defaults: { _controller: SonataUserBundle:Default:profileEvolution, culture: fr }
+    pattern: /{culture}/mon-profil/evolution.html
+    requirements:
+        culture: fr
+
+_sonataUserMatchsPie:
+    defaults: { _controller: SonataUserBundle:Default:perfCons, culture: fr }
+    pattern: /{culture}/profil/{licensee_number}/{slug}/{start_date}/{end_date}/perfs-contres.html
+    requirements:
+        culture: fr
+
+_sonataUserProfileMatchsPie:
+    defaults: { _controller: SonataUserBundle:Default:profilePerfCons, culture: fr }
+    pattern: /{culture}/mon-profil/perfs-contres.html
+    requirements:
+        culture: fr
+
+_sonataUserEditProfileGeneralInfos:
+    defaults: { _controller: SonataUserBundle:Profile:editProfileGeneralInfos, culture: fr }
+    pattern: /{culture}/mon-profil/editer-informations-generales.html
+    requirements:
+        culture: fr
+
+_sonataUserEditProfileAvatar:
+    defaults: { _controller: SonataUserBundle:Default:editProfileAvatar, culture: fr }
+    pattern: /{culture}/mon-profil/editer-avatar.html
+    requirements:
+        culture: fr
+
+_sonataUserEditProfileTableTennisInfos:
+    defaults: { _controller: SonataUserBundle:Default:editProfileTableTennisInfos, culture: fr }
+    pattern: /{culture}/mon-profil/editer-informations-tennis-de-table.html
+    requirements:
+        culture: fr
+
+#gallery
+gallery:
+    resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
+    prefix: /media/gallery
+
+media:
+    resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
+    prefix: /media
+
+# FOS / Sonata User
+sonata_user_security:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+
+sonata_user_resetting:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+    prefix: /resetting
+
+sonata_user_profile:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+    prefix: /profile
+
+sonata_user_register:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+    prefix: /register
+
+sonata_user_change_password:
+    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+    prefix: /profile
+
+#fos_user // sonata_security_1.xml
+fos_user_security_login:
+    pattern: /{culture}/connexion.html
+    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:login, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_security_check:
+    pattern: /{culture}/verification-connexion.html
+    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:check, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_security_logout:
+    pattern: /{culture}/deconnexion.html
+    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:logout, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+#fos_user_register // sonata_registration_1.xml
+fos_user_registration_register:
+    pattern: /{culture}/inscription/
+    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:register, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_registration_check_email:
+    pattern: /{culture}/inscription/verification-email.html
+    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:checkEmail, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_registration_confirm:
+    pattern: /{culture}/inscription/{token}/verification.html
+    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:confirm, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_registration_confirmed:
+    pattern: /{culture}/inscription/confirmation.html
+    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:confirmed, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+#fos_user_change_password // sonata_change_password_1.xml
+fos_user_change_password:
+    pattern: /{culture}/changement-mot-de-passe.html
+    defaults:       { _controller: SonataUserBundle:ChangePasswordFOSUser1:changePassword, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+#fos_user_resetting // sonata_resetting_1.xml
+fos_user_resetting_request:
+    pattern: /{culture}/mot-de-passe-oublie/
+    defaults:       { _controller: SonataUserBundle:ResettingFOSUser1:request, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_resetting_send_email:
+    pattern: /{culture}/mot-de-passe-oublie/envoi-email.html
+    defaults:       { _controller: SonataUserBundle:ResettingFOSUser1:sendEmail, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_resetting_check_email:
+    pattern: /{culture}/mot-de-passe-oublie/verification-email.html
+    defaults:       { _controller: SonataUserBundle:ResettingFOSUser1:checkEmail, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+fos_user_resetting_reset:
+    pattern: /{culture}/{token}/changement-de-mot-de-passe.html
+    defaults:       { _controller: SonataUserBundle:ResettingFOSUser1:reset, _format: "html", culture: fr }
+    requirements:
+        culture: fr
+
+#sonata_user
+sonata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
+
+#forum
+_forum:
+    resource: "@HerzultForumBundle/Resources/config/routing/forum.xml"
+    prefix: /
+_forum_category:
+    resource: "@HerzultForumBundle/Resources/config/routing/category.xml"
+    prefix: /forum
+forum_topic:
+    resource: "@HerzultForumBundle/Resources/config/routing/topic.xml"
+    prefix: /forum
+forum_post:
+    resource: "@HerzultForumBundle/Resources/config/routing/post.xml"
+    prefix: /forum
+forum_topic_show_compat:
+    pattern:        /{culture}/forum/{categorySlug}/{slug}/{id}.{_format}
+    defaults:       { _controller: forum.controller.topic:showCompatAction, _format: "html", id: "", culture: fr }
+    requirements:   { _method: "get|head", _format: "html|xml", slug: "[-\w]+", culture: fr }
+
+#Cache
+sonata_cache_cache:
+    resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
+    prefix: /
+
+# Internal routing configuration to handle ESI
+# _internal:
+   # resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+   # prefix:   /_internal

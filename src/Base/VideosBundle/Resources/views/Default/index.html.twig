@@ -1,0 +1,86 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Vidéos | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez les meilleurs vidéos de tennis de table.{% endblock %}
+
+{% block stylesheets %}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basevideos/css/main.css') }}" type="text/css" media="screen" />{#}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/portfolio-v1.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block title_page %}movie{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Vidéos</h1>
+{% endblock %}
+
+{% block content %}
+
+    <!--=== Content Part ===-->
+    <div class="portfolio-4-columns">
+
+        {% for playlist in playlist_list %}
+            {% if loop.index0%2 == 0 %}
+
+                {% if loop.first != true %}
+                    </div><!--/row-->
+                {% endif %}
+
+                <div class="row">
+            {% endif %}
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="view view-tenth">
+                            <img class="img-responsive" src="{{ playlist.thumb_uri }}" alt="{{ playlist.title }}" width="320" height="180" />
+                            <div class="mask">
+                                <h2>{{ playlist.title }}</h2>
+                                <a href="{{ url('_baseVideosShowPlaylist', {'id_playlist': playlist.id, 'slug': playlist.slug}) }}" title="{{ playlist.title }}" class="info">En savoir plus</a>
+                            </div>                
+                        </div>
+                    </div>
+        {% endfor %}
+                </div>
+
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+    
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+       {{ render(controller('TableTennisFfttFeedBundle:Default:home', {}), {}) }}
+    </div>
+
+    {#}
+    <ul class="playlist_list clearfix">
+        {% for playlist in playlist_list %}
+            <li class="l_{{ (loop.index - 1)%2 }}">
+                <a href="{{ url('_baseVideosShowPlaylist', {'id_playlist': playlist.id, 'slug': playlist.slug}) }}" title="{{ playlist.title }}">
+                    <img src="{{ playlist.thumb_uri }}" alt="{{ playlist.title }}" width="320" height="180" />
+                    <h2>{{ playlist.title }}</h2>
+                    <span>{{ playlist.totalResults }}</span>
+                </a>            
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr class='separator'/>
+    {#}
+
+{% endblock %}
+
+{% block sidebar %}
+    
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Publier une photo</h2>
+        <p>Partagez votre passion avec CPF Aizenay en publiant vos photos sur le site !</p>
+        <a href="{{ path('_basePicsPostPhoto', {} ) }}" class="btn-u btn-u-lg btn-block btn-u-default">Déposer une photo</a>
+    </div>
+
+
+    {{ parent() }}
+
+{% endblock %}

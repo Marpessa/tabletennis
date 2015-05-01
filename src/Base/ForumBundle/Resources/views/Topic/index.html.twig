@@ -1,0 +1,42 @@
+{% extends 'HerzultForumBundle::layout.html.twig' %}
+
+{% block title %}{{ topic.subject }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Participez au sujet {{ topic.subject | truncate(150) | striptags }}.{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/profile.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">{{ topic.subject }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    {#}<a href="{{ forum_urlForTopicAtomFeed(topic) }}" title="Atom feed" class="feed atom">Atom feed</a>{#}
+    <div class="profile">
+    	<div class="profile-body">
+    		{% include 'HerzultForumBundle:Post:list.html.twig' with {'posts': posts} %}
+    	</div>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Participer au sujet</h2>
+        <p>Partagez votre passion avec CPF Aizenay en participant à ce sujet !</p>
+        <a href="{{ forum_urlForTopicReply(topic) }}" class="btn-u btn-block btn-u-default">Déposer un message</a>
+    </div>
+
+    {#}
+    <div class="headline"><h2>Liste des forums</h2></div>
+    {% render 'HerzultForumBundle:Category:list' %}
+    {#}
+
+    {{ parent() }}
+
+{% endblock %}

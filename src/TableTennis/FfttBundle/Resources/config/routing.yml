@@ -1,0 +1,3 @@
+_tableTennisFfttCronImportFfttData:
+    defaults: { _controller: TableTennisFfttBundle:Default:cronImportFfttData }
+    pattern: /cron_import_fftt_data.html

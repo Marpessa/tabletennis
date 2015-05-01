@@ -1,0 +1,87 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Galerie photos | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez les meilleurs photos de tennis de table.{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/portfolio-v1.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basepics/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}picture{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Galerie photos</h1>
+{% endblock %}
+
+{% block content %}
+
+    <!--=== Content Part ===-->
+    <div class="portfolio-4-columns">
+
+        {% for album in album_list %}
+            {% if loop.index0%4 == 0 %}
+
+                {% if loop.first != true %}
+                    </div><!--/row-->
+                {% endif %}
+
+                <div class="row">
+            {% endif %}
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="view view-tenth">
+                            <img class="img-responsive" src="http://farm{{ album.attributes.farm }}.static.flickr.com/{{ album.attributes.server }}/{{ album.attributes.primary }}_{{ album.attributes.secret }}_q.jpg" alt="{{ album.title }}" width="150" height="150" />
+                            <div class="mask">
+                                <h2>{{ album.title }}</h2> {#}{{ album.attributes.photos }}{#}
+                                {#}<p>At vero eos et accusamus et iusto odio dignissimos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>{#}
+                                <a href="{{ url('_basePicsShowAlbum', {'id_album': album.attributes.id, 'slug': album.slug}) }}" title="{{ album.title }}" class="info">En savoir plus</a>
+                            </div>                
+                        </div>
+                    </div>
+        {% endfor %}
+                </div>
+
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+
+    {#}
+    <ul class="album_list clearfix">
+        {% for album in album_list %}
+            <li class="l_{{ (loop.index - 1)%4 }}">
+                <a href="{{ url('_basePicsShowAlbum', {'id_album': album.attributes.id, 'slug': album.slug}) }}" title="{{ album.title }}">
+                    <img src="http://farm{{ album.attributes.farm }}.static.flickr.com/{{ album.attributes.server }}/{{ album.attributes.primary }}_{{ album.attributes.secret }}_q.jpg" alt="{{ album.title }}" width="150" height="150" />
+                    <h2>{{ album.title }}</h2>
+                    <span class="desc">{{ album.attributes.photos }}</span>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr class='separator'/>
+    {#}
+
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+        {{ render(controller('TableTennisFfttFeedBundle:Default:home', {}), {}) }}
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Publier une photo</h2>
+        <p>Partagez votre passion avec CPF Aizenay en publiant vos photos sur le site !</p>
+        <a href="{{ path('_basePicsPostPhoto', {} ) }}" class="btn-u btn-u-lg btn-block btn-u-default">Déposer une photo</a>
+    </div>
+
+
+    {{ parent() }}
+
+{% endblock %}

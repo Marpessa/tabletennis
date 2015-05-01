@@ -1,0 +1,71 @@
+<?php
+
+namespace Base\ContactBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="enquiry")
+ */
+class Enquiry {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    protected $name;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    protected $email;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    protected $subject;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    protected $body;
+    
+    
+}

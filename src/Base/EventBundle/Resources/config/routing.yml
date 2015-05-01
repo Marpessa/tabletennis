@@ -1,0 +1,13 @@
+_baseEventIndex:
+    defaults: { _controller: BaseEventBundle:Default:index, culture: fr }
+    pattern: /{culture}/evenements/
+    requirements:
+        culture: fr
+        format: html
+
+_baseEventShow:
+    defaults: { _controller: BaseEventBundle:Default:show, year: 2000, culture: fr }
+    pattern: /{culture}/evenements/{year}/{month}/{slug}.html
+    requirements:
+         culture: fr
+#        year:  \d{4}

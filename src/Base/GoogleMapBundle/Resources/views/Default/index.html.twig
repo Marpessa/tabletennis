@@ -1,0 +1,31 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Nous trouver | {{ parent() }}{% endblock %}
+{% block meta_description %}Trouvez la salle de tennis de table d'Aizenay grâce à Google maps.{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ google_map_js(map) }}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Nous trouver</h1>
+{% endblock %}
+
+{% block content %}
+
+	<div class="margin-bottom-40">
+    	{{ google_map_container(map) }}
+    </div>
+
+	{% include 'BaseContactBundle:Default:form.html.twig' with { 'form': form } %}
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {% include 'BaseContactBundle:Default:sidebar-contact.html.twig' with {} %}
+
+    {{ parent() }}
+
+{% endblock %}

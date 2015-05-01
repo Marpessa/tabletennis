@@ -1,0 +1,29 @@
+<td class="sonata-ba-list-field sonata-ba-list-field-{{ field_description.type }}" objectId="{{ admin.id(object) }}" style="text-align: center">
+{% spaceless %}
+{% if field_description.options.editable is defined and field_description.options.editable and admin.isGranted('EDIT', object) %}
+    {% if value %}
+        <a href="{{ url('sonata_admin_set_object_field_value', { 'context': 'list', 'field': field_description.name, 'objectId': admin.id(object), 'value': 0, 'code': admin.code(object) }) }}" class="sonata-ba-action sonata-ba-edit-inline">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <br />
+            publiée
+        </a>
+    {% else %}
+        <a href="{{ url('sonata_admin_set_object_field_value', { 'context': 'list', 'field': field_description.name, 'objectId': admin.id(object), 'value': 1, 'code': admin.code(object) }) }}" class="sonata-ba-action sonata-ba-edit-inline">
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <br />
+            brouillon
+        </a>
+    {% endif %}
+{% else %}
+    {% if value %}
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            <br />
+            publiée
+    {% else %}
+            <i class="glyphicon glyphicon-ban-circle"></i>
+            <br />
+            brouillon
+    {% endif %}
+{% endif %}
+{% endspaceless %}
+</td>

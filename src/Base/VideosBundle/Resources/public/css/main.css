@@ -1,0 +1,107 @@
+#movie ul.playlist_list li {
+    float: left;
+
+    margin: 0 0 15px 15px;
+}
+
+#movie ul.playlist_list li.l_0 {
+    margin-left: 0;
+}
+
+#movie ul.playlist_list li a {
+    position: relative;
+    display: block;
+    border: 1px solid #CCC;
+}
+
+#movie ul.playlist_list li a:hover,
+#movie ul.playlist_list li a:hover img {
+    border-color: #6698B9;
+}
+
+#movie ul.playlist_list li a:hover h2 {
+    background: #6698B9;
+    color: #FFF;
+}
+
+#movie ul.playlist_list li a:hover span {
+    background: #6698B9;
+    color: #FFF;
+}
+
+#movie ul.playlist_list li img {
+    border: 3px solid #FFF;
+}
+
+#movie ul.playlist_list li h2 {
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 5px 0;
+
+    background: white;
+
+    color: #444;
+    font-size: 14px;
+    text-align: center;
+    font-family: 'AmaranthRegular', 'Helvetica', 'Arial', sans-serif;
+}
+
+#movie ul.playlist_list li span {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    color: #777;
+    background-color: white;
+
+    font-size: 10px;
+    font-style: italic;
+    padding: 5px;
+    min-width: 14px;
+    text-align: center;
+    font-weight: bold;
+
+    border-radius: 0 0 0 10px;
+    -moz-border-radius: 0 0 0 10px;
+    -ms-border-radius: 0 0 0 10px;
+    -webkit-border-radius: 0 0 0 10px;
+    -o-border-radius: 0 0 0 10px;
+}
+
+
+
+/*********************************/
+/*           Detail Movie        */
+/*********************************/
+
+#movie .movie_player {
+    float: none;
+    clear: both;
+    width: 100%;
+    margin: 0;
+}
+
+#movie .movie_player div {
+    width: 400px;
+    margin: 10px;
+}
+
+#movie .movie_player h2 {
+    position: relative;
+    width: 260px;
+    margin-top: 50px;
+    font-size: 16px;
+}
+
+#movie .movie_player.l_0 h2,
+#movie .movie_player.l_1 div {
+    float: left;
+}
+
+#movie .movie_player.l_1 h2,
+#movie .movie_player.l_0 div {
+    float: right;
+}

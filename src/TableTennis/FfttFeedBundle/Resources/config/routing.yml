@@ -1,0 +1,5 @@
+_tableTennisFfttFeedIndex:
+    defaults: { _controller: TableTennisFfttFeedBundle:Default:index, culture: fr }
+    pattern: /{culture}/fftt-rss.html
+    requirements:
+        culture: fr

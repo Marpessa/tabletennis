@@ -1,0 +1,17 @@
+ttp.comment = {};
+
+ttp.comment.init_fillContent = function() {
+   $('.textarea', '#comments form').focus(function(){
+       $(this).find('.placeholder').remove();
+   });
+};
+
+ttp.comment.submitForm = function( form ) {
+   $('.textarea', '#comments form').find('.placeholder').remove();
+   $('.textarea', '#comments form').next('input').val( $('.textarea', '#comments form').html() );
+   $( form ).submit();
+};
+
+$(document).ready(function() {
+    ttp.comment.init_fillContent();
+});

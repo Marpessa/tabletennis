@@ -1,0 +1,33 @@
+parameters:
+#    table_tennis_main.example.class: TableTennis\MainBundle\Example
+
+services:
+#    table_tennis_main.example:
+#        class: %table_tennis_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+
+    tableTennis_main.menu_builder:
+        class: TableTennis\MainBundle\Menu\MenuBuilder
+        arguments: ["@knp_menu.factory", "@security.context"]
+
+    tableTennis_main.menu.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: tabletennis_main.menu_builder
+        factory_method: createMainMenu
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: main } # The alias is what is used to retrieve the menu
+
+    tableTennis_main.footer_builder:
+        class: TableTennis\MainBundle\Footer\FooterBuilder
+        arguments: ["@knp_menu.factory"]
+
+    tableTennis_main.footer.main:
+        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        factory_service: tabletennis_main.footer_builder
+        factory_method: createMainFooter
+        arguments: ["@request"]
+        scope: request # needed as we have the request as a dependency here
+        tags:
+            - { name: knp_menu.menu, alias: footer } # The alias is what is used to retrieve the menu

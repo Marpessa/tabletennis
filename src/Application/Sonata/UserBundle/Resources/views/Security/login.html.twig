@@ -1,0 +1,56 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Connexion | {{ parent() }}{% endblock %}
+{% block meta_description %}Connectez-vous sur CPF Aizenay pour accéder aux différentes informations de votre profil et particper au site.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}connexion{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Connexion</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% include "FOSUserBundle:Security:login_content.html.twig" with { 'csrf_token': csrf_token } %}
+
+    {#}
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="sky-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class='form_row'>
+            <label for="username">Login ou email</label>
+            <input class='input_text' type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Mon pseudo ou mon email" />
+        </div>
+        <div class='form_row'>
+            <label for="password">Mot de passe</label>
+            <input class='input_text' type="password" id="password" name="_password" placeholder="Mon mot de passe" />
+            <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+        </div>
+        <div class='form_row remember_me'>
+            <input type="checkbox" id="login_remember_me" name="_remember_me" value="on" />
+            <label for="login_remember_me">Se souvenir de moi</label>
+            
+        </div>
+
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+    </form>
+    {#}
+        
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Pas encore inscrit ?</h2>
+        <p>Partagez votre passion avec CPF Aizenay en vous inscrivant au site</p>
+        <a href="{{ path('fos_user_registration_register') }}" class="btn-u btn-u-default">S'inscrire</a>
+    </div>
+
+    {{ parent() }}
+
+{% endblock %}

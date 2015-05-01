@@ -1,0 +1,6 @@
+_baseGoogleAgendaChangeMonth:
+    defaults: { _controller: BaseGoogleAgendaBundle:Default:changeMonth, culture: fr }
+    pattern: /{culture}/{year}/{month}/calendrier.html
+    requirements:
+        culture: fr
+        _method: GET

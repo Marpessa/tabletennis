@@ -1,0 +1,25 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Erreur - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/page_404_error.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Erreur {{ status_code }}</h1>
+{% endblock %}
+
+{% block content %}
+
+	<div class="col-md-8 col-md-offset-2">
+        <div class="error-v1">
+            <span class="error-v1-title">{{ status_code }}</span>
+            <span>Oops! Une erreur est survenue!</span>
+            <p>Le serveur a retourné "{{ status_code }} {{ status_text }}"</p>
+            <a class="btn-u btn-bordered" href="{{ path('_homepage') }}">Retour à l'accueil</a>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+services:
+    base.category.admin.menu:
+        class: Base\CategoryBundle\Admin\MenuAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.website", label: "Menu" }
+        arguments: 
+            - ~
+            - Base\CategoryBundle\Entity\Menu
+            - BaseCategoryBundle:MenuAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseCategoryBundle]]
+    base.category.admin.footer:
+        class: Base\CategoryBundle\Admin\MenuAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.website", label: "Footer" }
+        arguments: 
+            - ~
+            - Base\CategoryBundle\Entity\Footer
+            - BaseCategoryBundle:FooterAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseCategoryBundle]]

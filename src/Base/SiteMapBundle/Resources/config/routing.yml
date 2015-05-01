@@ -1,0 +1,18 @@
+_baseSiteMapIndex:
+    defaults: { _controller: BaseSiteMapBundle:Default:index, culture: fr }
+    pattern: /{culture}/plan-du-site.html
+    requirements:
+        culture: fr
+
+_baseSiteMapXml:
+    defaults: { _controller: BaseSiteMapBundle:Default:feed }
+    pattern: /sitemap.xml
+    requirements:
+        format: xml
+
+_baseSiteMapXmlLang:
+    defaults: { _controller: BaseSiteMapBundle:Default:feedLang, culture: fr }
+    pattern: /{culture}/sitemap.xml
+    requirements:
+        culture: fr
+        format: xml

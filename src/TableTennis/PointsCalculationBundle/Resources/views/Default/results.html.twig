@@ -1,0 +1,102 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Résultats du calcul de vos points sur les matchs de tennis de table | {{ parent() }}{% endblock %}
+{% block meta_description %}Résultats du calcul de vos points de tennis de table.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/tabletennispointscalculation/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}pointsCalculation{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Résultats du calcul de vos points sur les matchs de tennis de table</h1>
+{% endblock %}
+
+{% block content %}
+
+<div class="alert alert-info fade in">
+    <ul>
+        <li>Type de compétition : {{ matchType.title }}</li>
+        <li>Coëfficient de la compétition : {{ matchType.coefficient }}</li>
+        <li>Votre nombre de points mensuels : {{ mensual_points }}</li>
+    </ul>
+</div>
+
+<h2>Vos matchs joués</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre de points</th>
+            <th>Victoire/Défaite</th>
+            <th>Gain</th>
+            <th>Coefficient</th>
+            <th>Résultats</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% set totalGain = 0 %}
+        {% set totalResults = 0 %}
+        {% for opponent_result in opponents_results %}
+            {% if opponent_result['opponent_point'] is not empty %}
+                <tr>
+                    <td>{{ opponent_result['opponent_point'] }}</td>
+                    <td>
+                        {% if opponent_result['opponent_status'] == 'v' %}
+                            <span class='color-green'>Victoire</span>
+                        {% else %}
+                            <span class='color-red'>Défaite</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if opponent_result['gain'] > 0 %}
+                            <span class='color-green'>+{{ opponent_result['gain'] }}</span>
+                        {% else %}
+                            <span class='color-red'>{{ opponent_result['gain'] }}</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ matchType.coefficient }}</td>
+                    <td>
+                        {% if matchType.coefficient * opponent_result['gain'] > 0 %}
+                            <span class='color-green'>+{{ matchType.coefficient * opponent_result['gain'] }}</span>
+                        {% else %}
+                            <span class='color-red'>{{ matchType.coefficient * opponent_result['gain'] }}</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% set totalGain = totalGain + opponent_result['gain'] %}
+                {% set totalResults = totalResults + matchType.coefficient * opponent_result['gain'] %}
+            {% endif %}
+        {% endfor %}
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <th colspan='2'>Total :</th>
+            <th>
+                {% if totalGain > 0 %}
+                    <span class='color-green'>+{{ totalGain }}</span>
+                {% else %}
+                    <span class='negative'>{{ totalGain }}</span>
+                {% endif %}
+            </th>
+            <th></th>
+            <th>
+                {% if totalGain > 0 %}
+                    <span class='color-green'>+{{ totalResults }}</span>
+                {% else %}
+                    <span class='color-red'>{{ totalResults }}</span>
+                {% endif %}
+            </th>
+        </tr>
+    </tfoot>
+</table>
+
+<div class="alert alert-success fade in">
+    Votre nombre de points mensuels après matchs : <strong>{{ mensual_points + totalResults }}</strong>
+</div>
+
+{% endblock %}

@@ -1,0 +1,8 @@
+<VirtualHost *:80>
+  ServerName app.cpfaizenay.com
+  DocumentRoot "/home/ecouvreur/dev/website/tennistableportal/trunk/web/"
+  <Directory "/home/ecouvreur/dev/website/tennistableportal/trunk/web/">
+    AllowOverride All
+    Allow from All
+  </Directory>
+</VirtualHost>

@@ -1,0 +1,45 @@
+/** Matchs **/
+
+#user table {
+    width: 100%;
+}
+
+#user table th {
+    color: #6698B9;
+    padding: 5px;
+}
+
+#user table tr.m_0 td.category,
+#user table tr.m_1 td.category {
+    font-weight: bold;
+    background-color: #FFF;
+}
+
+#user table tr.cat_v td.category { color: teal; }
+
+#user table tr.cat_d td.category { color: #aa4643; }
+
+#user table th,
+#user table td {
+    border: 1px solid #444;
+
+    background: #FFF;
+    text-align: center;
+}
+
+#user table th {
+    background-color: #42576F;
+    color: #FFF;
+}
+
+#user table td {
+    padding: 5px 0;
+}
+
+#user table tr.m_0 td {
+    background-color: #6698B9;
+    color: white;
+}
+#user table tr.m_1 td {
+    background-color: #EBEBEB;
+}

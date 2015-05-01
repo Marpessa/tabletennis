@@ -1,0 +1,5 @@
+_tableTennisMatchTypeIndex:
+    defaults: { _controller: TableTennisMatchTypeBundle:Default:index, culture: fr }
+    pattern: /{culture}/coefficient-des-competitions.html
+    requirements:
+        culture: fr

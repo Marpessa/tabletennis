@@ -1,0 +1,11 @@
+_baseVideosIndex:
+    defaults: { _controller: BaseVideosBundle:Default:index, culture: fr }
+    pattern: /{culture}/videos/
+    requirements:
+        culture: fr
+
+_baseVideosShowPlaylist:
+    defaults: { _controller: BaseVideosBundle:Default:show, culture: fr }
+    pattern: /{culture}/videos/{id_playlist}/{slug}.html
+    requirements:
+        culture: fr

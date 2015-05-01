@@ -1,0 +1,148 @@
+{% if form_errors(form) %}
+    <div class="alert alert-danger fade in">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+<form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="sky-form">
+    <header>Complétez ce formulaire afin de vous inscrire sur le site</header>
+
+    <fieldset>
+        <h2>Vos informations personnelles</h2>
+
+        <div class="row">
+            <section class="col col-6">
+                {{ form_label(form.username) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.username) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-user"></i>
+                    {{ form_widget(form.username) }}
+                </label>
+
+                {% if form_errors(form.username) %}
+                    <em class="invalid">{{ form_errors(form.username) }}</em>
+                {% endif %}
+            </section>
+
+            <section class="col col-6">
+                {{ form_label(form.email) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.email) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-envelope"></i>
+                    {{ form_widget(form.email) }}
+                </label>
+
+                {% if form_errors(form.email) %}
+                    <em class="invalid">{{ form_errors(form.email) }}</em>
+                {% endif %}
+            </section>
+
+        </div>
+
+        <div class="row">
+            <section class="col col-6">
+                {{ form_label(form.lastname) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.lastname) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-user"></i>
+                    {{ form_widget(form.lastname) }}
+                </label>
+
+                {% if form_errors(form.lastname) %}
+                    <em class="invalid">{{ form_errors(form.lastname) }}</em>
+                {% endif %}
+            </section>
+
+            <section class="col col-6">
+                {{ form_label(form.firstname) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.firstname) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-user"></i>
+                    {{ form_widget(form.firstname) }}
+                </label>
+
+                {% if form_errors(form.firstname) %}
+                    <em class="invalid">{{ form_errors(form.firstname) }}</em>
+                {% endif %}
+            </section>
+        </div>
+
+        <div class="row">
+            <section class="col col-6">
+                {{ form_label( form.plainPassword.first ) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.plainPassword.first) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-lock"></i>
+                    {{ form_widget( form.plainPassword.first ) }}
+                </label>
+            </section>
+
+            <section class="col col-6">
+
+                {{ form_label( form.plainPassword.second ) }}<span class="color-red">*</span>
+                <label class="input{% if form_errors(form.plainPassword.first) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-lock"></i>
+                    {{ form_widget( form.plainPassword.second ) }}
+                </label>
+                {% if form_errors(form.plainPassword.first) %}
+                    <em class="invalid">{{ form_errors(form.plainPassword.first) }}</em>
+                {% endif %}
+            </section>
+
+        </div>
+    </fieldset>
+    <fieldset>
+
+        <h2>Vos informations tennis de table</h2>
+
+        <div class="row">
+
+            <section class="col col-6">
+
+                {{ form_label(form.licensee.licensee_number) }}
+                <label class="input{% if form_errors(form.licensee.licensee_number) %} state-error{% endif %}">
+                    <i class="icon-append fa fa-trophy"></i>
+                    {{ form_widget(form.licensee.licensee_number) }}
+                </label>
+
+                {% if form_errors(form.licensee.licensee_number) %}
+                    <em class="invalid">{{ form_errors(form.licensee.licensee_number) }}</em>
+                {% endif %}
+
+            </section>
+
+            <section class="col col-6">
+
+                {{ form_label(form.licensee.licensee_category) }}
+                <label class="select{% if form_errors(form.licensee.licensee_category) %} state-error{% endif %}">
+                    {{ form_widget(form.licensee.licensee_category) }}
+                    <i></i>
+                </label>
+
+                {% if form_errors(form.licensee.licensee_category) %}
+                    <em class="invalid">{{ form_errors(form.licensee.licensee_category) }}</em>
+                {% endif %}
+            </section>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset>
+
+        <h2>Validation de votre inscription</h2>
+
+        <section>
+            <label class="checkbox">
+                <input id='cgu' name='cgu' type='checkbox' value='1' required='required' /><i></i>
+                <label for='cgu'>J'ai lu et j'accepte <a href='{{ path('_baseCguIndex') }}' target='_blank'>les Conditions Générales d'Utilisation (CGU)<span class="color-red">*</span></a></label>
+            </label>
+        </section>
+        
+        {{ form_rest(form) }}
+        
+        {{ form_widget(form) }}
+
+    </fieldset>
+
+    <footer>
+        <button type="submit" class="button" />Créer mon compte</button>
+        <em><span class="color-red">*</span> Informations obligatoires</em>
+    </footer>
+
+</form>

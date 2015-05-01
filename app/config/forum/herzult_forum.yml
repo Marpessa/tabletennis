@@ -1,0 +1,63 @@
+herzult_forum:
+    db_driver:          orm     # can be either "orm" or "odm"
+    class:
+        model:
+            category:   Base\ForumBundle\Entity\Category
+            topic:      Base\ForumBundle\Entity\Topic
+            post:       Base\ForumBundle\Entity\Post
+
+        form:
+            new_topic:            Base\ForumBundle\Form\NewTopicFormType
+            first_post:           Base\ForumBundle\Form\PostFormType
+            post:                 Base\ForumBundle\Form\PostFormType
+            search:               Herzult\Bundle\ForumBundle\Form\SearchFormType
+
+        controller:
+            forum:                Base\ForumBundle\Controller\ForumController
+            category:             Base\ForumBundle\Controller\CategoryController
+            topic:                Base\ForumBundle\Controller\TopicController
+            post:                 Base\ForumBundle\Controller\PostController
+
+        creator:
+            topic:                Herzult\Bundle\ForumBundle\Creator\TopicCreator
+            post:                 Herzult\Bundle\ForumBundle\Creator\PostCreator
+
+        blamer:
+            topic:                Base\ForumBundle\Blamer\TopicBlamer
+            post:                 Base\ForumBundle\Blamer\PostBlamer
+
+        updater:
+            category:             Herzult\Bundle\ForumBundle\Updater\CategoryUpdater
+            topic:                Herzult\Bundle\ForumBundle\Updater\TopicUpdater
+
+        remover:
+            topic:                Herzult\Bundle\ForumBundle\Remover\TopicRemover
+            post:                 Herzult\Bundle\ForumBundle\Remover\PostRemover
+
+        twig:
+            extension:            Herzult\Bundle\ForumBundle\Twig\ForumExtension
+
+        router:
+#            url_generator:        Herzult\Bundle\ForumBundle\Router\ForumUrlGenerator
+            url_generator:        Base\ForumBundle\Router\ForumUrlGenerator
+
+    form_name:
+        new_topic:            forum_new_topic_form
+        first_post:           firstPost
+        post:                 forum_post_form
+        search:               forum_search
+
+    paginator:
+        posts_per_page:       10
+        topics_per_page:      8
+        search_results_per_page:  10
+
+    templating:
+        location:
+            category:             HerzultForumBundle:Category
+            forum:                HerzultForumBundle:Forum
+            post:                 HerzultForumBundle:Post
+            topic:                HerzultForumBundle:Topic
+
+        engine:               twig
+        theme:                Twig::form.html.twig

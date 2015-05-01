@@ -1,0 +1,32 @@
+ul.monthsNav {
+    background: #717984;
+}
+
+ul.monthsNav li {
+    list-style: none;
+}
+
+ul.monthsNav li a {
+    display: block;
+
+    height: 25px;
+
+    border-left: 1px solid #F6F5F5;
+    border-right: 1px solid #E0E0E0;
+    background: #EBEBEB;
+
+    font-size: 11px;
+    color: #756E76;
+    cursor: pointer;
+    line-height: 25px;
+    text-align: center;
+    text-decoration: none;
+}
+
+ul.monthsNav li a:hover { font-weight: bold; }
+
+ul.monthsNav li.selected a {
+    background: #717984;
+    color: #FFF;
+    border-left: 1px solid #717984;
+}

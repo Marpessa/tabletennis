@@ -1,0 +1,21 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Email envoyé pour mot de passe oublié | {{ parent() }}{% endblock %}
+{% block meta_description %}Email envoyé sur votre boîte mail personnelle{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Email envoyé pour mot de passe oublié</h1>
+{% endblock %}
+
+{% block content %}
+	
+	<div class="alert alert-success fade in margin-bottom-40">
+        {{ 'resetting.check_email'|trans({'%email%': email}, 'FOSUserBundle') }}
+    </div>
+
+{% endblock %}

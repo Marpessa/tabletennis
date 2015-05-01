@@ -1,0 +1,18 @@
+{% if active_item_menu is not defined %}
+    {% set active_item_menu = "profile" %}
+{% endif %}
+
+<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+    <li class='list-group-item{% if active_item_menu == "profile" %} active{% endif%}'>
+        <a href="{{ path('_sonataUserProfileDashboard') }}"><i class="fa fa-user"></i> Mon profil</a>
+    </li>
+    <li class="list-group-item{% if active_item_menu == "matchs" %} active{% endif%}">
+        <a href="{{ path('_sonataUserProfileMatchsList') }}"><i class="fa fa-trophy"></i> Mes matchs</a>
+    </li>                                        
+    <li class="list-group-item{% if active_item_menu == "evolution" %} active{% endif%}">
+        <a href="{{ path('_sonataUserProfileEvolution') }}"><i class="fa fa-bar-chart-o"></i> Mon évolution</a>
+    </li>
+    <li class="list-group-item{% if active_item_menu == "perfCons" %} active{% endif%}">
+        <a href="{{ path('_sonataUserProfileMatchsPie') }}"><i class="fa fa-star-o"></i> Mes perfs/contres</a>
+    </li>                                        
+</ul>

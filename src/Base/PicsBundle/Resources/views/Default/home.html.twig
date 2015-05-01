@@ -1,0 +1,30 @@
+<!-- Photo Stream -->
+<div class="headline"><h2>Galerie photos</h2></div>            
+<ul class="list-unstyled blog-photos margin-bottom-35">
+    {% for photo in photos_list %}
+        <li>
+            <a href="{{ url('_basePicsIndex') }}">
+                <img src="http://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_s.jpg" alt="{{ photo.title }}" width="56" height="56" />
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+<!-- End Photo Stream -->
+
+{#}
+<section id='gallery' class='fleft'>
+    <h4>Galerie photos</h4>
+    <ul>
+        {% for photo in photos_list %}
+            <li>
+                <a href="http://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_b.jpg" class="fancybox" rel="gallery" title="{{ photo.title }}">
+                    <img src="http://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_s.jpg" alt="{{ photo.title }}" width="75" height="75" />
+                </a>
+            </li>
+        {% endfor %}
+        <li>
+            <a href='{{ url('_basePicsIndex') }}' title='Galerie photos'>Voir plus de photos</a>
+        </li>
+    </ul>
+</section>
+{#}

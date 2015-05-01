@@ -1,0 +1,11 @@
+<div class="servive-block servive-block-blue">
+    <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+    <h2 class="heading-md">Participer au forum</h2>
+    <p>Partagez votre passion avec CPF Aizenay en participant au forum !</p>
+
+    {% if category.slug is defined %}
+    	<a href="{{ path('herzult_forum_category_topic_new', {'slug': category.slug} ) }}" class="btn-u btn-block btn-u-default">Créer un nouveau sujet</a>
+	{% else %}
+		<a href="{{ path('herzult_forum_category_topic_new', {'slug': 'default'} ) }}" class="btn-u btn-block btn-u-default">Créer un nouveau sujet</a>
+	{% endif %}
+</div>

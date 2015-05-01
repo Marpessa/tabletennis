@@ -1,0 +1,9 @@
+{% extends 'SonataAdminBundle:CRUD:base_list_field.html.twig' %}
+
+{% block field %}
+    <a href="{% path value, 'big' %}" target="_blank">
+        <img src="{% path value, 'small' %}" />
+        <br />
+        {{ value }}
+    </a>
+{% endblock %}

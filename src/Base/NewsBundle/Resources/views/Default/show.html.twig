@@ -1,0 +1,73 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{ news.title }} | {{ parent() }}{% endblock %}
+{% block meta_description %}{{ news.content | striptags | truncate(255) }}{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/profile.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basenews/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}news{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">{{ news.title | truncate(55) | raw }}</h1>
+{% endblock %}
+
+{% block content %}
+
+  {% set height = null %}
+  {% if news.m_width is defined and news.m_width is not empty %}
+      {% set height = news.m_height * media_formats["news_big"]["width"] // news.m_width %}
+  {% endif %}
+
+  {% if height is defined and height is not empty %}
+      <img src='{% path news.m_id, 'big' %}' alt='{{ news.title }}' title='{{ news.title }}' width='{{ media_formats["news_big"]["width"] }}' height='{{ height }}' />
+  {% endif %}
+
+  <div class="article">
+      {{ news.content | raw }}
+  </div>
+
+  {% if related_news_list|length > 0 %}
+      <div class='related_news'>
+          <span class='title'>Voir aussi</span>
+          <ul class='clearfix'>
+           {% for news in related_news_list %}
+            <li>
+             <h2>
+                 <a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}">{{ news.title | truncate(35) | raw }}</a>
+             </h2>
+             <span class='date'>Posté le {{ news.updatedAt|date("d/m/Y") }} par {{ news.u_username | truncate(40) | raw }}</span>
+            </li>
+           {% endfor %}
+          </ul>
+      </div>
+  {% endif %}
+
+  {{ render(controller("BaseCommentBundle:Default:common", {}), {}) }}
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Vous aimez cette article ?</h2>
+        <p>Partagez votre passion avec CPF Aizenay en partageant cet article sur les réseaux sociaux !</p>
+        {{ render(controller("BaseSocialBundle:Facebook:likebutton", {}), {}) }}
+    </div>
+
+    <div class="servive-block servive-block-dark">
+        <i class="icon-custom icon-color-light rounded-x fa fa-comment"></i>
+        <h2 class="heading-md">Vous désirez commenter cet article ?</h2>
+        <p>Cliquez sur le lien ci-dessous pour commenter cet article !</p>
+        <a href="#comments" class="btn-u btn-u-default">Mettre un commentaire</a>
+    </div>
+
+
+    {{ parent() }}
+
+{% endblock %}

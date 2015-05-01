@@ -1,0 +1,165 @@
+<!-- FFTT.com News -->
+<div class="col-md-6">
+    {% for feed in feed_fftt_com %}
+        <div class="magazine-mini-news">
+            <h3><a target="_blank" href="{{ feed.link }}">{{ feed.title }}</a></h3>
+            <div class="post-author">
+                {#}<strong>By Adam Bvio</strong> {#}
+                <span><i class="fa fa-clock-o"></i> {{ feed.pubDate|date('d/m/Y H:i') }}</span>
+            </div>
+            <p>{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(100) | raw }}</p>
+        </div>
+
+        {% if loop.index < 2 %}
+            <hr>
+        {% endif %}
+    {% else %}
+        <div class="col-md-4 col-sm-6">Impossible de récupérer les dernières actualités de <a href="http://www.fftt.com" target="_blank">http://www.fftt.com</a></div>
+    {% endfor %}
+</div>
+<!--End Mini News-->
+
+<!--Info Block-->
+<div class="col-md-6">
+    <div class="funny-boxes funny-boxes-colored funny-boxes-blue">
+        <div class="row">
+            {% for feed in feed_fftt_tv %}
+                <div class="col-md-4 funny-boxes-img">
+                    <a target="_blank" href="http://www.fftt.tv/">
+                        <img class="img-responsive" src="{{ asset('/images/default/logo-fftt-tv.png') }}" alt="FFTT.TV" width="142" height="144">
+                    </a>
+                    {#}
+                    <ul class="list-unstyled fa-fixed">
+                       <li><i class="fa fa-clock-o"></i> {{ feed.pubDate|date('d/m/Y H:i') }}</li>
+                    </ul>
+                    {#}
+                </div>
+                <div class="col-md-8">
+                    <h2><a target="_blank" href="http://www.fftt.tv/">{{ feed.title }}</a></h2>
+                    <p>{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(350) | raw }}</p>
+                </div>
+            {% else %}
+                <div class="col-md-4 col-sm-6">Impossible de récupérer les vidéos diffusées de <a href="http://www.fftt.tv/" target="_blank">http://www.fftt.tv/</a></div>
+            {% endfor %}
+        </div>                            
+    </div>
+    {#}
+    <div class="funny-boxes funny-boxes-top-yellow">
+        <div class="row">
+            <div class="col-md-4 funny-boxes-img">
+                <img class="img-responsive" src="assets/img/new/img10.jpg" alt="">
+                <ul class="list-unstyled fa-fixed">
+                   <li><i class="fa fa-briefcase"></i> Dell, Google</li>
+                   <li><i class="fa fa-map-marker"></i> New York, US</li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <h2><a href="#">Our Success</a></h2>
+                <ul class="list-unstyled funny-boxes-rating">
+                   <li><i class="fa fa-star"></i></li>
+                   <li><i class="fa fa-star"></i></li>
+                   <li><i class="fa fa-star"></i></li>
+                   <li><i class="fa fa-star"></i></li>
+                   <li><i class="fa fa-star"></i></li>
+                </ul>
+                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+            </div>
+        </div>                            
+    </div>
+    {#}
+</div>
+{#}
+<!--End Info Block-->
+{#}
+{#}
+<div class="row margin-bottom-20">
+    {% for feed in feed_fftt_com %}
+        <div class="col-md-4 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                {#}{#}
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <img class="img-responsive" src="assets/img/main/2.jpg" alt="">
+                    </div>
+                    <a class="btn-more hover-effect" href="{{ feed.link }}" title="{{ feed.title }}" target="_blank">Lire la suite</a>                   
+                </div>
+                {#}{#}
+                <div class="caption">
+                    <h3><a class="hover-effect" href="{{ feed.link }}" target="_blank">{{ feed.title }}</a></h3>
+                    <p>{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(100) | raw }}</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-md-4 col-sm-6">Impossible de récupérer les dernières actualités de <a href="http://www.fftt.com" target="_blank">http://www.fftt.com</a></div>
+    {% endfor %}
+</div>
+{#}
+<!-- End FFTT.com News -->
+
+{#}<div id='news-fftt-com' class='fftt_rss'>
+    <h4>Actualités pongistes - <a href="http://www.fftt.com/accueil.htm" target="_blank">fftt.com</a></h4>
+    <ul>
+        {% for feed in feed_fftt_com %}
+        <li class='fleft'>
+            <span class="date">{{ feed.pubDate|date('d/m/Y H:i') }}</span>
+            <h3>{{ feed.title }}</h3>
+            <span class="description">{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(350) | raw }}</span>
+            <a href='{{ feed.link }}' title='{{ feed.title }}' target="_blank">Lire la suite...</a>
+        </li>
+        {% else %}
+        <li>Impossible de récupérer les dernières actualités de <a href="http://www.fftt.com" target="_blank">http://www.fftt.com</a></li>
+        {% endfor %}
+    </ul>
+    <span class='clearer'></span>
+</div>
+
+<hr class='separator'/>
+
+<div id='news-fftt-tv' class='fftt_rss'>
+    <h4>Dernieres videos diffusees -  <a href="http://www.fftt.tv/" target="_blank">fftt.tv</a></h4>
+    <ul>
+        {% for feed in feed_fftt_tv %}
+        <li class='fleft'>
+            <span class="date">{{ feed.pubDate|date('d/m/Y H:i') }}</span>
+            <h3>{{ feed.title }}</h3>
+            <span class="description">{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(350) | raw }}</span>
+            <a href='http://www.fftt.tv/' title='{{ feed.title }}' target="_blank">Lire la suite...</a>
+        </li>
+        {% else %}
+        <li>Impossible de récupérer les dernières vidéos de <a href="http://www.fftt.tv/" target="_blank">http://www.fftt.tv/</a></li>
+        {% endfor %}
+    </ul>
+    <span class='clearer'></span>
+</div>
+{#}
+
+<!-- FFTT.com News -->
+{#}
+<div class="headline"><h2>Dernieres videos diffusees -  <a href="http://www.fftt.tv/" target="_blank">fftt.tv</a></h2></div>
+<div class="row margin-bottom-20">
+    {% for feed in feed_fftt_tv %}
+        <div class="col-md-4 col-sm-6">
+            <div class="thumbnails thumbnail-style thumbnail-kenburn">
+                {#}
+                {#}
+                <div class="thumbnail-img">
+                    <div class="overflow-hidden">
+                        <img class="img-responsive" src="assets/img/main/2.jpg" alt="">
+                    </div>
+                    <a class="btn-more hover-effect" href="{{ feed.link }}" title="{{ feed.title }}" target="_blank">Lire la suite</a>                   
+                </div>
+                {#}
+                {#}
+                <div class="caption">
+                    <h3><a class="hover-effect" href="{{ feed.link }}" target="_blank">{{ feed.title }}</a></h3>
+                    <p>{{ feed.description | replace({'&lt;':'<', '&gt;':'>'}) | striptags | truncate(100) | raw }}</p>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="col-md-4 col-sm-6">Impossible de récupérer les dernières vidéos de <a href="http://www.fftt.tv/" target="_blank">http://www.fftt.tv/</a></div>
+    {% endfor %}
+</div>
+{#}
+<!-- End FFTT.com News -->

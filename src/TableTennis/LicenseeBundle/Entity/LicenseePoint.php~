@@ -1,0 +1,79 @@
+<?php
+
+namespace TableTennis\LicenseeBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="licensee_point")
+ */
+class LicenseePoint {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var Licensee
+     *
+     * @ORM\ManyToOne(targetEntity="TableTennis\LicenseeBundle\Entity\Licensee")
+     * @ORM\JoinColumn(name="licensee_id", referencedColumnName="id")
+     */
+    public $licensee_id;
+
+    /**
+     * @ORM\Column(type="decimal")
+     */
+    public $nb_points;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $nb_points_fftt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    public $datetime_points;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="creation_user_id", referencedColumnName="id")
+     */
+    public $creation_user_id;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="modification_user_id", referencedColumnName="id")
+     */
+    public $modification_user_id;
+
+    /**
+     * @var datetime $created
+     *
+     * @ORM\Column(name="created_at",type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated_at",type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+}
+
+?>

@@ -1,0 +1,32 @@
+#matchType table {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#matchType table th {
+    font-weight: normal;
+    height: 35px;
+    background-color: #42576F;
+    vertical-align: middle;
+    color: white;
+    border: 1px solid #444;
+}
+
+#matchType table td {
+    border: 1px solid #444;
+    padding: 10px 0;
+}
+
+#matchType table tr.l_0 td {
+    background-color: #EBEBEB;
+}
+
+#matchType table tr.l_1 td {
+    background-color: #6698B9;
+    color: white;
+}
+
+#matchType p {
+    font-size: 11px;
+}

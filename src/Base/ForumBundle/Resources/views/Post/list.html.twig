@@ -1,0 +1,64 @@
+{% for post in posts %}
+    <div class="media media-v2">
+
+        {% set height = null %}
+        {% if post.m_width is defined and post.m_width is not empty %}
+            {% set height = post.m_height * media_formats["avatar_small"]["width"] // post.m_width %}
+        {% endif %}
+        {% if height is defined and height is not empty %}
+            <img class="pull-left media-object rounded-x" src='{% path post.m_id, 'small' %}' alt='{{ post.u_username }}' title='{{ post.u_username }}' width='{{ media_formats["avatar_small"]["width"] }}' height='{{ height }}' />
+        {% else %}
+            <img class="media-object rounded-x" title="{{ post.u_username }}" alt="{{ post.u_username }}" width="92" height="92" style="margin-top: 2px; margin-left: 1px" src="/images/default/noavatar.png" />
+        {% endif %}
+
+        <div class="media-body">
+            <h4 class="media-heading">
+                <strong>{{ post.u_username }}</strong>
+                <small>Le {{ post.createdAt|date("d/m/Y") }} à {{ post.createdAt|date("H:i:s") }}</small>
+            </h4>
+            <p>{{ post.message | raw }}</p>
+            {#}<ul class="list-inline results-list pull-left">
+                <li><a href="#">25 Likes</a></li>
+                <li><a href="#">10 Share</a></li>
+            </ul>    
+            <ul class="list-inline pull-right">
+                <li><a href="#"><i class="expand-list rounded-x fa fa-reply"></i></a></li>
+                <li><a href="#"><i class="expand-list rounded-x fa fa-heart"></i></a></li>
+                <li><a href="#"><i class="expand-list rounded-x fa fa-retweet"></i></a></li>
+            </ul>{#}
+        </div>
+    </div>
+{% endfor %}
+
+{#}
+<ul class="forum_posts_list clearfix">
+    {% for post in posts %}
+    <li id="{{ post.number}}">
+        <div class="metas">
+            <div class="author">
+                <span class="username">{{ post.u_username }}</span>
+                <span class="createdAt"> le {{ post.createdAt|date("d/m/Y") }} à {{ post.createdAt|date("H:i:s") }}</span>
+            </div>
+        </div>
+        <div class="avatar-box">
+            <div class="content-avatar-box">
+
+                {% set height = null %}
+                {% if post.m_width is defined and post.m_width is not empty %}
+                    {% set height = post.m_height * media_formats["avatar_small"]["width"] // post.m_width %}
+                {% endif %}
+
+                {% if height is defined and height is not empty %}
+                    <img src='{% path post.m_id, 'small' %}' alt='{{ post.u_username }}' title='{{ post.u_username }}' width='{{ media_formats["avatar_small"]["width"] }}' height='{{ height }}' />
+                {% else %}
+                    <img title="{{ post.u_username }}" alt="{{ post.u_username }}" width="92" height="92" style="margin-top: 2px; margin-left: 1px" src="/images/default/noavatar.png" />
+                {% endif %}
+            </div>
+        </div>
+        <div class='message'>
+            {{ post.message | raw }}
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{#}

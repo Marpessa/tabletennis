@@ -1,0 +1,13 @@
+_tableTennisPointsCalculationIndex:
+    defaults: { _controller: TableTennisPointsCalculationBundle:Default:index, culture: fr }
+    pattern: /{culture}/calcul-points-match-tennis-de-table.html
+    requirements:
+        culture: fr
+        _method:  GET|POST
+
+_tableTennisPointsCalculationResults:
+    defaults: { _controller: TableTennisPointsCalculationBundle:Default:results, culture: fr }
+    pattern: /{culture}/calcul-points-match-tennis-de-table-effectue.html
+    requirements:
+        culture: fr
+        _method:  GET

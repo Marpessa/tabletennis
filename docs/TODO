@@ -1,0 +1,68 @@
+# Finir affichage des points, etc...
+# Sauvegarder dernière date du cron // Gérer en production PhPUnitCase
+# Enregistrer et vérifier que les points ne sont pas à jour ( CRON + date de MAJ des points )
+
+--------- Plus tard ---------
+
+http://sonata-project.org/bundles/media/master/doc/reference/extra.html#ckeditor-integration
+# src/Application/Sonata/MediaBundle/Provider/FileProvider.php
+# Gérer d'une meilleure facon la liaison User / Licencié. Ne pas recréer une ligne licencié si le numéro de licence existe déjà en BDD.
+#http://dev.cpfaizenay.com/app_dev.php/fr/mon-profil/editer-informations-generales.html Gérer la récupération de la catégorie du licencié
+TableTennis\LicenseeBundle\Form\LicenseeForm coir pour utiliser le type entity
+# Certaines parties ne sont pas finalisées ou bug à l'activation (category, usefulInformations, etc...)
+# bug sur l'insertion des catégories dans Datafixtures
+# Bien gérer le cache partout (activer dans app.php et corriger les problèmes dans les formulaire (ex : login)) -> Voir http://slides.liip.ch/static/2012-05-18_symfony-speed.html#70
+# Améliorer affichage avatar (style sur l'image pour gérer les margin-top etc...)
+# Gérer le type order (Back form)
+
+#Mettre validation et améliorer le formulaire de calcul des points
+#Mettre validation et améliorer le formulaire des commentaires
+#Gestion récursif pour category (Back)
+#Générer menu + footer à partir de la BD
+
+# Vérifier h1 - h2 etc...
+# Sitemap - Galerie photos liste / Vidéos liste
+# Liens canoniques
+# Pagination Forum sur les posts -> Non. gérer scoll infini
+
+---- Attention ----
+
+Surcharge direct des entity Post et Topic pour subjet et message dans vendor/herzult/forum
+
+--------- Fini ---------
+
+[OK] icons dans icons.png [css3]
+[OK] # Partie utilisateur ( changement avatar, forum, avatar )
+[OK] # gestion affichage nom + avatar de commentaires pour personne connecté dans commentaires
+[OK] # Selection du menu
+[OK] # Corriger Breadcrumb (Back)
+[OK] # Récupérer CLER id sur FFTT pour le parsing des matchs
+[OK] # Enregistrer chaque match
+[OK] # Mise en cache fftt feed ( 1 jour )
+[OK] # Images seulement créé selon le contexte...(pour le moment toutes les images sont créés avec tous les contextes) (Back form)
+[OK] # Partenaires
+[OK] # Equipes
+[OK] # Dossier images uploader a changer, tout est créé dans le dossier default ( mettre news, partenaires etc...)
+[OK] # Events
+[OK] # News (liste + détail) (Front)
+[OK] # Mettre 'nouveau' sur actu/evénements récents ( -3 jours )
+[OK] # Vérifier annonce marche correctement en fonction de l'url
+[OK] # Tri par défaut sur la date de mise a jour pour les listes (Back form)
+[OK] # Refaire une belle image pour facebook avatar
+[OK] # Vérifier sur chaque table , onDelete="CASCADE", onUpdate="CASCADE"
+[OK] # Forums ( déposez message/sujet) + revoir la pagination en anglais
+[OK] # gestion password utilisateur connexion (a corriger)
+[OK] # Chargement sujet en fonction de la date de création
+[OK] #Insertion Evénements (tournois été)
+[OK] #Tester envoi mail formulaire de Contact
+[OK] #Changer les événements dans infos utiles
+[OK] #Exécuter le script d'import des points et des matchs en prod
+[OK] #LoadCommentData changer app_dev dans link en BD
+[OK] #Images partenaires
+[OK] #Changer le système de liaison entre licencié et user ( plusieurs associés à licenciés mais licencié peut déjà exister donc pas de modification possible ?)
+[OK] # Partie utilisateur ( inscription envoi email pour le moment inscription sans email )
+ Dans user.yml : confirmation:
+                     enabled:    false # change to true for required email confirmation
+-> au pire c'est pas grave
+[OK] # Afficher commentaires en html
+[OK] # Afficher avatar sur la page profil

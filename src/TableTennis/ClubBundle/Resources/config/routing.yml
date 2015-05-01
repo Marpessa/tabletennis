@@ -1,0 +1,5 @@
+_tableTennisClubIndex:
+    defaults: { _controller: TableTennisClubBundle:Default:index, culture: fr }
+    pattern: /{culture}/liste-des-clubs-de-tennis-de-table.html
+    requirements:
+        culture: fr

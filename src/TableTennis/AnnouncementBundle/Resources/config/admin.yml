@@ -1,0 +1,12 @@
+services:
+    tabletennis.announcement.admin.announcement:
+        class: TableTennis\AnnouncementBundle\Admin\AnnouncementAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.article", label: "Annonces" }
+        arguments: 
+            - ~
+            - TableTennis\AnnouncementBundle\Entity\Announcement
+            - TableTennisAnnouncementBundle:AnnouncementAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisAnnouncementBundle]]

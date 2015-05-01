@@ -1,0 +1,50 @@
+#default ul {
+   list-style: inherit;
+   margin: 1em 0;
+   padding: 0 0 0 40px;
+}
+
+#default ul li {
+   list-style: inherit;
+}
+
+#default table {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#default table th {
+    font-weight: normal;
+    height: 35px;
+    background-color: #42576F;
+    vertical-align: middle;
+    color: white;
+    border: 1px solid #444;
+}
+
+#default table td {
+    border: 1px solid #444;
+    padding: 10px 0;
+}
+
+#default table tr.l_0 td {
+    background-color: #EBEBEB;
+}
+
+#default table tr.l_1 td {
+    background-color: #6698B9;
+    color: white;
+}
+
+#default p {
+    font-size: 1em;
+}
+
+#default a {
+    font-weight: bold;
+}
+
+#default a:hover {
+    text-decoration: underline;
+}

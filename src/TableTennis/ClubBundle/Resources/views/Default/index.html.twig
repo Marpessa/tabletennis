@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Liste des clubs de tennis de table | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez la liste des clubs de tennis de table en Vendée{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennisclub/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}listClub{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Liste des clubs de tennis de table (en cours de création)</h1>
+
+<table>
+    <thead>
+        <th>Position relative</th>
+        <th>Nom</th>
+        <th>Ville</th>
+        <th>N° du club</th>
+        <th>Site web</th>
+    </thead>
+    <tbody>
+        {% for club in club_list %}
+        <tr class='l_{{ loop.index%2 }}'>
+            <td>{{ loop.index }}</td>
+            <td>{{ club.name }}</td>
+            <td>{{ club.city_id }}</td>
+            <td>{{ club.club_number }}</td>
+            <td>{{ club.website }}</td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Aucun club n'a été trouvé.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

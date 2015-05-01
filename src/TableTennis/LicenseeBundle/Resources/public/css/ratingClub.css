@@ -1,0 +1,57 @@
+#licensee table {
+    text-align: center;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#licensee table th {
+    font-weight: normal;
+    height: 35px;
+    background-color: #42576F;
+    vertical-align: middle;
+    color: white;
+    border: 1px solid #444;
+}
+
+#licensee table tr td {
+    background-color: #EBEBEB;
+    
+    border: 1px solid #444;
+    padding: 5px 0;
+}
+
+#licensee table tr.positive td { background-color: #AEEABD; }
+#licensee table tr.negative td { background-color: #FDCBCC; }
+
+#licensee table tr .arrow {
+    float: right;
+    
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 10px solid #FCCD52;
+    border-right: none;
+        
+    width: 0;
+    height: 0;
+    
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+#licensee table tr.positive .arrow {
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 10px solid #78Cb88;
+    border-top: none;
+}
+
+#licensee table tr.negative .arrow {
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-top: 10px solid #FC8581;
+    border-bottom: none;
+}
+
+#licensee p {
+    font-size: 11px;
+}

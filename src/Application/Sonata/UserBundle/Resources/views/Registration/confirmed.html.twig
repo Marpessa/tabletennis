@@ -1,0 +1,27 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Inscription validée | {{ parent() }}{% endblock %}
+{% block meta_description %}Votre inscription a bien été validée.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}registration{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Inscription validée</h1>
+{% endblock %}
+
+{% block content %}
+
+	<div class="alert alert-success fade in margin-bottom-40">
+        {{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}
+    </div>
+
+    {% if app.session is not empty %}
+        {% set targetUrl = app.session.get('_security.target_path') %}
+        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}" class="btn-u btn-u-blue grow">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
+    {% endif %}
+{% endblock content %}

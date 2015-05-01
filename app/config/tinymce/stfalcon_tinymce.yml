@@ -1,0 +1,30 @@
+stfalcon_tinymce:
+        include_jquery: true
+        tinymce_jquery: true
+        # textarea_class: "tinymce"
+#        base_url: "http://yourdomain.com/" # this parameter may be included if you need to override the assets_base_urls for your template engine (to override a CDN base url)
+        # Get current language from the parameters.ini
+        language: %locale%
+        # Custom buttons
+#        tinymce_buttons:
+#            stfalcon: # Id of the first button
+#                title: "Stfalcon"
+#                image: "http://stfalcon.com/favicon.ico"
+        theme:
+            # Simple theme as same as default theme
+            simple: ~
+            # Advanced theme with almost all enabled plugins
+            advanced:
+                plugins:
+                     - "advlist autolink lists link image charmap print preview hr anchor pagebreak"
+                     - "searchreplace wordcount visualblocks visualchars code fullscreen"
+                     - "insertdatetime media nonbreaking save table contextmenu directionality"
+                     - "emoticons template paste textcolor"
+                toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image"
+                toolbar2: "print preview media | forecolor backcolor emoticons | stfalcon | example"
+                image_advtab: true
+                height: "500"
+            # Medium number of enabled plugins + spellchecker
+            medium: ~
+            # BBCode tag compatible theme (see http://www.bbcode.org/reference.php)
+            bbcode: ~

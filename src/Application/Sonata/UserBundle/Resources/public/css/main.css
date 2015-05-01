@@ -1,0 +1,442 @@
+/***********************/
+/*       Profile       */
+/***********************/
+
+#profile form input[type="text"],
+#profile input[type="email"],
+#profile input[type="password"] {
+    height: 32px;
+    padding: 2px 5px;
+}
+
+#profile form label {
+    width: 135px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+#profile form .remember_me {
+    margin: 5px 0 0 145px;
+}
+
+#profile form label[for="login_remember_me"] {
+    position: relative;
+    top: -5px;
+}
+
+#profile form input[type="text"], #profile input[type="email"], #profile input[type="password"],
+#profile form textarea {
+    width: 322px;
+    margin: 7px;
+
+    border: 1px solid #BDC6D1;
+    color: #576372;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #C0C8D2;
+    font-size: 13px;
+    background-color: white;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#F6F6F6),to(white));
+    background-image: -moz-linear-gradient(top,#F6F6F6,white);
+    background-image: -ms-linear-gradient(top,#F6F6F6,white);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F6F6F6),color-stop(100%,white));
+    background-image: -webkit-linear-gradient(top,#F6F6F6,white);
+    background-image: -o-linear-gradient(top,#F6F6F6,white);
+    background-image: linear-gradient(top,#F6F6F6,white);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#profile form input[type="submit"] {
+    margin: 25px 0 0 145px;
+}
+
+/***********************/
+/*      Connexion      */
+/***********************/
+
+#connexion form input[type="text"],
+#connexion input[type="email"],
+#connexion input[type="password"] {
+    height: 32px;
+    padding: 2px 5px;
+}
+
+#connexion form label {
+    width: 130px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+#connexion form .remember_me {
+    margin: 5px 0 0 145px;
+}
+
+#connexion form label[for="login_remember_me"] {
+    position: relative;
+    top: -5px;
+}
+
+#connexion form input[type="text"], #connexion input[type="email"], #connexion input[type="password"],
+#connexion form textarea {
+    width: 322px;
+    margin: 7px;
+
+    border: 1px solid #BDC6D1;
+    color: #576372;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #C0C8D2;
+    font-size: 13px;
+    background-color: white;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#F6F6F6),to(white));
+    background-image: -moz-linear-gradient(top,#F6F6F6,white);
+    background-image: -ms-linear-gradient(top,#F6F6F6,white);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F6F6F6),color-stop(100%,white));
+    background-image: -webkit-linear-gradient(top,#F6F6F6,white);
+    background-image: -o-linear-gradient(top,#F6F6F6,white);
+    background-image: linear-gradient(top,#F6F6F6,white);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#connexion form input[type="submit"] {
+    margin: 25px 0 0 145px;
+}
+
+/***********************/
+/*     Registration    */
+/***********************/
+
+#registration h2 {
+    font-size: 20px;
+    font-style: italic;
+    color: #6698B9;
+    margin: 25px 25px 0.6em;
+}
+
+#registration form label {
+    width: 100px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+#registration form .form_row.password ul { display: none; }
+#registration form .form_row.password .boxrelief ul { display: block; }
+
+#registration form input[type="text"],
+#registration input[type="email"],
+#registration input[type="password"],
+#registration form textarea {
+    width: 322px;
+    margin: 7px;
+
+    border: 1px solid #BDC6D1;
+    color: #576372;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #C0C8D2;
+    font-size: 13px;
+    background-color: white;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#F6F6F6),to(white));
+    background-image: -moz-linear-gradient(top,#F6F6F6,white);
+    background-image: -ms-linear-gradient(top,#F6F6F6,white);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F6F6F6),color-stop(100%,white));
+    background-image: -webkit-linear-gradient(top,#F6F6F6,white);
+    background-image: -o-linear-gradient(top,#F6F6F6,white);
+    background-image: linear-gradient(top,#F6F6F6,white);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#registration form input[type="text"], input[type="email"], input[type="password"] {
+    height: 32px;
+    padding: 2px 5px;
+}
+
+#registration form .form_row.password input { margin-left: 10px; }
+#registration form .form_row select { margin: 5px 7px 0; }
+
+#registration form .form_row #cgu {
+    margin-left: 40px;
+}
+#registration form .form_row label[for="cgu"] {
+    width: auto;
+    margin-top: -6px;
+}
+
+#registration form .form_row label[for="cgu"] a { text-decoration: underline; }
+#registration form .form_row label[for="cgu"] a:hover { color: #6698B9; }
+
+#registration form input[type="submit"] { margin: 20px 0 0 7px; }
+
+
+
+/***********************/
+/*      Dashboard      */
+/***********************/
+
+#user ul.dashboard li {
+    position: relative;
+    float: left;
+
+    width: 46%;
+    min-height: 163px;
+
+    margin: 30px 10px 40px 0;
+    padding: 10px;
+    
+    background-color: #EEE;
+    border-bottom: 2px solid #D0D0D0;
+}
+
+#user ul.dashboard li.l_1 { margin-right: 0; }
+
+#user ul.dashboard li h2 {
+    position: absolute;
+    top: -25px;
+    left: 0;
+
+    height: 25px;
+    margin: 0;
+    padding: 0 15px;
+
+    font-size: 14px;
+    line-height: 25px;
+    background-color: #EEE;
+}
+
+#user ul.dashboard li > a {
+    position: absolute;
+    top: -20px;
+    right: 3px;
+
+    display: block;
+    width: 16px;
+    height: 16px;
+
+    background: url('/images/default/wheel.png') no-repeat 0 0;
+
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+#user ul.dashboard li table {
+    width: 100%;
+}
+
+#user ul.dashboard li table th {
+    color: #6698B9;
+
+    padding: 5px;
+}
+
+/** Géréral Infos **/
+
+#user ul.dashboard li.general_infos .avatar {
+    position: relative;
+    float: left;
+    border: 5px solid white;
+
+    margin: 25px 0;
+}
+
+#user ul.dashboard li.general_infos .avatar a {
+    position: absolute;
+    top: -25px;
+    right: 0;
+
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url('/images/default/wheel.png') no-repeat 0 0;
+    overflow: hidden;
+    text-indent: -999px;
+}
+
+#user ul.dashboard li.general_infos img {
+    display: block;
+
+    max-width: 92px;
+    max-height: 92px;
+}
+
+#user ul.dashboard li.general_infos table {
+    width: 65%;
+    
+    float: right;
+
+    margin-top: 35px;
+}
+
+/** Matchs **/
+
+#user ul.dashboard li.matchsList { width: 674px; }
+
+#user ul.dashboard li.matchsList table tr.m_0 td.category,
+#user ul.dashboard li.matchsList table tr.m_1 td.category {
+    font-weight: bold;
+    background-color: #FFF;
+}
+
+#user ul.dashboard li.matchsList table tr.cat_v td.category { color: teal; }
+
+#user ul.dashboard li.matchsList table tr.cat_d td.category { color: #aa4643; }
+
+#user ul.dashboard li.matchsList table th,
+#user ul.dashboard li.matchsList table td {
+    border: 1px solid #444;
+
+    background: #FFF;
+    text-align: center;
+}
+
+#user ul.dashboard li.matchsList table th {
+    background-color: #42576F;
+    color: #FFF;
+}
+
+#user ul.dashboard li.matchsList table td {
+    padding: 5px 0;
+}
+
+#user ul.dashboard li.matchsList table tr.m_0 td {
+    background-color: #6698B9;
+    color: white;
+}
+#user ul.dashboard li.matchsList table tr.m_1 td {
+    background-color: #EBEBEB;
+}
+
+/** Evolution Graph **/
+
+#user ul.dashboard li.evolution #evolutionGraph {
+    width: 100%;
+    height: 250px;
+}
+
+/** Matchs Pie **/
+
+#user ul.dashboard li #matchsPie {
+    width: 100%;
+    height: 250px;
+}
+
+
+/** Edit Avatar **/
+
+#user_avatar #application_sonata_user_avatar_media_id {
+    margin: 25px 0;
+}
+
+#user_avatar label {
+    display: none;
+}
+
+/** Edit Table Tennis Infos **/
+
+#user_tabletennis_infos form input[type="text"] {
+    height: 32px;
+    padding: 2px 5px;
+}
+
+#user_tabletennis_infos form label {
+    width: 135px;
+    display: inline-block;
+    text-align: right;
+    vertical-align: middle;
+    font-weight: bold;
+    color: #2D2D2D;
+}
+
+#user_tabletennis_infos form input[type="text"],
+#user_tabletennis_infos form textarea {
+    width: 322px;
+    margin: 7px;
+
+    border: 1px solid #BDC6D1;
+    color: #576372;
+
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -ms-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all .2s linear;
+    background: rgba(255, 255, 255, 0.85);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    border: 1px solid #C0C8D2;
+    font-size: 13px;
+    background-color: white;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear,left top,left bottom,from(#F6F6F6),to(white));
+    background-image: -moz-linear-gradient(top,#F6F6F6,white);
+    background-image: -ms-linear-gradient(top,#F6F6F6,white);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#F6F6F6),color-stop(100%,white));
+    background-image: -webkit-linear-gradient(top,#F6F6F6,white);
+    background-image: -o-linear-gradient(top,#F6F6F6,white);
+    background-image: linear-gradient(top,#F6F6F6,white);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.08);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#user_tabletennis_infos form input[type="submit"] {
+    margin: 25px 0 0 145px;
+}
+
+#user_tabletennis_infos select {
+    margin-left: 7px;
+}

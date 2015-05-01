@@ -1,0 +1,22 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Inscription | {{ parent() }}{% endblock %}
+{% block meta_description %}Inscrivez-vous sur CPF Aizenay. Vous pourrez participer aux discussions et gardez un oeil sur votre progression et vos matchs.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}registration{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Inscription</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+
+{% endblock %}
+

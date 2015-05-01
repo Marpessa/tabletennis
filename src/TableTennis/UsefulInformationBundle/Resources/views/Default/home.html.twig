@@ -1,0 +1,31 @@
+{% if useful_info_list|length > 0 %}
+	<!-- Service Blocks -->
+	<div class="magazine-sb-categories margin-bottom-20">
+		<div class="headline headline-md"><h2>Infos utiles</h2></div>
+		<div class="row">
+			<ul class="list-unstyled col-xs-12">
+				{% for useful_info in useful_info_list %}
+					<li>
+						<i class="fa fa-check color-green"></i>
+						<a href="{{ path('_tabletennisUsefulInformationShow', {"slug": useful_info['us_slug']}) }}">{{ useful_info['us_title'] | truncate(50) | raw }}</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+	<!-- End Service Blokcs -->
+
+{#}
+<section id='infos' class='fleft'>
+    <h4>Informations utiles</h4>
+    <ul>
+        {% for useful_info in useful_info_list %}
+        <li>
+            <span class='date'>{{ useful_info['us_updatedAt']|date("d/m/Y") }}</span>
+            <a href={{ path('_tabletennisUsefulInformationShow', {"slug": useful_info['us_slug']}) }}>{{ useful_info['us_title'] | truncate(50) | raw }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{#}
+{% endif %}

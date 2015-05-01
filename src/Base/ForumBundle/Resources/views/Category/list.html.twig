@@ -1,0 +1,24 @@
+<div class="profile forum_categories">
+    {% for category in categories %}
+
+    	<div class="profile-event clearfix">
+            <div class="date-formats">
+                <span>{{ category.numTopics }}</span>
+                <small>{{ category.numTopics > 1 ? 'sujets' : 'sujet' }}</small>
+            </div>
+            <div class="overflow-h">
+                <h3 class="heading-xs"><a href="{{ forum_urlForCategory(category) }}">{{ category.name }}</a></h3>
+                <p>{{ category.description }}</p>
+            </div>    
+        </div>
+
+    {#}<li>
+        <a class="name" href="{{ forum_urlForCategory(category) }}">{{ category.name }}</a>
+        <span class="numTopics"> - {{ category.numTopics }} {{ category.numTopics > 1 ? 'sujets' : 'sujet' }}</span>
+        <div class="metas">
+            
+            <p>{{ category.description }}</p>
+        </div>
+    </li>{#}
+    {% endfor %}
+</div>

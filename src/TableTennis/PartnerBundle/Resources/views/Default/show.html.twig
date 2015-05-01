@@ -1,0 +1,23 @@
+{% extends "::base.html.twig" %}
+
+{% block title %} {{ partner.title }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Fiche détaillée du partneraire {{ partner.title }}.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennispartner/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}partner{% endblock %}
+
+{% block content %}
+
+<h1 class="title">{{ partner.title | truncate(60) | raw }}</h1>
+
+{% if partner.link %}
+    <a href='{{ partner.link }}' target='_blank'>Voir le site de {{ partner.title }}</a>
+{% endif %}
+
+{{ partner.content | raw }}
+
+{% endblock %}

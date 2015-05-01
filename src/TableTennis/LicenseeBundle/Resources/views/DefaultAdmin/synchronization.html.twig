@@ -1,0 +1,156 @@
+{% extends base_template %}
+
+{% block title %}Synchronisation des licenciés{% endblock%}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennislicensee/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#licensee_synchro').click( function(){
+
+                $(this).attr("disabled", "disabled");
+
+                $.ajax({
+                    type: "POST",
+                    async: true,
+                    url: "{{ path('_tableTennisLicenseeDoSynchro')}}",
+                    data: {},
+                    dataType: "json",
+                    cache: false,
+                    success: function(data){
+                        $('#licensee_synchro').removeAttr( "disabled" );
+
+                        if( data.licensees_list ) {
+
+                            var nbAddLicensees = 0;
+                            var nbDeleteLicensees = 0;
+                            var nbUpdateLicensees = 0;
+
+                            $('#licensee ul li em').remove();
+
+                            $("#licensee ul li.body").each( function() {
+
+                                var updateLicensee = false;
+                                var addLicensee = false;
+
+                                if( !updateLicensee )
+                                {
+                                    for( var i in data.licensees_list ) {
+                                        var licNumber = data.licensees_list[i].licensee_number;
+                                        
+                                        if( $(this).attr( "id" ) == 'licenseeNumber_' + licNumber ) {
+                                            updateLicensee = data.licensees_list[i];
+                                            delete data.licensees_list[i];
+                                        }
+                                    }
+                                }
+
+                                if( updateLicensee ) {
+                                    
+                                    var oldLicPoints = $( '.points', '#licenseeNumber_' + updateLicensee[1] ).html();
+                                    var oldLicCategory = $( '.category', '#licenseeNumber_' + updateLicensee[1] ).html();
+
+                                    $( '.points', '#licenseeNumber_' + updateLicensee[1] ).html( oldLicPoints + "<em style='color: #000'> => " + updateLicensee[5] + "</em>" );
+                                    $( '.category', '#licenseeNumber_' + updateLicensee[1] ).html( oldLicCategory + "<em style='color: #000'> => " + updateLicensee[6] + "</em>" );
+
+                                    nbUpdateLicensees++;
+                                }else{
+                                    $(this).find("span").each( function() {
+                                        $(this).html( "<strike style='color: #FF005C;'>" + $(this).html() + "</strike>"  );
+                                    });
+                                    nbDeleteLicensees++;
+                                }
+
+                            });
+
+                            // Ajout du licencié
+                            var num = $("#licensee ul li.body").length + 1;
+                            for( var i in data.licensees_list ) {
+
+                                var html =  '<li id="licenseeNumber_' + data.licensees_list[i].licensee_number + '" class="body l_' + num%2 + '">'
+                                          + ' <a href="#" style="color: #11C06F;">'
+                                          + '  <span>' + num + '</span>'
+                                          + '  <span>' + data.licensees_list[i].lastname + '</span>'
+                                          + '  <span>' + data.licensees_list[i].firstname + '</span>'
+                                          + '  <span>' + data.licensees_list[i].licensee_number + '</span>'
+                                          + '  <span class="points">' + data.licensees_list[i].nb_mensual_points + '</span>'
+                                          + '  <span class="category">' + data.licensees_list[i].ranking + '</span>'
+                                          + ' </a>'
+                                          + '</li>';
+
+                                $("#licensee ul").append( html );
+
+                                nbAddLicensees++;
+                                num++;
+                            }
+
+                            $('#licensees_result').empty();
+
+                            $('#licensees_result').append( '<div class="alert-message success">' + nbAddLicensees + ' Licenciés ajoutés</div>' );
+                            $('#licensees_result').append( '<div class="alert-message error">' + nbDeleteLicensees + ' Licenciés supprimés</div>' );
+                            $('#licensees_result').append( '<div class="alert-message info">' + nbUpdateLicensees + ' Licenciés modifiés</div>' );
+                        }
+                    },
+                    error: function(){
+                        $('#licensee_synchro').removeAttr( "disabled" );
+                    }
+                });
+
+            });
+
+        });
+    </script>
+
+{% endblock %}
+
+{% block breadcrumb %}
+<li>
+    <a href="/app_dev.php/admin/dashboard">Dashboard</a>
+    <span class="divider">/</span>
+</li>
+<li class="active">Synchronisation des licenciés</li>
+{% endblock %}
+
+{% block content %}
+
+    <a id="licensee_synchro" href="#" class="btn primary">Lancer la synchronisation</a>
+
+    <div id="licensees_result" style="margin-top: 10px;"></div>
+
+    <div id="licensee">
+        <ul>
+            <li class='head'>
+                <span>Position</span>
+                <span>Nom</span>
+                <span>Prénom</span>
+                <span>N° licence</span>
+                <span>Points</span>
+                <span>Catégorie</span>
+            </li>
+            {% for licensee in licensee_list %}
+            <li id='licenseeNumber_{{ licensee.licensee_number }}' class='body l_{{ loop.index%2 }}'>
+                <a href="#">
+                    <span>{{ loop.index }}</span>
+                    <span>{{ licensee.lastname }}</span>
+                    <span>{{ licensee.firstname }}</span>
+                    <span>{{ licensee.licensee_number }}</span>
+                    <span class='points'>{{ licensee.nb_current_points | default("-") }}</span>
+                    <span class='category'>{{ licensee.category }}</span>
+                </a>
+            </li>
+            {% else %}
+            <li>
+                <p>Aucun licencié n'a été trouvé.</p>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+{% endblock %}

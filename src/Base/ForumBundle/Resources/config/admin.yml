@@ -1,0 +1,34 @@
+services:
+    base.forum.admin.category:
+        class: Base\ForumBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.forum", label: "Catégories" }
+        arguments: 
+            - ~
+            - Base\ForumBundle\Entity\Category
+            - BaseForumBundle:CategoryAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseForumBundle]]
+    base.forum.admin.topic:
+        class: Base\ForumBundle\Admin\TopicAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.forum", label: "Sujets" }
+        arguments: 
+            - ~
+            - Base\ForumBundle\Entity\Topic
+            - BaseForumBundle:TopicAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseForumBundle]]
+    base.forum.admin.post:
+        class: Base\ForumBundle\Admin\PostAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.forum", label: "Commentaires" }
+        arguments: 
+            - ~
+            - Base\ForumBundle\Entity\Post
+            - BaseForumBundle:PostAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [BaseForumBundle]]

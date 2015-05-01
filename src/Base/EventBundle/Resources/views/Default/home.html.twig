@@ -1,0 +1,16 @@
+{% if event_list|length > 0 %}
+<section id='events' class='fleft'>
+    <h4>Evénements</h4>
+    <ul>
+        {% for event in event_list %}
+        <li>
+            <span class='date'>{{ event['e_datetime_event']|date("d/m/Y") }}</span>
+            <a href='{{ path('_baseEventShow', {"slug": event['e_slug'], "year": event['e_datetime_event']|date("Y"), "month": event['e_datetime_event']|date("m") } ) }}'>{{ event['e_title'] | truncate(50) | raw }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <p class='all_news_link'>Voir tous <a href="{{ path('_baseEventIndex') }}">les événéments</a></p>
+</section>
+{% endif %}
+

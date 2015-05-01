@@ -1,0 +1,62 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Modifier mes informations de tennis de table | {{ parent() }}{% endblock %}
+{% block meta_description %}Modifiez les informations de votre compte personnel.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}user_tabletennis_infos{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Modifier mes informations de tennis de table</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger fade in">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('_sonataUserEditProfileTableTennisInfos') }}" method="post" {{ form_enctype(form) }} class='sky-form'>
+
+        <header>Compléter ce formulaire afin de modifier vos informations</header>
+        <fieldset>
+
+            <div class="row">
+                <section class="col col-6">
+                    {{ form_label(form.licensee_number) }}<span class="color-red">*</span>
+                    {{ form_widget(form.licensee_number) }}
+                    
+                    {% if form_errors(form.licensee_number) %}
+                        <em class="invalid">{{ form_errors(form.licensee_number) }}</em>
+                    {% endif %}
+                </section>
+
+                <section class="col col-6">
+                    {{ form_label(form.category) }}<span class="color-red">*</span>
+                    {{ form_widget(form.category) }}
+                    
+                    {% if form_errors(form.category) %}
+                        <em class="invalid">{{ form_errors(form.category) }}</em>
+                    {% endif %}
+                </section>
+            </div>
+        </fieldset>
+
+       {{ form_rest(form) }}
+
+       {{ form_widget(form) }}
+
+        <footer>
+            <button type="submit" class="button" />Modifier mon avatar</button>
+            <em><span class="color-red">*</span> Informations obligatoires</em>
+        </footer>
+
+    </form>
+
+{% endblock %}

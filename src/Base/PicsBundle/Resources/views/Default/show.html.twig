@@ -1,0 +1,92 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ album_info.title }} - Galerie photos | {{ parent() }}{% endblock %}
+{% block meta_description %}Photos de l'album {{ album_info.title }}.{% endblock %}
+
+{% block stylesheets %}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basepics/css/main.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ asset('/css/fancybox.css') }}" type="text/css" media="screen" />{#}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/portfolio-v1.css') }}">
+    {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#}<script src="{{ asset('/js/jquery.fancybox.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.fancybox.pack.js') }}" type="text/javascript"></script>{#}
+{% endblock %}
+
+{% block title_page %}picture{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">{{ album_info.title }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <!--=== Content Part ===-->
+    <div class="portfolio-4-columns">
+
+        {% for photo in photos_list %}
+            {% if loop.index0%4 == 0 %}
+
+                {% if loop.first != true %}
+                    </div><!--/row-->
+                {% endif %}
+
+                <div class="row">
+            {% endif %}
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="view view-tenth">
+                            <img class="img-responsive" src="http://farm{{ photo.farm }}.static.flickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_q.jpg" alt="{{ photo.title }}" width="150" height="150" />
+                            <div class="mask">
+                                <h2>{{ photo.title }}</h2> {#}{{ album.attributes.photos }}{#}
+                                {#}<p>At vero eos et accusamus et iusto odio dignissimos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>{#}
+                                {#}<a href="http://farm{{ photo.farm }}.static.flickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_b.jpg" title="{{ photo.title }}" class="info">En savoir plus</a>{#}
+                            </div>                
+                        </div>
+                    </div>
+        {% endfor %}
+                </div>
+
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+    
+    {#}
+    <ul class="photos_list clearfix">
+        {% for photo in photos_list %}
+            <li class="l_{{ (loop.index - 1)%4 }}">
+                <a href="http://farm{{ photo.farm }}.static.flickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_b.jpg" class="fancybox" title="{{ photo.title }}" rel="gallery">
+                    <img src="http://farm{{ photo.farm }}.static.flickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_q.jpg" alt="{{ photo.title }}" width="150" height="150" />
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <hr class='separator'/>
+    {#}
+
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+        {{ render(controller('TableTennisFfttFeedBundle:Default:home', {}), {}) }}
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Publier une photo</h2>
+        <p>Partagez votre passion avec CPF Aizenay en publiant vos photos sur le site !</p>
+        <a href="{{ path('_basePicsPostPhoto', {} ) }}" class="btn-u btn-u-lg btn-block btn-u-default">Déposer une photo</a>
+    </div>
+
+
+    {{ parent() }}
+
+{% endblock %}

@@ -1,0 +1,171 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Calcul de vos points sur les matchs de tennis de table | {{ parent() }}{% endblock %}
+{% block meta_description %}Calculez vos points en inscrivant vos adversaires. Le calcul sera fait automatiquement.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/tabletennispointscalculation/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}pointsCalculation{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Calcul de vos points sur les matchs de tennis de table</h1>
+{% endblock %}
+
+{#} Customisation des input radio {#}
+{% form_theme form _self %}
+
+{% block choice_widget_expanded -%}
+    <div class="inline-group">
+        {%- for child in form %}
+            <label class="radio">
+                {{- form_widget(child) -}}
+                <i class="rounded-x"></i>
+                {{- form_label(child) -}}
+            </label>
+        {% endfor -%}
+        </div>
+{% endblock choice_widget_expanded %}
+
+{#} Customisation des input text {#}
+{% block form_widget_simple -%}
+    {% set type = type|default('text') -%}
+    <label class="input">
+        <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    </label>
+{%- endblock form_widget_simple %}
+
+{#} Ajout de l'astérisque obligatoire {#}
+{% use 'form_div_layout.html.twig' with form_label as base_form_label %}
+
+{% block form_label %}
+    {{ block('base_form_label') }}
+
+    {% if required %}
+        <span class="color-red" title="Ce champ est obligatoire">*</span>
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger fade in">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('_tableTennisPointsCalculationIndex') }}" method="post" {{ form_enctype(form) }} class='sky-form'>
+        <header>Compléter ce formulaire afin de calculer vos points</header>
+            <fieldset>
+
+                <div class="row">
+                    <section class="col col-8">
+                         {{ form_label(form.match_type) }}
+                        <label class="select">
+                            {{ form_widget(form.match_type) }}
+                            <i></i>
+                        </label>
+
+                        {% if form_errors(form.match_type) %}
+                            <em class="invalid">{{ form_errors(form.match_type) }}</em>
+                        {% endif %}
+                    </section>
+
+                    <section class="col col-4">
+                        {{ form_label(form.mensual_points) }}
+                        {{ form_widget(form.mensual_points) }}
+
+                        {% if form_errors(form.mensual_points) %}
+                            <em class="invalid">{{ form_errors(form.mensual_points) }}</em>
+                        {% endif %}
+                    </section>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <h2>Vos matchs joués</h2>
+
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_0) }}
+                        {{ form_widget(form.opponent_point_0) }}
+                        {{ form_widget(form.opponent_status_0) }}
+                    </section>
+
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_1) }}
+                        {{ form_widget(form.opponent_point_1) }}
+                        {{ form_widget(form.opponent_status_1) }}
+                    </section>
+                </div>
+
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_2) }}
+                        {{ form_widget(form.opponent_point_2) }}
+                        {{ form_widget(form.opponent_status_2) }}
+                    </section>
+
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_3) }}
+                        {{ form_widget(form.opponent_point_3) }}
+                        {{ form_widget(form.opponent_status_3) }}
+                    </section>
+                </div>
+
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_4) }}
+                        {{ form_widget(form.opponent_point_4) }}
+                        {{ form_widget(form.opponent_status_4) }}
+                    </section>
+
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_5) }}
+                        {{ form_widget(form.opponent_point_5) }}
+                        {{ form_widget(form.opponent_status_5) }}
+                    </section>
+                </div>
+
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_6) }}
+                        {{ form_widget(form.opponent_point_6) }}
+                        {{ form_widget(form.opponent_status_6) }}
+                    </section>
+
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_7) }}
+                        {{ form_widget(form.opponent_point_7) }}
+                        {{ form_widget(form.opponent_status_7) }}
+                    </section>
+                </div>
+
+                <div class="row">
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_8) }}
+                        {{ form_widget(form.opponent_point_8) }}
+                        {{ form_widget(form.opponent_status_8) }}
+                    </section>
+
+                    <section class="col col-6">
+                        {{ form_label(form.opponent_point_9) }}
+                        {{ form_widget(form.opponent_point_9) }}
+                        {{ form_widget(form.opponent_status_9) }}
+                    </section>
+                </div>
+
+            </fieldset>
+
+        {{ form_rest(form) }}
+
+        <footer>
+            <button type="submit" class="button" />Valider</button>
+            <em><span class="color-red">*</span> Informations obligatoires</em>
+        </footer>
+    </form>
+
+{% endblock %}

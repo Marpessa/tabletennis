@@ -1,0 +1,29 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Derniers commentaires - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/basecomment/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}last_comments{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Liste des derniers commentaires</h1>
+{% endblock %}
+
+{% block content %}
+
+<ul>
+    {% for comment in comment_list %}
+        <li>
+            <span class='date'>Le {{ comment.createdAt|date('d/m/Y H:i') }}</span>
+            <a class='author' href='#'>{{ comment.name }}</a>
+            <a class='comment' href='{{ comment.link }}#comment_{{ comment.id }}'>{{ comment.content | truncate(150) | striptags | raw }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}

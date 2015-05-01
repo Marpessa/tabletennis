@@ -1,0 +1,5 @@
+_tableTennisScoringTableIndex:
+    defaults: { _controller: TableTennisScoringTableBundle:Default:index, culture: fr }
+    pattern: /{culture}/bareme-des-points.html
+    requirements:
+        culture: fr

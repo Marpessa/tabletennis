@@ -1,0 +1,42 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Coëfficients des compétitions | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici les coëfficients des compétitions de tennis de table{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennismatchtype/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}matchType{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Coëfficients des compétitions</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+        <em>Les lettres N, R, D se réfèrent respectivement à National, Régional et Départemental</em>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Compétitions</th>
+                <th>Coef.</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for matchType in matchType_list %}
+            <tr class="l_{{ loop.index%2 }}">
+                <td>{{ matchType.title }}</td>
+                <td>{{ matchType.coefficient }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+
+{% endblock %}

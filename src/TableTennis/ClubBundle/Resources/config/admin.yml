@@ -1,0 +1,12 @@
+services:
+    tabletennis.club.admin.club:
+        class: TableTennis\ClubBundle\Admin\ClubAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Liste des clubs" }
+        arguments: 
+            - ~
+            - TableTennis\ClubBundle\Entity\Club
+            - TableTennisClubBundle:ClubAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisClubBundle]]

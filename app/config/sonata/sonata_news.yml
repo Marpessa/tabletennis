@@ -1,0 +1,31 @@
+sonata_news:
+    title:        CPF Aizenay
+    link:         http://cpfaizenay.com
+    description:  cpfaizenay news
+    salt:         'secureToken'
+    permalink_generator: sonata.news.permalink.date # sonata.news.permalink.category
+
+    comment:
+        notification:
+            emails:   [ecouvreur@yahoo.fr]
+            from:     no-reply@cpfaizenay.com
+            template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
+
+    class:
+        post:       Application\Sonata\NewsBundle\Entity\Post
+        tag:        Application\Sonata\NewsBundle\Entity\Tag
+        comment:    Application\Sonata\NewsBundle\Entity\Comment
+        category:   Application\Sonata\NewsBundle\Entity\Category
+        media:      Application\Sonata\MediaBundle\Entity\Media
+        user:       Application\Sonata\UserBundle\Entity\User
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                #metadata_cache_driver: apc
+                #query_cache_driver: apc
+                #result_cache_driver: apc
+                mappings:
+                    ApplicationSonataNewsBundle: ~
+                    SonataNewsBundle: ~

@@ -1,0 +1,17 @@
+services:
+    application_sonata_user.security.password_encoder:
+        class: Application\Sonata\UserBundle\Service\PasswordEncoder
+        arguments: ["md5"]
+#        public: false
+        
+
+    application_sonata_user.security.user_provider:
+        class: Application\Sonata\UserBundle\Service\UserProvider
+        public: false
+        arguments: ["@fos_user.user_manager"]
+
+    application_sonata_user.profile.form.type:
+        class: Application\Sonata\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%, @security.context]
+        tags:
+            - { name: form.type, alias: application_sonata_user_profile }

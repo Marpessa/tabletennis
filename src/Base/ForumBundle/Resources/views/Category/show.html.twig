@@ -1,0 +1,37 @@
+{% extends 'HerzultForumBundle::layout.html.twig' %}
+
+{% block title %}Liste des sujets de {{ category.name }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez tous les sujets du forum {{ category.name | truncate(150) | striptags }}.{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/profile.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basepics/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Liste des sujets de "{{ category.name }}"</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="headline"><h2>Sujets de discussion de "{{ category.name }}"</h2></div>
+
+    {#}<a href="{{ forum_urlForCategoryAtomFeed(category) }}" title="Atom feed" class="feed atom">Atom feed</a>{#}
+
+    {{ render(controller('HerzultForumBundle:Topic:list', { 'categorySlug': category.slug, 'pagerOptions': {'page': page, 'routeName': 'herzult_forum_category_show', 'routeParams': {'slug': category.slug}} }), {}) }}
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {% include 'HerzultForumBundle:Topic:sidebar-new.html.twig' with {'category': category} %}
+
+    {#}
+    <div class="headline"><h2>Liste des forums</h2></div>
+    {% render 'HerzultForumBundle:Category:list' %}
+    {#}
+
+    {{ parent() }}
+
+{% endblock %}

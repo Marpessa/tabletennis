@@ -1,0 +1,10 @@
+{% form_theme form theme %}
+<form action="{{ path('fos_user_resetting_reset', {'token': token}) }}" {{ form_enctype(form) }} method="POST" class="fos_user_resetting_reset sky-form">
+    
+    {{ form_widget(form) }}
+
+    <footer>
+        <button type="submit" class="btn-u">{{ 'resetting.reset.submit'|trans({}, 'FOSUserBundle') }}</button>
+    </footer>
+    
+</form>

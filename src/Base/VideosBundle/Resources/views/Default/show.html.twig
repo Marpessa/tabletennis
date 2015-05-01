@@ -1,0 +1,76 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ playlist_info.title }} - Vidéos | {{ parent() }}{% endblock %}
+{% block meta_description %}Vidéos de l'album {{ playlist_info.title }}.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/basevideos/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}movie{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">{{ playlist_info.title }}</h1>
+{% endblock %}
+
+{% block content %}
+
+    <!--=== Content Part ===-->
+    <div class="portfolio-4-columns">
+
+        {% for video in videos_list %}
+            {% if loop.index0%2 == 0 %}
+
+                {% if loop.first != true %}
+                    </div><!--/row-->
+                {% endif %}
+
+                <div class="row">
+            {% endif %}
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="headline"><h2>{{ video.title }}</h2></div>
+                        <iframe type="text/html" width="100%" height="350" src="{{ video.video_uri }}" frameborder="0"></iframe>
+                    </div>
+        {% endfor %}
+                </div>
+
+    </div><!--/container-->
+    <!--=== End Content Part ===-->
+
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+        {{ render(controller('TableTennisFfttFeedBundle:Default:home', {}), {}) }}
+    </div>
+
+{#}
+<ul>
+    {% for video in videos_list %}
+        <li class='l_{{ loop.index%2 }} movie_player'>
+            <div>
+                <iframe type="text/html" width="100%" height="350" src="{{ video.video_uri }}" frameborder="0"></iframe>
+            </div>
+            <h2>{{ video.title }}</h2>
+            <hr class='separator' />
+        </li>
+    {% endfor %}
+</ul>
+{#}
+{% endblock %}
+
+{% block sidebar %}
+    
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Publier une photo</h2>
+        <p>Partagez votre passion avec CPF Aizenay en publiant vos photos sur le site !</p>
+        <a href="{{ path('_basePicsPostPhoto', {} ) }}" class="btn-u btn-u-lg btn-block btn-u-default">Déposer une photo</a>
+    </div>
+
+    {{ parent() }}
+
+{% endblock %}

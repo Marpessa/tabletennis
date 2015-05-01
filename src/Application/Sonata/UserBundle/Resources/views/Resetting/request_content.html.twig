@@ -1,0 +1,37 @@
+{% if error is defined %}
+    <div class="alert alert-danger fade in">
+        {{ error|trans({}, 'FOSUserBundle') }}
+    </div>
+{% endif %}
+
+{% if invalid_username is defined %}
+    <div class="alert alert-danger fade in">
+        {{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}
+    </div>
+{% endif %}
+
+<form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="sky-form">
+    <header>Compléter ce formulaire si vous avez oublié votre mot de passe</header>
+    <fieldset>
+        <label for="username" class="label">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+        <label class="input">
+            <i class="icon-append fa fa-user"></i>
+            <input type="text" name="username" id="username">
+        </label>
+    </fieldset>
+    <footer>
+        <button type="submit" class="btn-u">{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}</button>
+    </footer>
+    {#}
+    <div>
+        {% if invalid_username is defined %}
+            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+        {% endif %}
+        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>
+        <input type="text" id="username" name="username" />
+    </div>
+    <div>
+        <input type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" />
+    </div>
+    {#}
+</form>

@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Plan du site - {{ parent() }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/basesitemap/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}sitemap{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Plan du site</h1>
+{% endblock %}
+
+{% block content %}
+
+<ul>
+{% for url_list in urls %}
+    <li>
+        {% if url.loc is defined %}
+            <a href='{{ url.loc }}'>{{ url.title }}</a>
+        {% endif %}
+        <ul>
+            {% for url in url_list %}
+                <li><a href='{{ url.loc }}'>{{ url.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock %}

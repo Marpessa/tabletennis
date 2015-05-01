@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Mot de passe oublié | {{ parent() }}{% endblock %}
+{% block meta_description %}Vous avez oublié le mot de passe de votre compte ? Remplissez le formulaire afin de le retrouver.{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Mot de passe oublié</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% block fos_user_content %}
+    {% include "FOSUserBundle:Resetting:request_content.html.twig" %}
+    {% endblock fos_user_content %}
+
+{% endblock %}

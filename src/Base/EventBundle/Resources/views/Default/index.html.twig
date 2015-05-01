@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Evénements | {{ parent() }}{% endblock %}
+{% block meta_description %}Ne ratez plus un tournoi, un championnat ou un événement de tennis de table.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/baseevent/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}event{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Liste des événements</h1>
+{% endblock %}
+
+{% block content %}
+
+<ul class='events_list'>
+ {% for event in event_list %}
+  <li class='e_{{ loop.index%2 }}'>
+   <h2>
+       <a href="{{ path('_baseEventShow', {"slug": event[0].slug, "year": event[0].updatedAt|date("Y"), "month": event[0].updatedAt|date("m") } ) }}">{{ event[0].title | truncate(35) | raw }}</a>
+   </h2>
+   <div class='thumb'>
+        <img src='{% path event.m_id, 'small' %}' alt='{{ event[0].title }}' title='{{ event[0].title }}' width='63' />
+   </div>
+   <span class='date'>Posté le {{ event[0].updatedAt|date("d/m/Y") }} <br/> par {{ event.u_username | truncate(40) | raw }}</span>
+  </li>
+ {% endfor %}
+</ul>
+
+{% endblock %}

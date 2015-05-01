@@ -1,0 +1,27 @@
+{% if lang is not defined %}
+<?xml version="1.0" encoding="UTF-8" ?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <sitemap>
+    {% for url in urls %}
+        <loc>
+            {%if url.loc|replace({hostname:''}) == url.loc%}
+                http://{{hostname}}{{ path('_baseSiteMapXmlLang') }}
+            {%else%}
+                {{ path('_baseSiteMapXmlLang') }}
+            {%endif%}
+        </loc>
+    {% endfor %}
+    </sitemap>
+</sitemapindex>
+{% else %}
+<?xml version="1.0" encoding="UTF-8" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    {% for url in urls %}
+    <url>
+        <loc>http://{{hostname}}{{ url.loc }}</loc>
+        <changefreq>{{ url.changefreq }}</changefreq>
+        <priority>{{ url.priority }}</priority>
+    </url>
+    {% endfor %}
+</urlset>
+{% endif %}

@@ -1,0 +1,54 @@
+{% if error %}
+    <div class="alert alert-danger fade in">
+        {{ error|trans({}, 'FOSUserBundle') }}
+    </div>
+{% endif %}
+
+<form action="{{ path("fos_user_security_check") }}" method="post" class="sky-form" novalidate="novalidate">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+    <header>Se connecter</header>
+    
+    <fieldset>                  
+        <section>
+            <div class="row">
+                <label class="label col col-4">E-mail<span class="color-red">*</span></label>
+                <div class="col col-8">
+                    <label class="input">
+                        <i class="icon-append fa fa-user"></i>
+                        <input type="email" name="_username" value="{{ last_username }}">
+                    </label>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="row">
+                <label class="label col col-4">Mot de passe<span class="color-red">*</span></label>
+                <div class="col col-8">
+                    <label class="input">
+                        <i class="icon-append fa fa-lock"></i>
+                        <input type="password" name="_password">
+                    </label>
+                    <div class="note"><a href="{{ path('fos_user_resetting_request') }}" class="modal-opener">Mot de passe oublié ?</a></div>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="row">
+                <div class="col col-4"></div>
+                <div class="col col-8">
+                    <label class="checkbox">
+                        <input type="checkbox" name="_remember_me" checked="" value="on"><i></i>Se souvenir de moi
+                    </label>
+                </div>
+            </div>
+        </section>
+    </fieldset>
+    <footer>
+        <div class="pull-right">
+            <button type="submit" class="btn-u">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
+        </div>
+        <em><span class="color-red">*</span> Informations obligatoires</em>
+    </footer>
+</form>

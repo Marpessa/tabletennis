@@ -1,0 +1,6 @@
+_baseContactIndex:
+    defaults: { _controller: BaseContactBundle:Default:index, culture: fr }
+    pattern: /{culture}/contact.html
+    requirements:
+        culture: fr
+        _method:  GET|POST

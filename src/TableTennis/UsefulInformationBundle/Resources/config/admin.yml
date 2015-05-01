@@ -1,0 +1,12 @@
+services:
+    tabletennis.useful.admin.useful:
+        class: TableTennis\UsefulInformationBundle\Admin\UsefulInformationAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "base.admin.group.article", label: "Informations utiles" }
+        arguments: 
+            - ~
+            - TableTennis\UsefulInformationBundle\Entity\UsefulInformation
+            - TableTennisUsefulInformationBundle:UsefulInformationAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisUsefulInformationBundle]]

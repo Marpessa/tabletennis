@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ page.title }} | {{ parent() }}{% endblock %}
+{% block meta_description %}{{ page.content | striptags | truncate(255) }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basepage/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block h1 %}
+	<h1 class="pull-left">{{ page.title }}</h1>
+{% endblock %}
+
+{% block content %}
+    {{ page.content | raw }}
+{% endblock %}

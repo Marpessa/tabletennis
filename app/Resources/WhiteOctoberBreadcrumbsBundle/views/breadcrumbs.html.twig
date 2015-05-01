@@ -1,0 +1,25 @@
+{% if wo_breadcrumbs()|length %}
+  <ul id="{{ listId }}" class="{{ listClass }}">
+    {% for b in breadcrumbs %}
+
+        {% if b.url %}
+          <li class="b_{{ loop.index }}" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        {% else %}
+          <li class="b_{{ loop.index }} active" itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        {% endif %}
+
+        {% if b.url %}
+              <a href="{{ b.url }}" itemprop="url">
+        {% endif %}
+            <span itemprop="title">{{ b.text | trans(b.translationParameters, translation_domain, locale) }}</span>
+        {% if b.url %}
+              </a>
+        {% endif %}
+
+        {% if separator and not loop.last %}
+          <span class='separator'>{{ separator }}</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}

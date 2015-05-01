@@ -1,0 +1,12 @@
+services:
+   tabletennis.team.admin.team:
+        class: TableTennis\TeamBundle\Admin\TeamAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Equipes" }
+        arguments: 
+            - ~
+            - TableTennis\TeamBundle\Entity\Team
+            - TableTennisTeamBundle:TeamAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisTeamBundle]]

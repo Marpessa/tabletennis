@@ -1,0 +1,37 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Partenaires du club | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez les partenaires su club de tennis de table d'Aizenay.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennispartner/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}partner{% endblock %}
+
+{% block content %}
+
+<h1 class="title">Partenaires du club</h1>
+
+{% if partner_list|length > 0 %}
+
+    <p class='boxrelief blue'>Cliquez sur le logo d'un partenaire pour voir sa fiche détaillée !</p>
+
+    <ul>
+    {% for partner in partner_list %}
+        {% set width = partner.m_width * media_formats["partner_small"]["height"] // partner.m_height %}
+        <li class='l_{{ loop.index%2 }}'>
+            <a href='{{ path('_tableTennisPartnerShow', { "slug": partner.slug } ) }}'>
+                <img src='{% path partner.m_id, 'small' %}' alt='{{ partner.title }}' title='{{ partner.title }}' width='{{ width }}' height='{{ media_formats["partner_small"]["height"] }}' />
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <p>Aucun partenaire n'a été trouvé.</p>
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{% endblock %}

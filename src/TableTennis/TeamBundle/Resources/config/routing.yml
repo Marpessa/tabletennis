@@ -1,0 +1,5 @@
+_tableTennisTeamIndex:
+    defaults: { _controller: TableTennisTeamBundle:Default:index, culture: fr }
+    pattern: /{culture}/equipes-du-club.html
+    requirements:
+        culture: fr

@@ -1,0 +1,73 @@
+{# L'utilisateur est-il connecté ? #}
+{% if app.user is not empty and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+    <li class='profile'>
+        <a href="{{ path('_sonataUserProfileDashboard') }}" title='Mon profil'><i class="fa fa-user"></i> Mon profil</a>
+
+        <ul class="lenguages">
+            <li><a href="{{ path('_sonataUserProfileDashboard') }}" title='Mon profil'>Mon&nbsp;profil</a></li>
+            <li><a href="{{ path('_sonataUserProfileMatchsList') }}" title='Mes matchs'>Mes&nbsp;matchs</a></li>
+            <li><a href="{{ path('_sonataUserProfileEvolution') }}" title='Mon évolution'>Mon&nbsp;évolution</a></li>
+            <li><a href="{{ path('_sonataUserProfileMatchsPie') }}" title='Mes perfs/contres'>Mes&nbsp;perfs/contres</a></li>
+        </ul>
+    </li>
+
+    <li class="topbar-devider"></li>
+    <li><a class="logout" href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+{% else %}
+    <li><a href="{{ path('fos_user_registration_register') }}" class="register_link">S'inscrire</a></li>
+    <li class="topbar-devider"></li>
+    <li><a href="{{ path("fos_user_security_login") }}">Login</a></li>
+{% endif %}
+
+{# L'utilisateur est-il connecté ? #}
+{#}
+{% if app.user is not empty and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+
+    {% if app.user.mediaId is not empty %}
+        <img class="avatar" data-role="user-avatar" src="{% path app.user.mediaId, 'small' %}" alt="{{ app.user.mediaId }}" width="36" height="36" />
+    {% else %}
+        <img class="avatar" data-role="user-avatar" src="/images/default/noavatar.png" alt="Avatar" width="36" height="36" />
+    {% endif %}
+        
+    <span class="welcome">Bonjour <a href="{{ path('_sonataUserProfileDashboard') }}">{{ app.user.username }}</a></span>
+
+
+    <a class="logout" href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+
+    <nav class="user-menu">
+        <ul>
+            <li class='profile'><a href="{{ path('_sonataUserProfileDashboard') }}" title='Mon profil'>Mon profil</a></li>
+            <li class='matchs'><a href="{{ path('_sonataUserProfileMatchsList') }}" title='Mes matchs'>Mes matchs</a></li>
+            <li class='evolution'><a href="{{ path('_sonataUserProfileEvolution') }}" title='Mon évolution'>Mon évolution</a></li>
+            <li class='pie'><a href="{{ path('_sonataUserProfileMatchsPie') }}" title='Mes perfs/contres'>Mes perfs/contres</a></li>
+        </ul>
+    </nav>
+
+{% else %}
+
+    {% if error is defined %}
+        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+    {% endif %}
+
+    <form class="form_login" action="{{ path("fos_user_security_check") }}" method="post">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+        <div class='form_row'>
+            <label for="username">Login ou email</label>
+            <input class='input_text' type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Pseudo ou email" />
+            <input type="checkbox" id="remember_me" name="_remember_me" value="on" /><label for="remember_me">Se souvenir de moi</label>
+        </div>
+        <div class='form_row'>
+            <label for="password">Mot de passe</label>
+            <input class='input_text' type="password" id="password" name="_password" placeholder="Mon mot de passe" />
+            <a href="{{ path('fos_user_resetting_request') }}">Mot de passe oublié ?</a>
+        </div>
+        <div class='form_row connection'>
+            <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        </div>
+        <div class='form_row register'>
+            <a href="{{ path('fos_user_registration_register') }}" class="register_link">S'inscrire</a>
+        </div>
+    </form>
+{% endif %}
+{#}

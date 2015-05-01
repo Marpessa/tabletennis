@@ -1,0 +1,18 @@
+#team ul li {
+    float: left;
+    width: 46%;
+    margin-bottom: 10px;
+}
+
+#team ul li.t_1 {
+    clear: left;
+    border-right: 2px dotted #DDD;
+}
+
+#team ul li.t_0 {
+    margin-left: 42px;
+}
+
+#team ul li h2 {
+    font-size: 16px;
+}

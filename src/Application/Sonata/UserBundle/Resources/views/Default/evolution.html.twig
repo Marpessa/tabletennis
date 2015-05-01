@@ -1,0 +1,81 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Evolution de {{ licensee.lastname }} {{ licensee.firstname }} | {{ parent() }}{% endblock %}
+{% block meta_description %}Visualisez la progression de {{ licensee.lastname }} {{ licensee.firstname }}.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/evolution.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/monthNav.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}user{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Evolution de {{ licensee.lastname }} {{ licensee.firstname }}</h1>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('http://code.highcharts.com/2.2/highcharts.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            if( $('#evolutionGraph').length > 0 ) {
+                var colors = Highcharts.getOptions().colors;
+
+                // Graph Line
+                var options = {
+                    chart: {
+                        renderTo: 'evolutionGraph',
+                        zoomType: 'x',
+                        spacingRight: 20
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: {{graphCategories|json_encode()|raw}}
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Points'
+                        }
+                    },
+                    legend: {
+                         layout: 'vertical',
+                         align: 'top',
+                         verticalAlign: 'top',
+                         x: -10,
+                         y: 0,
+                         borderWidth: '2px'
+                    },
+                    series: [{
+                        name: 'Points mensuels',
+                        data: {{graphData|json_encode()}}
+                    }]
+                };
+
+                var chart = new Highcharts.Chart(options);
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+
+    {#
+    {% include "ApplicationSonataUserBundle:Default:monthNav.html.twig" with {'licensee': licensee, 'monthsNav': monthsNav, 'startDate': startDate, 'endDate': endDate, 'internal_uri': '_sonataUserEvolution'} %}
+    #}
+    
+    <div id="evolutionGraph"></div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {% include "ApplicationSonataUserBundle:Default:sidebar-menu.html.twig" with { 'active_item_menu': 'evolution' } %}
+
+    {{ parent() }}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+<?php
+
+namespace TableTennis\ScoringTableBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="scoring_table")
+ */
+class ScoringTable {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="decimal", length=3, scale="2")
+     * @Assert\NotBlank
+     */
+    public $points_away;
+
+    /**
+     * @ORM\Column(type="decimal", length=3, scale="2")
+     */
+    public $normal_victory;
+
+    /**
+     * @ORM\Column(type="decimal", length=3, scale="2")
+     */
+    public $normal_defeat;
+
+    /**
+     * @ORM\Column(type="decimal", length=3, scale="2")
+     */
+    public $anormal_victory;
+
+    /**
+     * @ORM\Column(type="decimal", length=3, scale="2")
+     */
+    public $anormal_defeat;
+
+    /**
+     * Set id
+     *
+     * @param integer
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+}

@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Email envoyé pour mot de passe oublié | {{ parent() }}{% endblock %}
+{% block meta_description %}Email envoyé sur votre boîte mail personnelle{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Email envoyé pour mot de passe oublié</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% block fos_user_content %}
+    {% include "FOSUserBundle:Resetting:reset_content.html.twig" %}
+    {% endblock fos_user_content %}
+
+{% endblock %}

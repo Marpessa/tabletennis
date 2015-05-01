@@ -1,0 +1,56 @@
+<!-- News -->
+{% if news_list_small_highlight|length > 0 %}
+    
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Le reste de <span class="color-green">l'actualité</span></h2>
+    </div>
+
+    {% for news in news_list_small_highlight %}
+
+        {% if loop.index0%2 == 0 %}
+
+            <div class="magazine-news">
+                <div class="row">
+
+        {% endif %}
+
+                    <div class="col-md-6">
+                        <div class="magazine-news-img">
+                            <a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}">
+                                {% if news.m_id is defined and news.m_id is not empty %}
+                                    <img class="img-responsive" src='{% path news.m_id, 'big' %}' alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />
+                                {% else %}
+                                    <img class="img-responsive" src="{{ asset('/images/cpfaizenay/default_news.png') }}" title='{{ news.title | truncate(40) | raw }}' alt='{{ news.title | truncate(40) | raw }}' width='707' height='618' />
+                                {% endif %}
+                            </a>
+                            {% if news.is_new == true %}
+                                <span class="magazine-badge label-red">Nouveau</span>
+                            {% endif %}
+                        </div>
+                        <h3><a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}">{{ news.title | truncate(80) | raw }}</a></h3>
+                        <div class="by-author">
+                            <strong>{{ news.u_username }}</strong>
+                            <span>/ {{ news.updatedAt|date("d/m/Y") }}</span>
+                        </div> 
+                        <p>{{ news.content | truncate(150) | striptags | raw }}</p>
+                    </div>
+
+        {% if loop.index%2 == 0 %}
+                </div>
+            </div>
+
+            <div class="margin-bottom-35">
+                <hr class="hr-md">
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+
+    <div class="news-read-more">
+        <i class="fa fa-plus"></i>
+        <a href="{{ path('_baseNewsIndex') }}">Découvrez toute l'actualité de CPF Aizenay</a>
+    </div>
+{% endif %}
+<!-- End News -->

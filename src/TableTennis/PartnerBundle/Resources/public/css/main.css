@@ -1,0 +1,20 @@
+#partner ul li {
+    float: left;
+    margin: 10px;
+}
+
+#partner ul li > a {
+    display: block;
+    font-size: 11px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#partner a {
+    color: #6698B9;
+    text-decoration: underline;
+}
+
+#partner a:hover {
+    color: #000;
+}

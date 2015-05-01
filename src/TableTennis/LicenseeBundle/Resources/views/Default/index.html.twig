@@ -1,0 +1,75 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Licenciés du club | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici la liste des licenciés du club.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennislicensee/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}licensee{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Liste des licenciés du club</h1>
+{% endblock %}
+
+{% block content %}
+
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Position</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>N° licence</th>
+            <th>Points mensuels</th>
+            <th>Catégorie</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for licensee in licensee_list %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ licensee.lastname }}</td>
+                <td>{{ licensee.firstname }}</td>
+                <td>{{ licensee.licensee_number }}</td>
+                <td>{{ licensee.nb_current_points | default("-") }}</td>
+                <td>{{ licensee.category }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">Aucune donnée n'a été trouvé.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{#}
+<ul>
+    <li class='head'>
+        <span>Position</span>
+        <span>Nom</span>
+        <span>Prénom</span>
+        <span>N° licence</span>
+        <span>Points mensuels</span>
+        <span>Catégorie</span>
+    </li>
+    {% for licensee in licensee_list %}
+    <li class='body l_{{ loop.index%2 }}'>
+        <a href="{{ path('_sonataUserDashboard', { "licensee_number" : licensee.licensee_number ,"slug": licensee.slug } ) }}">
+            <span>{{ loop.index }}</span>
+            <span>{{ licensee.lastname }}</span>
+            <span>{{ licensee.firstname }}</span>
+            <span>{{ licensee.licensee_number }}</span>
+            <span>{{ licensee.nb_current_points | default("-") }}</span>
+            <span>{{ licensee.category }}</span>
+        </a>
+    </li>
+    {% else %}
+    <li>
+        <p>Aucun licencié n'a été trouvé.</p>
+    </li>
+    {% endfor %}
+</ul>
+{#}
+{% endblock %}

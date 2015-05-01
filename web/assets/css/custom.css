@@ -1,0 +1,579 @@
+/* Add here all your css styles (customizations) */
+
+/******************************/
+/*          HEADER            */
+/******************************/
+
+.container>.navbar-header {
+	position: relative;
+}
+
+.header .navbar-brand {
+	top: -34px;
+}
+
+.navbar>.container h1,
+.navbar>.container .slogan {
+	position: absolute;
+	top: 13px;
+	left: 19px;
+
+	margin: 0;
+	font-style: italic;
+	font-size: 10px;
+	color: #666;
+	text-align: right;
+}
+
+.navbar>.container .slogan {
+	top: 25px;
+}
+
+.header .navbar-default .navbar-nav > li > a {
+    font-size: 13px;
+}
+
+.navbar-nav>li.last a {
+    padding-right: 0!important;
+}
+
+
+.topbar ul.loginbar > li > a {
+
+}
+
+@media (max-width: 999px) {
+    .header .navbar-nav {
+        margin: 0 0 5px;
+    }
+
+    .navbar>.container .slogan {
+        left: 38px;
+    }
+}
+
+/******************************/
+/*         COPYRIGHT          */
+/******************************/
+
+.copyright a img {
+    margin-top: 0;
+}
+
+.flexslider .slides img {
+    width: auto!important;
+    max-width: 50%;
+    max-height: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/******************************/
+/*            NEWS            */
+/******************************/
+
+.da-slider {
+	background: transparent url(/images/default/bg.jpg) repeat 0% 0%;
+}
+
+.da-slider h2 a {
+    color: #FFF;
+    text-decoration: none;
+}
+
+.da-dots {
+	z-index: 10;
+}
+
+.magazine-news-img {
+	border: 1px solid #bbb;
+}
+
+/******************************/
+/*             AD             */
+/******************************/
+
+#ad {
+	min-width: 250px;
+	min-height: 250px;
+	background-color: #fff;
+	background: #fff url('/images/default/loading.gif') no-repeat center center;
+	margin-bottom: 10px;
+}
+
+/******************************/
+/*          PHOTOS            */
+/******************************/
+
+.blog-photos li img {
+	width: 56px;
+	height: 56px;
+}
+
+/******************************/
+/*         COMMENTS           */
+/******************************/
+
+#comments .captcha img {
+    float: left;
+    margin-bottom: 5px;
+    display: inline-block;
+    width: 23.33%;
+}
+
+#comments .captcha input {
+    float: left;
+    display: inline;
+    width: 75.66%;
+    margin-left: 1%;
+}
+
+/******************************/
+/*      LAST COMMENTS         */
+/******************************/
+
+.testimonials .item p { min-height: 96px; }
+.testimonials .item p a { color: #555; text-decoration: none; }
+.testimonials.testimonials-bg-dark p a { color: #fff; }
+
+
+/******************************/
+/*       USEFUL INFOS         */
+/******************************/
+
+.magazine-sb-categories ul i
+{
+	color: #3498db;
+}
+
+/******************************/
+/*            MAP             */
+/******************************/
+
+#map_canvas {
+    width: 100% !important;
+    height: 250px;
+    border-top: solid 1px #eee;
+    border-bottom: solid 1px #eee;
+}
+
+/******************************/
+/*           PHOTOS           */
+/******************************/
+
+.view-tenth img {
+    width: 100%;
+}
+
+.view-tenth h2 {
+    margin: 20px auto 0 !important;
+}
+
+@media (min-width: 992px) {
+    .portfolio-4-columns .mask h2 {
+        font-size: 16px !important;
+    }
+}
+
+#base_pics_picture_media_id label {
+    display: none;
+}
+
+/******************************/
+/*            FORUM           */
+/******************************/
+
+.forum_categories .profile-event {
+    background: #f7f7f7;
+}
+
+.forum_categories .date-formats {
+    min-width: 49px;
+    
+    background: #3498db;
+}
+
+.forum_categories .profile-event .heading-xs {
+    line-height: 1.4;
+}
+
+/******************************/
+/*           PROFILE          */
+/******************************/
+
+.profile .profile-bio > a {
+    top: 5px;
+    right: 1%;
+}
+
+.profile .profile-bio a {
+    margin-left: -75px;
+}
+
+.avatar {
+    width: 100%;
+}
+
+.profile #evolutionGraph,
+.profile #matchsPie {
+    width: 100%;
+    height: 365px;
+}
+
+#application_sonata_user_avatar_media_id label {
+    display: none;
+}
+
+/******************************/
+/*           FOOTER           */
+/******************************/
+
+.footer #facebook {
+	width: 100%;
+
+	background: #fff url('/images/default/loading.gif') no-repeat center center;
+}
+
+.footer #facebook * {
+   width: 100% !important;
+   background: #fff;
+}
+
+
+.footer .btn-u.btn-u-blue {
+    color: #fff;
+}
+
+.footer .tel {
+    color: #dadada;
+}
+
+/******************************/
+/*          PARTNERS          */
+/******************************/
+
+#scrolling-partners {
+    width: 100%;
+    height: 190px;
+    position: relative;
+    overflow: hidden;
+}
+
+#scrolling-partners .rolling-partners {
+    position: absolute;
+    width: 3000px;
+    height: 190px;
+}
+
+#scrolling-partners .rolling-partners ul {
+    position: absolute;
+    top: 0;
+}
+
+#scrolling-partners .rolling-partners ul li {
+    float: left;
+    margin-right: 20px;
+}
+
+
+/******************************/
+/*         CALENDAR           */
+/******************************/
+
+#agenda {
+    border: 2px solid #e5e5e5;
+	background: #fff;
+	box-shadow: none;
+	padding: 10px 12px;
+
+	font: 13px/1.55 'Open Sans', Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #666;
+
+	border-width: 1px;
+}
+
+#agenda .hCalendar {
+	position: relative;
+	margin: -10px -12px 10px;
+	padding: 10px 0;
+	border-bottom: 1px solid rgba(0,0,0,.1);
+
+	font-size: 16px;
+
+	line-height: 27px;
+
+	color: #404040;
+}
+
+#agenda .hCalendar a.navMonth {
+    position: absolute;
+	top: 0;
+	display: block;
+	width: 47px;
+	height: 47px;
+	font-size: 18px;
+	line-height: 47px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#agenda .hCalendar a.navMonth:hover {
+    color: #2da5da;
+}
+
+#agenda .hCalendar a.navMonth.left {
+    left: 0;
+}
+
+#agenda .hCalendar a.navMonth.right {
+    right: 0;
+}
+
+#agenda .jCalendar {
+    overflow: hidden;
+	font-weight: bold;
+	color: #bfbfbf;
+}
+
+#agenda .jCalendarContent {
+    width: 14%;
+    text-align: center;
+    float: left;
+}
+
+#agenda .daysContent {
+    position: relative;
+    
+    background-color: #FFF;
+}
+
+#agenda .daysContent img.loading {
+    display: block;
+    
+    position: absolute;
+    top: 35%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+    margin: 0 auto;
+}
+
+#agenda .rowDay {
+    background-color: #ffffff;
+    text-align: center;
+    
+    border-top: 1px solid #fff;
+}
+
+#agenda .rowDay.hidden {
+    visibility: hidden;
+}
+
+#agenda .rowDay.r_1 {
+    border-top: none;
+}
+
+#agenda .rowDay .day.last {
+    border-right: 1px solid #fff;
+}
+
+#agenda .day {
+    width: 14%;
+    height: 27px;
+    float: left;
+    
+    border-left: 1px solid #fff;
+}
+
+#agenda .day.d_1 {
+    border-left: none;
+}
+/*
+#agenda .day.d_5,
+#agenda .day.d_6,
+#agenda .day.d_7 {
+    width: 36px;
+}
+*/
+#agenda .linkcal a {
+    color: #FFFFFF;
+}
+
+#agenda .currentday {
+    background: #ddd;
+    line-height: 26px;
+    
+}
+#agenda .currentday a {
+    color: #AAA;
+    font-size: 13px;
+}
+
+#agenda .empty {
+    border-left: 1px solid transparent;
+}
+
+#agenda .otherDay {
+    font-size: 13px;
+    color: #404040;
+    line-height: 26px;
+}
+
+#agenda .events {
+    background: #EEE;
+    border-top: 1px solid #fff;
+    padding: 10px;
+    
+    border-radius: 0 0 5px 5px;
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+}
+
+#agenda .events ul li {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #ccc;
+    
+    font-size: 11px;
+}
+
+#agenda .events ul li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+#agenda .event a {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    
+    color: #464646;
+    margin: 1px auto;
+    
+    border: 2px solid #3498db;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    
+    text-decoration: none;
+    line-height: 20px;
+    font-weight: bold;
+}
+
+#agenda .event a .bubble {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    
+    padding: 5px;
+    
+    min-width: 150px;
+    max-width: 250px;
+    
+    background-color: #464646;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    
+    font-weight: bold;
+    line-height: 18px;
+    
+    box-shadow: 0 5px 5px #464646;
+    -webkit-box-shadow: 0 5px 5px #464646;
+    -moz-box-shadow: 0 5px 5px #464646;
+}
+
+#agenda .event.d_1 a .bubble,
+#agenda .event.d_2 a .bubble,
+#agenda .event.d_3 a .bubble,
+#agenda .event.d_4 a .bubble {
+    left: 25px;
+}
+
+#agenda .event.d_5 a .bubble,
+#agenda .event.d_6 a .bubble,
+#agenda .event.d_7 a .bubble {
+    right: 25px;
+}
+
+#agenda .event a .bubble {
+    color: #FFF;
+}
+
+#agenda .events p {
+    margin: 0;
+}
+
+#agenda .events a {
+    float: right;
+    
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+    
+    margin: 2px 10px 0;
+    
+    color: #2D2D2D;
+}
+
+#agenda .events a:hover {
+    color: #6698B9;
+}
+
+/******************************/
+/*           ERROR            */
+/******************************/
+
+.sky-form .state-error + em * {
+    color: #ee9393;
+}
+
+/******************************/
+/*        COOKIES MSG         */
+/******************************/
+
+#cookieChoiceInfo {
+    top: auto !important;
+    bottom: 0;
+    font-size: 12px;
+
+    border-top: 1px solid #222;
+}
+
+#cookieChoiceInfo span {
+    margin-right: 10%;
+    max-width: 70%;
+    
+    color: #222;
+    font-weight: bold;
+    text-align: left;
+}
+
+#cookieChoiceInfo a {
+    display: inline-block;
+
+    cursor: pointer;
+    background-color: #1e1e1e;
+
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+
+    border: 1px solid #000;
+
+    color: #fff;
+    font-family: arial;
+    font-weight: bold;
+    padding: 2px 10px;
+    text-decoration: none;
+}
+
+#cookieChoiceInfo #cookieChoiceDismiss {
+    border: 1px solid #c6c6c6;
+    background-color: #c6c6c6;
+}

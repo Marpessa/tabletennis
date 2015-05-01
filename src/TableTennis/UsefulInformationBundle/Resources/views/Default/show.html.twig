@@ -1,0 +1,39 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ us_infos.title }} | {{ parent() }}{% endblock %}
+{% block meta_description %}{{ us_infos.content | striptags | truncate(255) }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennisusefulinformation/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block content %}
+
+<h1 class="title">{{ us_infos.title | truncate(60) | raw }}</h1>
+
+{% set height = null %}
+{% if us_infos.m_width is defined and us_infos.m_width != 0 %}
+    {% set height = us_infos.m_height * media_formats["usefulInformation_big"]["width"] // us_infos.m_width %}
+{% endif %}
+
+{% if height is defined and height is not empty %}
+    <img src='{% path us_infos.m_id, 'big' %}' alt='{{ us_infos.title }}' title='{{ us_infos.title }}' width='{{ media_formats["usefulInformation_big"]["width"] }}' height='{{ height }}' />
+{% endif %}
+
+{{ us_infos.content | raw }}
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <div class="servive-block servive-block-blue">
+        <i class="icon-custom icon-color-light rounded-x fa fa-thumbs-o-up"></i>
+        <h2 class="heading-md">Vous aimez cette article ?</h2>
+        <p>Partagez votre passion avec CPF Aizenay en partageant cet article sur les réseaux sociaux !</p>
+        {{ render(controller("BaseSocialBundle:Facebook:likebutton", {}), {}) }}
+    </div>
+
+    {{ parent() }}
+
+{% endblock %}

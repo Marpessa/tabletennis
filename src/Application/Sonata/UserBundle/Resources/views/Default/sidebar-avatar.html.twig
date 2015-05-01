@@ -1,0 +1,10 @@
+{% set height = null %}
+{% if user.mediaId.width is defined and user.mediaId.width is not empty %}
+    {% set height = user.mediaId.height * media_formats["avatar_big"]["width"] // user.mediaId.width %}
+{% endif %}
+
+{% if height is defined and height is not empty %}
+    <img class="img-responsive profile-img margin-bottom-20 avatar" src='{% path user.mediaId, 'big' %}' title='{{ licensee.lastname }}' alt='{{ licensee.lastname }}' width='{{ media_formats["avatar_big"]["width"] }}' height='{{ height }}' />
+{% else %}
+    <img class="img-responsive profile-img margin-bottom-20 avatar" src="{{ asset('/images/default/noavatar.png') }}" title="{{ licensee.lastname }}" alt="{{ licensee.lastname }}" width="263" height="218" />
+{% endif %}

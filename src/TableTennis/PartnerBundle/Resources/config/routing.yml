@@ -1,0 +1,11 @@
+_tableTennisPartnerIndex:
+    defaults: { _controller: TableTennisPartnerBundle:Default:index, culture: fr }
+    pattern: /{culture}/partenaires-du-club/
+    requirements:
+        culture: fr
+
+_tableTennisPartnerShow:
+    defaults: { _controller: TableTennisPartnerBundle:Default:show, culture: fr }
+    pattern: /{culture}/partenaires-du-club/{slug}.html
+    requirements:
+        culture: fr

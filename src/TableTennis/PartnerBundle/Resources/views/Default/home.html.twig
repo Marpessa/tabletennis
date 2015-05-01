@@ -1,0 +1,53 @@
+{% if partner_list|length > 0 %}
+{#}
+    <!--=== Job Partners ===-->
+    <div class="container content job-partners">
+        <div class="title-box-v2">
+            <h2>Nos <span class="color-green">partenaires</span></h2>
+            <p>http://htmlstream.com/preview/unify-v1.5/page_jobs.html.</p>
+        </div>
+
+        <ul class="list-inline our-clients" id="effect-2">
+            {% for partner in partner_list %}
+                {% set width = partner.m_width * media_formats["partner_small"]["height"] // partner.m_height %}
+                <li>
+                    <figure>
+                        <img src='{% path partner.m_id, 'small' %}' alt='{{ partner.title }}' title='{{ partner.title }}' width='{{ width }}' height='{{ media_formats["partner_small"]["height"] }}' />
+                        <div class="img-hover">
+                            <h4>{{ partner.title }}</h4>
+                        </div>
+                    </figure>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{#}
+
+    <div id="scrolling-partners" class="home clients">
+        <div class="headline"><h2>Nos partenaires</h2></div>
+
+        <div class="rolling-partners">
+            <ul class="slides">
+
+                {% for partner in partner_list %}
+                    {% set width = partner.m_width * media_formats["partner_small"]["height"] // partner.m_height %}
+                    <li style='width: {{ width }}px'>
+                        <a href='{{ path('_tableTennisPartnerShow', { "slug": partner.slug } ) }}'>
+                            <img src='{% path partner.m_id, 'small' %}' alt='{{ partner.title }}' title='{{ partner.title }}' width='{{ width }}' height='{{ media_formats["partner_small"]["height"] }}' />
+                        </a>
+                    </li>
+                {% endfor %}
+
+                {#}
+                <li>
+                    <a href="#">
+                        <img src="assets/img/clients/hp_grey.png" alt=""> 
+                        <img src="assets/img/clients/hp.png" class="color-img" alt="">
+                    </a>
+                </li>
+                {#}
+            </ul>
+        </div>
+    </div>
+
+{% endif %}

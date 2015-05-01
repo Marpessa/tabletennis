@@ -1,0 +1,18 @@
+_basePicsIndex:
+    defaults: { _controller: BasePicsBundle:Default:index, culture: fr }
+    pattern: /{culture}/galerie-photos/
+    requirements:
+         culture: fr
+
+_basePicsShowAlbum:
+    defaults: { _controller: BasePicsBundle:Default:show, culture: fr }
+    pattern: /{culture}/galerie-photos/{id_album}/{slug}.html
+    requirements:
+        culture: fr
+        id_album:  \d+
+        
+_basePicsPostPhoto:
+    defaults: { _controller: BasePicsBundle:Default:postPhoto, culture: fr }
+    pattern: /{culture}/publier-une-photo/
+    requirements:
+         culture: fr

@@ -1,0 +1,5 @@
+_basePageIndex:
+    defaults: { _controller: BasePageBundle:Default:index, culture: fr }
+    pattern: /{culture}/p/{slug}.html
+    requirements:
+         culture: fr

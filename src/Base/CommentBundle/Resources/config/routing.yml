@@ -1,0 +1,14 @@
+_baseLastCommentIndex:
+    defaults: { _controller: BaseCommentBundle:Default:index, culture: fr }
+    pattern: /{culture}/derniers-commentaires.html
+    requirements:
+        culture: fr
+        format: html
+
+_baseValidComment:
+    defaults: { _controller: BaseCommentBundle:Default:valid, culture: fr }
+    pattern: /{culture}/commentaire-validee.html
+    requirements:
+        culture: fr
+        format: html
+        _method:  POST

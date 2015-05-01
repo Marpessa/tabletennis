@@ -1,0 +1,93 @@
+<?php
+
+namespace Base\CommentBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity(repositoryClass="Base\CommentBundle\Repository\CommentRepository")
+ * @ORM\Table(name="comment")
+ */
+class Comment {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $name;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $email;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $content;
+
+    /**
+     * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank()
+     */
+    public $link;
+
+    /**
+     * @ORM\Column(type="boolean")
+     * @Assert\NotBlank()
+     */
+    public $is_published;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="creation_user_id", referencedColumnName="id")
+     */
+    public $user_id;
+
+    /**
+     * @var datetime $created
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+}

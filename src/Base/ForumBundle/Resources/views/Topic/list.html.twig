@@ -1,0 +1,37 @@
+<div class="profile forum_topics">
+
+    {% for topic in topics %}
+        <div class="comment">
+            <div class="overflow-h">
+                <strong> <a href="{{ forum_urlForTopic(topic) }}">{{ topic.subject }}</a><small class="pull-right">{{ topic.createdAt|date("d/m/Y") }}</small></strong>
+                <ul class="list-inline comment-list">
+                    <li><i class="fa fa-comments"></i> <a href="#">{{ topic.numPosts }}</a></li>
+                </ul>
+            </div>    
+        </div>
+    {% endfor %}
+
+</div>
+
+{#}
+
+
+<ul class="forum_topics_list">
+{% for topic in topics %}
+    <li class="topic">
+        <a class="subject" href="{{ forum_urlForTopic(topic) }}">{{ topic.subject }}</a>
+        <div class="metas">
+            <span class="creation">Le <span class="createdAt">{{ topic.createdAt|date("d/m/Y") }}</span> par</span>
+            <span class="author">{{ topic.authorName }}</span>
+            | <span class="numPosts">{{ topic.numPosts }} {{ topic.numPosts > 1 ? 'réponses' : 'réponse' }}</span>
+            | <a class="category" href="{{ forum_urlForCategory(topic.category) }}">{{ topic.category.name }}</a>
+        </div>
+    </li>
+{% endfor %}
+</ul>
+
+{#}
+
+{% if category %}
+    {{ pagerfanta(topics, 'twitter_bootstrap3', pagerOptions|merge({'proximity': 3, 'prev_message': '«', 'next_message': '»'})) }}
+{% endif %}

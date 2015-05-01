@@ -1,0 +1,52 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}{{ event.title }} | {{ parent() }}{% endblock %}
+{% block meta_description %}{{ event.content | striptags | truncate(255) }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/baseevent/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}event{% endblock %}
+
+{% block content %}
+
+<h1 class="title">{{ event.title | truncate(60) | raw }}</h1>
+
+<span class="share_buttons">
+    {% render "BaseSocialBundle:Facebook:likebutton" with {}, {'standalone': true} %}
+</span>
+
+{% set height = null %}
+{% if event.m_width is defined and event.m_width is not empty %}
+    {% set height = event.m_height * media_formats["event_big"]["width"] // event.m_width %}
+{% endif %}
+
+{% if height is defined and height is not empty %}
+    <img src='{% path event.m_id, 'big' %}' alt='{{ event.title }}' title='{{ event.title }}' width='{{ media_formats["event_big"]["width"] }}' height='{{ height }}' />
+{% endif %}
+
+<div class="article">
+    {{ event.content | raw }}
+</div>
+
+{% if related_events_list|length > 0 %}
+    <div class='related_news'>
+        <span class='title'>Voir aussi</span>
+        <ul class='clearfix'>
+         {% for event in related_events_list %}
+          <li>
+           <h2>
+               <a href="{{ path('_baseEventShow', {"slug": event.slug, "year": event.updatedAt|date("Y"), "month": event.updatedAt|date("m") } ) }}">{{ event.title | truncate(35) | raw }}</a>
+           </h2>
+           <span class='date'>Posté le {{ event.updatedAt|date("d/m/Y") }} <br/> par {{ event.u_username | truncate(40) | raw }}</span>
+          </li>
+         {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
+{% render "BaseCommentBundle:Default:common" with {}, {'standalone': true} %}
+
+{% endblock %}

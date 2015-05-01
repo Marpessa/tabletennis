@@ -1,0 +1,84 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Modifier mon avatar | {{ parent() }}{% endblock %}
+{% block meta_description %}Modifiez l'avatar de votre compte personnel.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/applicationsonatauser/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block title_page %}user_avatar{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Modification de mon avatar</h1>
+{% endblock %}
+
+{% block content %}
+
+    {% for flashMessage in app.session.flashbag.get('flash-notice') %}
+        <div class="alert alert-success fade in">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
+    {% if form_errors(form) %}
+        <div class="alert alert-danger fade in">
+            {{ form_errors(form) }}
+        </div>
+    {% endif %}
+
+    <form action="{{ path('_sonataUserEditProfileAvatar') }}" method="post" {{ form_enctype(form) }} class='sky-form'>
+
+        <header>Compléter ce formulaire afin de modifier votre avatar</header>
+        <fieldset>
+
+            <div class="row">
+
+                <section class="col col-4">
+
+                    {% set height = null %}
+                    {% if user.mediaId.width is defined and user.mediaId.width is not empty %}
+                        {% set height = user.mediaId.height * media_formats["avatar_big"]["width"] // user.mediaId.width %}
+                    {% endif %}
+
+                    {% if height is defined and height is not empty %}
+                        <img class="img-responsive md-margin-bottom-10 avatar" src='{% path user.mediaId, 'big' %}' title='' alt='' width='{{ media_formats["avatar_big"]["width"] }}' height='{{ height }}' />
+                    {% else %}
+                        <img class="img-responsive md-margin-bottom-10 avatar" src="{{ asset('/images/default/noavatar.png') }}" title="" alt="" width="309" height="256" />
+                    {% endif %}
+
+                </section>
+
+                <section class="col col-8">
+                    {{ form_label(form.media_id) }}<span class="color-red">*</span>
+                    {{ form_widget(form.media_id) }}
+                    
+                    {% if form_errors(form.media_id) %}
+                        <em class="invalid">{{ form_errors(form.media_id) }}</em>
+                    {% endif %}
+                </section>
+                
+            </div>
+        </fieldset>
+
+        {{ form_rest(form) }}
+
+        <footer>
+            <button type="submit" class="button" />Modifier mon avatar</button>
+            <em><span class="color-red">*</span> Informations obligatoires</em>
+        </footer>
+    </form>
+
+{% endblock %}
+
+
+{% block sidebar %}
+    
+    {#}{% include "ApplicationSonataUserBundle:Default:sidebar-avatar.html.twig" with { 'user': user } %}{#}
+    
+    {% include "ApplicationSonataUserBundle:Default:sidebar-menu.html.twig" with {} %}
+
+    {{ parent() }}
+
+{% endblock %}

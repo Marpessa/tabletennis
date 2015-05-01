@@ -1,0 +1,19 @@
+<ul class='monthsNav clearfix'>
+{% set selected = false %}
+
+{% for key, month in monthsNav %}
+
+    {% if key == startDate %}
+        {% set selected = true %}
+    {% endif %}
+
+    {% if key == endDate %}
+        {% set selected = false %}
+    {% endif %}
+
+    <li{% if selected %} class='selected'{% endif %}>
+        <a href='{{ path( internal_uri, { "licensee_number" : licensee.licensee_number, "slug": licensee.slug, "start_date" : key, "end_date" : key } ) }}'>{{ month }}</a>
+    </li>
+
+{% endfor %}
+</ul>

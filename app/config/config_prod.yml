@@ -1,0 +1,94 @@
+imports:
+    - { resource: config.yml }
+
+#doctrine:
+#    orm:
+#        metadata_cache_driver: apc
+#        result_cache_driver: apc
+#        query_cache_driver: apc
+
+monolog:
+    handlers:
+        main:
+            type:         fingers_crossed
+            action_level: error
+            handler:      nested
+        nested:
+            type:  stream
+            path:  "%kernel.logs_dir%/%kernel.environment%.log"
+            level: debug
+
+parameters:
+  base_contact.emails.contact_email_from: contact@cpfaizenay.com
+  base_contact.emails.contact_email_to: [contact@cpfaizenay.com, ecouvreur@yahoo.fr, magne.stephane@wanadoo.fr]
+  
+  
+sonata_media:
+    db_driver: doctrine_orm # or doctrine_mongodb
+    default_context: default
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                #- sonata.media.provider.dailymotion
+                #- sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 173, quality: 70}
+                big:   { width: 530, quality: 70}
+        photo_gallery:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 156 , quality: 156}
+                big:   { width: 1000 , quality: 90}
+        news:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 63 , quality: 95}
+                big:   { width: 695 , quality: 90}
+        event:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 63 , quality: 95}
+                big:   { width: 695 , quality: 90}
+        usefulInformation:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 63 , quality: 95}
+                big:   { width: 695 , quality: 90}
+        team:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 285 , quality: 90}
+                big:   { width: 695 , quality: 90}
+        partner:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { height: 100 , quality: 95}
+                big:   { width: 285 , quality: 90}
+        avatar:
+            providers:
+                - sonata.media.provider.image
+            formats:
+                small: { width: 46 , quality: 95}
+                big:   { width: 200 , quality: 90}
+        
+    cdn:
+        server:
+            path: /uploads/media
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../www/uploads/media
+            create:     false
+
+    providers:
+        image:
+            resizer: sonata.media.resizer.simple

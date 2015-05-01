@@ -1,0 +1,139 @@
+<div class="headline"><h2>Agenda</h2></div>
+
+<div id='agenda' data-imgSrcLoader="/images/default/loading.gif" class="margin-bottom-10">
+    
+    <div class="hCalendar">
+        {#}<a href='{{ path('_baseGoogleAgendaChangeMonth', {"year": prevYear, "month": prevMonth }) }}' class='navMonth left'>
+            <span class="ui-icon ui-icon-circle-triangle-w"><i class="fa fa-angle-left"></i></span>
+        </a>{#}
+        <span class="headcal">{{ currentMonth }} {{ yearNumber }}</span>
+        {#}<a href='{{ path('_baseGoogleAgendaChangeMonth', {"year": nextYear, "month": nextMonth }) }}' class='navMonth right'>
+            <span class="ui-icon ui-icon-circle-triangle-e"><i class="fa fa-angle-right"></i></span>
+        </a>{#}
+    </div>
+        
+    <div class="jCalendar">
+        {% for day in daysArray %}
+            <div class="jCalendarContent">{{ day }}</div>
+        {% endfor %}
+    </div>
+    
+    {% set titleEvent = false %}
+    
+    <div class='daysContent'>
+        {% for i in 1..calendar|length %}
+            <div class="rowDay r_{{ loop.index }} clearfix">
+            {% for j in 1..7 %}
+                    {% if j-z+1+((i*7)-7) <= nbdays %}
+
+                        {% if calendar[i][j] is not empty %}
+
+                            {% set findEvent = false %}
+                            {% set currentDayCal = yearNumber ~ '-' ~ monthNumber ~ '-' ~ calendar[i][j] %}
+
+                            {% for gEvent in gEvents %}
+                                {% if findEvent == false %}
+                                    {% if (currentDayCal | date("Y-m-d")) | date("U") >= (gEvent.getStartDate() | date("Y-m-d")) | date("U") and (currentDayCal | date("Y-m-d")) | date("U") <= (gEvent.getEndDate() | date("Y-m-d")) | date("U") %}
+                                        {% set titleEvent = gEvent.getTitle() %}
+                                        {% set findEvent = true %}
+
+                                    {% else %}
+                                        {% set titleEvent = false %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if(j-z+1+((i*7)-7) == "now"|date("j") and monthNumber == "now"|date("n") and yearNumber == "now"|date("Y")) %}
+
+                            {% if titleEvent %}
+                                <div class="day currentday d_{{ loop.index }} event">
+                                    <a href="#{{ titleEvent | replace({' ': '_'}) | lower }}" title="{{ titleEvent }}" {#}data-desc="{{ titleEvent }}"{#}>{{ calendar[i][j] }}</a>
+                                </div>
+                            {% else %}
+                                <div class="day currentday d_{{ loop.index }}">
+                                    <a href="#calendar">{{ calendar[i][j] }}</a>
+                                </div>
+                            {% endif %}
+
+
+                        {% else %}
+                            {% if calendar[i][j] is empty %}
+                                <div class="day empty d_{{ loop.index }}"></div>
+                            {% else %}
+
+                                {% if titleEvent %}
+                                    {% if j-z+1+((i*7)-7) == nbdays %}
+                                        <div class="day otherDay event d_{{ loop.index }} last">
+                                    {% else %}
+                                        <div class="day otherDay event d_{{ loop.index }}">
+                                    {% endif %}
+                                        <a href="#{{ titleEvent | replace({' ': '_'}) | lower }}" data-desc="{{ titleEvent }}">{{ calendar[i][j] }}</a>
+                                    </div>
+                                {% else %}
+                                    {% if j-z+1+((i*7)-7) == nbdays %}
+                                        <div class="day otherDay d_{{ loop.index }} last">{{ calendar[i][j] }}</div>
+                                    {% else %}
+                                        <div class="day otherDay d_{{ loop.index }}">{{ calendar[i][j] }}</div>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+            {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+                                
+    {#}                        
+    <div class="events">
+        <ul>
+            {% for gEvent in gEvents %}
+                {% if monthNumber == gEvent.getStartDate() | date("m") or ( monthNumber != gEvent.getStartDate() | date("m") and loop.index < 6 ) %}
+                <li class="clearfix">
+                    <span class="date">
+                        {% if gEvent.getStartDate() | date("d/m/Y") != gEvent.getEndDate() | date("d/m/Y") %}
+                            {{ gEvent.getStartDate() | date("d/m/Y") }} - {{ gEvent.getEndDate() | date("d/m/Y") }}
+                        {% else %}
+                            {{ gEvent.getStartDate() | date("d/m/Y") }}
+                        {% endif %}
+                    </span>
+                    <p>{{ gEvent.getTitle() }}</p>
+                    {% for event in event_list %}
+                        {% if ( event['e_datetime_event'] | date("Y-m-d")) | date("U") >= (gEvent.getStartDate() | date("Y-m-d")) | date("U") and ( event['e_datetime_event'] | date("Y-m-d")) | date("U") <= (gEvent.getEndDate() | date("Y-m-d")) | date("U") %}
+                            <a href="{{ path('_baseEventShow', {"slug": event['e_slug'], "year": event['e_datetime_event']|date("Y"), "month": event['e_datetime_event']|date("m") } ) }}" title="{{ event['e_title'] | raw }}">En savoir plus...</a>
+                        {% endif %}
+                    {% endfor %}
+                </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {#} 
+    <!--<iframe src="https://www.google.com/calendar/embed?showTitle=0&amp;showNav=0&amp;showDate=0&amp;showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=1&amp;hl=fr&amp;bgcolor=%23ffffff&amp;src=cpfaizenay%40gmail.com&amp;color=%232952A3&amp;ctz=Europe%2FParis" style=" border-width:0 " width="250" height="250" frameborder="0" scrolling="no"></iframe>-->
+</div>
+
+<!-- Events -->
+<div class="blog-twitter">
+    {% for gEvent in gEvents %}
+        {% if monthNumber == gEvent.getStartDate() | date("m") or ( monthNumber != gEvent.getStartDate() | date("m") and loop.index < 6 ) %}
+            <div id="{{ gEvent.getTitle() | replace({' ': '_'}) | lower }}" class="blog-twitter-inner">
+                <i class="icon-twitter"></i>
+                {{ gEvent.getTitle() }}
+                <span class="twitter-time">
+                    {% if gEvent.getStartDate() | date("d/m/Y") != gEvent.getEndDate() | date("d/m/Y") %}
+                        {{ gEvent.getStartDate() | date("d/m/Y") }} - {{ gEvent.getEndDate() | date("d/m/Y") }}
+                    {% else %}
+                        {{ gEvent.getStartDate() | date("d/m/Y") }}
+                    {% endif %}
+                </span>
+                {% for event in event_list %}
+                    {% if ( event['e_datetime_event'] | date("Y-m-d")) | date("U") >= (gEvent.getStartDate() | date("Y-m-d")) | date("U") and ( event['e_datetime_event'] | date("Y-m-d")) | date("U") <= (gEvent.getEndDate() | date("Y-m-d")) | date("U") %}
+                        <a href="{{ path('_baseEventShow', {"slug": event['e_slug'], "year": event['e_datetime_event']|date("Y"), "month": event['e_datetime_event']|date("m") } ) }}" title="{{ event['e_title'] | raw }}">En savoir plus...</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+<!-- End Events -->

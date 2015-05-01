@@ -1,0 +1,34 @@
+services:
+    tabletennis.licensee.admin.licensee:
+        class: TableTennis\LicenseeBundle\Admin\LicenseeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Licenciés" }
+        arguments: 
+            - ~
+            - TableTennis\LicenseeBundle\Entity\Licensee
+            - TableTennisLicenseeBundle:LicenseeAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisLicenseeBundle]]
+    tabletennis.licensee.admin.licenseePoint:
+        class: TableTennis\LicenseeBundle\Admin\LicenseePointAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Points des licencés" }
+        arguments: 
+            - ~
+            - TableTennis\LicenseeBundle\Entity\LicenseePoint
+            - TableTennisLicenseeBundle:LicenseePointAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisLicenseeBundle]]
+    tabletennis.licensee.admin.licenseeMatch:
+        class: TableTennis\LicenseeBundle\Admin\LicenseeMatchAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Matchs des licenciés" }
+        arguments: 
+            - ~
+            - TableTennis\LicenseeBundle\Entity\LicenseeMatch
+            - TableTennisLicenseeBundle:LicenseeMatchAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisLicenseeBundle]]

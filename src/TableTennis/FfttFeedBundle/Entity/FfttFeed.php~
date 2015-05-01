@@ -1,0 +1,146 @@
+<?php
+
+namespace TableTennis\FfttFeedBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="fftt_feed")
+ */
+class FfttFeed
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=128)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $title;
+
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $description;
+
+    /**
+     * @ORM\Column(type="string", length="64", columnDefinition="ENUM('http://www.fftt.com', 'http://www.fftt.tv')")
+     * @Assert\NotBlank()
+     */
+    public $website;
+
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $datetime_publication;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set content
+     *
+     * @param text $content
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+    }
+
+    /**
+     * Get content
+     *
+     * @return text 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set datetime_publication
+     *
+     * @param datetime $datetimePublication
+     */
+    public function setDatetimePublication($datetimePublication)
+    {
+        $this->datetime_publication = $datetimePublication;
+    }
+
+    /**
+     * Get datetime_publication
+     *
+     * @return datetime 
+     */
+    public function getDatetimePublication()
+    {
+        return $this->datetime_publication;
+    }
+
+    /**
+     * Set website
+     *
+     * @param string $website
+     */
+    public function setWebsite($website)
+    {
+        $this->website = $website;
+    }
+
+    /**
+     * Get website
+     *
+     * @return string 
+     */
+    public function getWebsite()
+    {
+        return $this->website;
+    }
+}

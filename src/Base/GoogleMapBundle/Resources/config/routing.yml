@@ -1,0 +1,5 @@
+_baseGoogleMapIndex:
+    defaults: { _controller: BaseGoogleMapBundle:Default:index, culture: fr }
+    pattern: /{culture}/nous-trouver.html
+    requirements:
+         culture: fr

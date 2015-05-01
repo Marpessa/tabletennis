@@ -1,0 +1,55 @@
+/**********************************************************/
+/*                          cgu                           */
+/**********************************************************/
+#cgu {
+    color: #383838;
+    font-size: 12px;
+}
+
+#cgu ul.summary li {
+    padding-bottom: 5px;
+    list-style: none;
+}
+
+#cgu a {
+    color: #42576F;
+    text-decoration: underline;
+}
+
+#cgu a:hover {
+    color: #00A0EA;
+}
+
+#cgu ul li a {
+    text-decoration: none;
+}
+
+#cgu ul li a:hover {
+    text-decoration: underline;
+}
+
+#cgu h2.title {
+    margin-top: 20px;
+}
+
+#cgu h3 {
+    margin: 15px 5px;
+    border-bottom: 1px solid;
+}
+
+#cgu p {
+    margin: 0 10px 5px;
+}
+
+#cgu ul {
+    line-height: 13pt;
+    list-style-type: none;
+    margin: 0 0 10px 30px;
+    padding: 0;
+}
+
+#cgu ul li {
+    padding-bottom: 10px;
+    padding-left: 15px;
+    list-style: disc;
+}

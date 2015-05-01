@@ -1,0 +1,36 @@
+# Met a jour les dépendances de symfony
+# OLD ( avec le fichier deps ) -- sudo ./bin/vendors install
+php composer.phar update -vvv
+php composer.phar update sonata-project/media-bundle -vvv
+
+#Supprimer les données du cache et les logs
+sudo app/console cache:clear
+sudo rm -rf app/cache/* app/logs/*
+
+# Met a jour la base de donnée
+php app/console doctrine:database:create
+sudo app/console doctrine:schema:update --force
+
+# Met a en place dans le dosser web le css/js... des bundles
+sudo php app/console assets:install web --symlink
+
+# Génère un bundle
+sudo app/console generate:bundle
+
+# Générer fixtures
+php app/console doctrine:fixtures:load
+
+# Génère getters/setters Entity
+php app/console doctrine:generate:entities TableTennis/AnnouncementBundle/Entity/Announcement
+php app/console doctrine:generate:entities Base/ContactBundle/Entity/Enquiry
+
+# promote user
+php app/console fos:user:promote myUsername ROLE_ADMIN
+app/console fos:user:create admintest admin@test.com pass --super-admin
+
+# Create user Admin
+INSERT INTO `fos_user_user` (`id`, `username`, `username_canonical`, `email`, `email_canonical`, `enabled`, `salt`, `password`, `last_login`, `locked`, `expired`, `expires_at`, `confirmation_token`, `password_requested_at`, `roles`, `credentials_expired`, `credentials_expire_at`, `created_at`, `updated_at`, `two_step_code`) VALUES
+(1, 'admin', 'admin', 'admin@admin', 'admin@admin', 1, 'fnii0lzflyosw8gw8sockg8ksww0kos', '9da3b59badb0c6d90fed74901d8e49cd', '2012-05-18 11:23:36', 0, 0, NULL, '29ygyyqzwgbo8ggg08w4gc008s040cso8gc04gw8048wswog4s', NULL, 'a:1:{i:0;s:16:"ROLE_SUPER_ADMIN";}', 0, NULL, '2012-02-24 21:28:41', '2012-05-18 11:23:36', NULL);
+
+// Default values Form
+$form->get('licensee_number')->setData( $licensee['licensee_number'] );

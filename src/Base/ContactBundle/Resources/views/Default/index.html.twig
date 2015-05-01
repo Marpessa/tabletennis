@@ -1,0 +1,50 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Contact | {{ parent() }}{% endblock %}
+{% block meta_description %}Contactez-nous par email ou en remplissant le formulaire sur le site.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}
+    <link rel="stylesheet" href="{{ asset('/bundles/basecontact/css/main.css') }}" type="text/css" media="screen" />
+    {#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ google_map_js(map) }}
+{% endblock %}
+
+{% block title_page %}contact{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Contact</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row margin-bottom-30">
+        {% include 'BaseContactBundle:Default:form.html.twig' with { 'form': form } %}
+    </div>
+
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+        {{ render(controller("TableTennisFfttFeedBundle:Default:home", {}), {}) }}
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    <a href="{{ path('_baseGoogleMapIndex') }}">
+        {{ google_map_container(map) }}
+    </a>
+
+    {% include 'BaseContactBundle:Default:sidebar-contact.html.twig' with {} %}
+
+    {{ parent() }}
+
+{% endblock %}

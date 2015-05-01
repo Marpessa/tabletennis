@@ -1,0 +1,5 @@
+_tabletennisUsefulInformationShow:
+    defaults: { _controller: TableTennisUsefulInformationBundle:Default:show, culture: fr }
+    pattern: /{culture}/informations-utiles/{slug}.html
+    requirements:
+        culture: fr

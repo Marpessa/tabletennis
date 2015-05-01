@@ -1,0 +1,6 @@
+services:
+    base_category.admin.category_news:
+        class: Base\CategoryBundle\Admin\CategoryNewsAdmin
+        arguments: [~, Base\CategoryBundle\Entity\CategoryNews, BaseCategoryBundle:CategoryNewsAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: CategoryNews}

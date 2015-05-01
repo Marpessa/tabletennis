@@ -1,0 +1,516 @@
+/*
+    Document   : default
+    Created on : Feb 21, 2012, 6:14:44 PM
+    Author     : ecouvreur
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/**********************************************************/
+/*                         Global                         */
+/**********************************************************/
+
+body {
+ background-color: #F3F3F3;
+ color: #444444;
+}
+
+a { text-decoration: none; color: #7C8186; }
+a:hover{ color: #6698B9; }
+
+h1, h2, h3, h4, h5 {
+    font-weight: normal;
+    font-family: Impact;
+    color: #383838;
+    margin: 0;
+}
+
+h1.title {
+    color: #444;
+    text-shadow: 1px 1px 1px #FFFFFF;
+
+    font-size: 18px;
+}
+
+input.outline,
+a.outline{
+    background-color: #42576f;
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    outline: 1px solid #42576f;
+    text-decoration: none;
+    font-family: Arial, Helvetica;
+}
+
+a.outline{
+    font-size: 13px;
+}
+
+input.outline:hover,
+a.outline:hover,
+input.outline:focus,
+a.outline:focus {
+    background-color: #666666;
+}
+
+.navPages span,
+.navPages a {
+    text-decoration: none;
+
+    color: #555;
+
+    border-color: #999;
+    border: 1px solid #AAA;
+    border-bottom-color: #CCC;
+    border-top-color: #999;
+
+    font-size: 11px;
+    font-weight: bold;
+
+    background: repeat #777; /*non-CSS3 browsers will use this*/
+    background: repeat, -webkit-linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*old webkit*/
+    background: repeat, -webkit-linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*new webkit*/
+    background: repeat, -moz-linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*gecko*/
+    background: repeat, -ms-linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*IE10 preview*/
+    background: repeat, -o-linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*opera 11.10+*/
+    background: repeat, linear-gradient(to bottom,#e6e6e6 0,#dcdcdc 100%); /*future CSS3 browsers*/
+    -pie-background: repeat, linear-gradient(top,#e6e6e6 0,#dcdcdc 100%); /*PIE*/
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+    -moz-box-shadow: inset 0 0 1px #fff;
+    -ms-box-shadow: inset 0 0 1px #fff;
+    -webkit-box-shadow: inset 0 0 1px #fff;
+    box-shadow: inset 0 0 1px #fff;
+
+    text-shadow: 0 0 0 transparent,0 1px 0 white;
+
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+.navPages a:hover{
+    color: #00A0EA;
+}
+
+.navPages a.btn {
+    border-top: 0px solid #C8C8C8;
+    border-right: 1px solid #414141;
+    border-bottom: 0px solid #9D9C9C;
+    border-left: 1px solid #666;
+
+    background-color: #343434;
+
+    background: repeat #FFFFFF; /*non-CSS3 browsers will use this*/
+    background: repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#283651) to(#1f1f1f)); /*old webkit*/
+    background: repeat, -webkit-linear-gradient(#283651, #1f1f1f); /*new webkit*/
+    background: repeat, -moz-linear-gradient(#283651, #1f1f1f); /*gecko*/
+    background: repeat, -ms-linear-gradient(#283651, #1f1f1f); /*IE10 preview*/
+    background: repeat, -o-linear-gradient(#283651, #1f1f1f); /*opera 11.10+*/
+    background: repeat, linear-gradient(#283651, #1f1f1f); /*future CSS3 browsers*/
+    -pie-background: repeat, linear-gradient(#283651, #1f1f1f); /*PIE*/
+
+    -webkit-box-shadow: 0 1px 0 #AAA;
+    -moz-box-shadow: 0 1px 0 #AAA;
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+.navPages a.btn:hover {
+    color: none;
+
+    background: repeat #FFFFFF; /*non-CSS3 browsers will use this*/
+    background: repeat, -webkit-gradient(linear, 0 0, 0 100%, from(#00A0EA) to(#1f1f1f)); /*old webkit*/
+    background: repeat, -webkit-linear-gradient(#00A0EA, #1f1f1f); /*new webkit*/
+    background: repeat, -moz-linear-gradient(#00A0EA, #1f1f1f); /*gecko*/
+    background: repeat, -ms-linear-gradient(#00A0EA, #1f1f1f); /*IE10 preview*/
+    background: repeat, -o-linear-gradient(#00A0EA, #1f1f1f); /*opera 11.10+*/
+    background: repeat, linear-gradient(#00A0EA, #1f1f1f); /*future CSS3 browsers*/
+    -pie-background: repeat, linear-gradient(#00A0EA, #1f1f1f); /*PIE*/
+
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+.navPages a.btn.first{
+    -webkit-background-clip: padding-box;
+    
+    border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    -webkit-border-radius: 4px 0 0 4px;
+
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+.navPages a.btn.last{
+    -webkit-background-clip: padding-box;
+
+    border-radius: 0 4px 4px 0;
+    -moz-border-radius: 0 4px 4px 0;
+    -webkit-border-radius: 0 4px 4px 0;
+
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+.navPages a.btn.first i{ background: url("/images/icons/navPages.png") no-repeat scroll -8px -53px transparent; }
+.navPages a.btn.previous i{ background: url("/images/icons/navPages.png") no-repeat scroll -10px -26px transparent; }
+.navPages a.btn.next i{ background: url("/images/icons/navPages.png") no-repeat scroll -8px 4px transparent; }
+.navPages a.btn.last i{ background: url("/images/icons/navPages.png") no-repeat scroll -8px -83px transparent; }
+
+.navPages span {
+    color: #000;
+}
+
+/** Form **/
+
+form label,
+form table th{
+    font-weight: bold;
+    color: #283651;
+    font-size: 11px;
+}
+
+form label.error {
+    color: #F7715F;
+}
+
+form input[type="email"],
+form input[type="text"],
+form input[type="password"] {
+    border: 1px solid #CCCCCC;
+    color: #878C9C;
+    font-weight: normal;
+}
+
+form input[type="email"]:focus,
+form input[type="text"]:focus,
+form input[type="password"]:focus,
+form textarea:focus {
+    border-color: #878C9C;
+}
+
+/*form.form-inherit input{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+}*/
+
+form textarea {
+    border: 1px solid #CCCCCC;
+    color: #878C9C;
+    font-weight: normal;
+}
+
+/**********************************************************/
+/*                       Container                        */
+/**********************************************************/
+
+/**********************************************************/
+/*                          Header                        */
+/**********************************************************/
+
+header {
+    background-color: #232323;
+    border-bottom: 1px solid #151515;
+}
+
+header span.slogan,
+header h1 {
+    font-size: 25px;
+}
+
+header span.slogan {
+    color: #383838;
+    font-weight: bold;
+}
+
+header .announcement p {
+    margin: 20px 0 0;
+    background-color: #E7EAEF;
+    color: #333;
+    border: 2px solid #6698B9;
+    font: 14px/16px Arial,sans-serif;
+
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+
+header .announcement p:before,
+header .announcement p:after {
+    border-left: 18px solid #6698B9;
+    border-top: 18px solid transparent;
+}
+
+header .announcement p:after {
+    border-left-color: #E7EAEF;
+}
+
+header .header-sprite a.social-network {
+    background-image: url("/images/default/header_sprite.png");
+}
+
+header .header-sprite a.facebook {
+    background-position: 0;
+}
+
+header .header-sprite a.rss {
+    background-position: 126px 0;
+}
+
+header .header-sprite a.contact {
+    background-position: 63px 0;
+}
+
+header #connect-bar {
+    background: #DDDDDD;
+    border-bottom: 2px solid #383838;
+    border-left: 2px solid #383838;
+
+    border-radius: 0 0 10px 10px;
+    -moz-border-radius: 0 0 10px 10px;
+    -webkit-border-radius: 0 0 10px 10px;
+}
+
+header #connect-bar ul li a {
+    color: #383838;
+}
+
+header #connect-bar ul li a:hover {
+    color: #00A0EA;
+}
+
+/**********************************************************/
+/*                      Social Buttons                    */
+/**********************************************************/
+
+.social-like {
+    background: none repeat scroll 0 0 #E8F0F9;
+    border: 1px solid #ABD2E9;
+}
+
+.social-like h4 {
+    color: #3A5796;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px !important;
+    font-weight: bold;
+}
+
+/**********************************************************/
+/*                         Footer                         */
+/**********************************************************/
+
+footer {
+    background: #000 url("/images/default/bg/welcome.jpg") center;
+    color: #fff;
+    font-size: 1em;
+    font-style: italic;
+    border-top: 2px solid #151515;
+}
+
+footer .footer-top ul a {
+   color: #fff;
+   font-size: 16px;
+   font-weight: bold;
+}
+
+footer .footer-top ul ul.menu_level_1 li a {
+    font-size: 11px;
+    font-weight: normal;
+}
+
+footer .footer-top ul li.num0 ul.menu_level_1 li a:hover,
+footer .footer-top ul li.num1 ul.menu_level_1 li a:hover,
+footer .footer-top ul li.num2 ul.menu_level_1 li a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom-bg {
+    background-color: #000;
+    opacity: 0.5;
+}
+
+/**********************************************************/
+/*                         Menu                           */
+/**********************************************************/
+
+nav {
+    border-bottom: 2px solid #262626;
+    border-top: 1px solid #383838;
+
+    background: #333333;
+
+    box-shadow: 0 5px 0 0 #444444, 0 -1px 0 0 #171717;
+    -webkit-box-shadow: 0 5px 0 0 #444444, 0 -1px 0 0 #171717;
+    -moz-box-shadow: 0 5px 0 0 #444444, 0 -1px 0 0 #171717;
+
+    behavior: url("/css/PIE.htc");
+    zoom:1;
+}
+
+nav ul li a {
+    border-right: solid 1px #1D1E1F;
+    border-left: solid 1px #5A5E62;
+}
+
+nav ul li.first a { border-left: none; }
+nav ul li.last a { border-right: none; }
+
+nav ul li a {
+    color: #DDDDDD;
+    font-family: Impact;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+/*
+nav ul li.current_ancestor a,
+nav ul li.current a {
+    background: none repeat scroll 0 0 #444444;
+    border-right: 2px solid #262626;
+    border-top: 1px solid #262626;
+
+     border-radius: 10px 10px 0 0;
+    -moz-border-radius: 10px 10px 0 0;
+    -webkit-border-radius: 10px 10px 0 0;
+
+    behavior: url("/css/PIE.htc");
+}*/
+
+nav ul > li:hover a {
+    color: #A2A2A2;
+}
+
+nav ul > li.selected:hover a {
+    color: #DDDDDD;
+}
+
+nav ul ul.menu_level_1 {
+    background: #333333;
+    border-color: #262626;
+    border-width: 2px;
+    border-style: none solid solid solid;
+    text-transform: inherit;
+
+    box-shadow: 5px 5px 5px #000000;
+    -webkit-box-shadow:  5px 5px 5px #000000;
+    -moz-box-shadow:  5px 5px 5px #000000;
+}
+
+nav ul ul.menu_level_1 li {
+    border: none;
+}
+
+nav ul ul.menu_level_1 a {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+
+    font-family: Helvetica;
+    font-size: 12px;
+    font-weight: normal;
+    text-align: left;
+    text-shadow: none;
+    text-transform: capitalize;
+
+    box-shadow: none;
+    -webkit-box-shadow:  none;
+    -moz-box-shadow: none;
+}
+
+nav ul > li:hover ul.menu_level_1 a {
+    color: #DDDDDD;
+}
+
+nav ul > li:hover ul.menu_level_1 a:hover,
+nav ul > li ul.menu_level_1 a:hover {
+    color: #A2A2A2;
+}
+
+/**********************************************************/
+/*                       Content                          */
+/**********************************************************/
+
+/*#content .content-bg {
+    background: url('/images/background-image/bg-container.jpg') 0 0 repeat;
+}*/
+
+#content .middle-panel {
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) inset, 0 0 0 1px rgba(0, 0, 0, 0.35);
+    -moz-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) inset, 0 0 0 1px rgba(0, 0, 0, 0.35);
+    -webkit-box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) inset, 0 0 0 1px rgba(0, 0, 0, 0.35);
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #FFF;
+    padding: 20px;
+}
+
+#content .left-panel {
+    background-color: #FFF;
+    padding-left: 20px;
+}
+
+#content .left-panel .parent {
+    color: #666666;
+    font-size: 12px;
+}
+
+#content .left-panel .parent.last {
+    background: #fff;
+    border: none;
+}
+
+#content .left-panel .parent h4 {
+    color: #6698B9;
+    font-size: 1.4em;
+    padding: 0.504em 0.7em 0.35em 0.7em;
+    line-height: 1;
+}
+
+#content h2.title {
+    font-family: Impact;
+    font-weight: normal;
+    color: #444444;
+    background-color: #E7EAEF;
+    font-size: 16px;
+    text-transform: uppercase;
+
+    text-shadow: 0 1px 0 white;
+
+    behavior: url("/css/PIE.htc");
+}
+
+/**********************************************************/
+/*                          Box                           */
+/**********************************************************/
+
+#content .middle-panel .box {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+#content .middle-panel .box.yellow {
+    background: #FFFAD6 url("/images/default/icons/box-info.png") no-repeat 20px center;
+    border: 3px solid #FDCD20;
+    color: #404040;
+
+    font-weight: bold;
+}
+
+#content .middle-panel .box.red {
+    background: #fbb9b0 url("/images/default/icons/box-warning.png") no-repeat 20px center;;
+    border: 3px solid #F7715F;
+    color: #404040;
+
+    font-weight: bold;
+}

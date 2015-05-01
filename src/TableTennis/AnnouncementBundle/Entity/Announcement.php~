@@ -1,0 +1,91 @@
+<?php
+
+namespace TableTennis\AnnouncementBundle\Entity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="announcement")
+ */
+class Announcement {
+
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string", length=64, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $title;
+
+    /**
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "255",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères"
+     * )
+     */
+    public $description;
+
+    /**
+     * @ORM\Column(type="string",length="5")
+     * @Assert\NotBlank()
+     * @Assert\Choice(choices = {"home", "young", "team"})
+     */
+    public $type;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="creation_user_id", referencedColumnName="id")
+     */
+    public $creation_user_id;
+
+    /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="modification_user_id", referencedColumnName="id")
+     */
+    public $modification_user_id;
+
+    /**
+     * @Gedmo\Slug(fields={"title"})
+     * @ORM\Column(length=128, unique=true)
+     */
+    private $slug;
+
+    /**
+     * @var datetime $created
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Gedmo\Timestampable(on="create")
+     */
+    private $createdAt;
+
+    /**
+     * @var datetime $updated
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     * @Gedmo\Timestampable(on="update")
+     */
+    private $updatedAt;
+
+}

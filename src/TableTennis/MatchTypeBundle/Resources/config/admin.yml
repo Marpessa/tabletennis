@@ -1,0 +1,12 @@
+services:
+    tabletennis.matchType.admin.matchType:
+        class: TableTennis\MatchTypeBundle\Admin\MatchTypeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "tabletennis.admin.group.tabletennis", label: "Type de matchs" }
+        arguments: 
+            - ~
+            - TableTennis\MatchTypeBundle\Entity\MatchType
+            - TableTennisMatchTypeBundle:MatchTypeAdmin
+            - '@service_container'
+        calls:
+            - [setTranslationDomain, [TableTennisMatchTypeBundle]]

@@ -1,0 +1,60 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Barêmes des points de tennis de table | {{ parent() }}{% endblock %}
+{% block meta_description %}Barêmes des points de tennis de table.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennisscoringtable/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}scoringTable{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Barêmes des points de tennis de table</h1>
+{% endblock %}
+
+{% block content %}
+
+    <div class="tag-box tag-box-v1 box-shadow shadow-effect-2">
+        <p><strong>Victoires normales</strong> : victoire contre un joueur ayant autant ou moins de points que vous.</p>
+        <p><strong>Victoire anormales</strong> : victoire contre un joueur ayant plus de points que vous.</p>
+        <p><strong>Défaites normales</strong> : défaite contre un joueur ayant autant ou plus de points que vous.</p>
+        <p><strong>Défaites anormales</strong> : défaite contre un joueur ayant moins de points que vous.</p>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Ecart de points</th>
+                <th>Victoires normales</th>
+                <th>Défaites normales</th>
+                <th>Victoires anormales</th>
+                <th>Défaites anormales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for scoring in scoringTable_list %}
+            <tr class="l_{{ loop.index%2 }}">
+                <td>{{ scoring.points_away }}
+                        {% if scoringTable_list[loop.index] is defined %}
+                            - {{ scoringTable_list[loop.index].points_away }}
+                        {% else %}
+                            +
+                        {% endif %}
+                </td>
+                <td>{{ scoring.normal_victory }}</td>
+                <td>{{ scoring.normal_defeat }}</td>
+                <td>{{ scoring.anormal_victory }}</td>
+                <td>{{ scoring.anormal_defeat }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">Aucune donnée n'a été trouvé.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+    </table>
+
+{% endblock %}

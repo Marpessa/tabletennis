@@ -1,0 +1,25 @@
+_tableTennisLicenseeIndex:
+    defaults: { _controller: TableTennisLicenseeBundle:Default:index, culture: fr }
+    pattern: /{culture}/licencies.html
+    requirements:
+        culture: fr
+
+_tableTennisLicenseeEvolution:
+    defaults: { _controller: TableTennisLicenseeBundle:Default:evolution, culture: fr }
+    pattern: /{culture}/{current_date}/progressions-mensuelles.html
+    requirements:
+        culture: fr
+
+_tableTennisLicenseeRatingClub:
+    defaults: { _controller: TableTennisLicenseeBundle:Default:ratingClub, culture: fr }
+    pattern: /{culture}/{current_date}/classement-au-sein-du-club.html
+    requirements:
+        culture: fr
+
+_tableTennisLicenseeSynchro:
+    defaults: { _controller: TableTennisLicenseeBundle:DefaultAdmin:synchronization }
+    pattern: /admin/licencies.html
+
+_tableTennisLicenseeDoSynchro:
+    defaults: { _controller: TableTennisLicenseeBundle:DefaultAdmin:doSynchronization }
+    pattern: /admin/synchroLicencies.html

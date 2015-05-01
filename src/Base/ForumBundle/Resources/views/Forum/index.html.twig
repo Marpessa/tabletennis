@@ -1,0 +1,33 @@
+{% extends 'HerzultForumBundle::layout.html.twig' %}
+
+{% block title %}Liste des forums | {{ parent() }}{% endblock %}
+{% block meta_description %}Suivez les différents sujets qui animent le club ou le tennis de table en général.{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('/assets/css/pages/profile.css') }}">
+    {{ parent() }}
+    {#}<link rel="stylesheet" href="{{ asset('/bundles/basepics/css/main.css') }}" type="text/css" media="screen" />{#}
+{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Forum</h1>
+{% endblock %}
+
+{% block content %}
+
+	<div class="headline"><h2>Liste des forums</h2></div>
+    {{ render(controller('HerzultForumBundle:Category:list', {}), {}) }}
+
+{% endblock %}
+
+{% block sidebar %}
+	{#}
+	{% include 'HerzultForumBundle:Topic:sidebar-new.html.twig' with {} %}
+	{#}
+
+	<div class="headline"><h2>Sujets récents</h2></div>
+    {{ render(controller('HerzultForumBundle:Topic:list', { 'categorySlug': null, 'pagerOptions': {'page': page} }), {}) }}
+
+    {{ parent() }}
+
+{% endblock %}

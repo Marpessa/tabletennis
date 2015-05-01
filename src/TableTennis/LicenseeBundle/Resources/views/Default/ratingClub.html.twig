@@ -1,0 +1,76 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Classement au sein du club | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici le classement intégral des joueurs au sein du club de CPF Aizenay.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennislicensee/css/ratingClub.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}licensee{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Classement au sein du club du {{ lastMonthPoint }} {{ current_date | date('Y') }}</h1>
+{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Points {{ previous_date | date('m/Y') }}</th>
+            <th>Points {{ current_date | date('m/Y') }}</th>
+            <th>Place {{ previous_date | date('m/Y') }}</th>
+            <th>Place {{ current_date | date('m/Y') }}</th>
+            <th>Evolution</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for licensee in licensee_point_list %}
+            {% set evoPlace = old_indexes[licensee.licensee_number] - loop.index %}
+           
+            {% if evoPlace > 0 %}
+                <tr class="l_{{ loop.index%2 }} positive">
+            {% elseif evoPlace < 0 %}
+                <tr class="l_{{ loop.index%2 }} negative">
+            {% else %}
+                <tr class="l_{{ loop.index%2 }}">
+            {% endif %}
+                <td>{{ licensee.lastname }}</td>
+                <td>{{ licensee.firstname }}</td>
+                <td>{{ ( licensee.nb_current_points - licensee.monthly_increase ) | number_format(2, '.', '') }}</td>
+                <td>{{ licensee.nb_current_points | number_format(2, '.', '') }}</td>
+                <td>{{ old_indexes[licensee.licensee_number] }}</td>
+                <td>{{ loop.index }}</td>
+                <td>
+                    {% if evoPlace > 0 %}
+                        <span class="color-green">
+                            +{{ evoPlace }}
+                            <i class="fa fa-angle-double-up"></i>
+                        </span>
+                    {% elseif evoPlace < 0 %}
+                        <span class="color-red">
+                            {{ evoPlace }}
+                            <i class="fa fa-angle-double-down"></i>
+                        </span>
+                    {% else %}
+                        <span>
+                            {{ evoPlace }}
+                            <i class="fa fa-angle-double-right"></i>
+                        </span>
+                    {% endif %}
+
+                </td>
+            </tr>
+        {% else %}
+        <tr>
+            <td colspan="5">Aucune donnée n'a été trouvé.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

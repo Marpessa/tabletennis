@@ -1,0 +1,64 @@
+{% extends "::home_layout.html.twig" %}
+
+{% block title_page %}home{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {#}
+    <link rel="stylesheet" type="text/css" href="{{ asset('/bundles/tabletennishomepagefrontend/css/home.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/fancybox.css') }}" type="text/css" media="screen" />
+    {#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#}
+    <script src="{{ asset('/js/jquery.fancybox.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.fancybox.pack.js') }}" type="text/javascript"></script>
+    {#}
+{% endblock %}
+
+{% block content %}
+
+    {{ parent() }}
+
+    {#}
+    <hr class='separator'/>
+    {#}
+
+    {{ render(controller("BaseNewsBundle:Default:home", {}), {}) }}
+    
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Actualités <span class="color-green">pongistes</span></h2>
+    </div>
+    
+    <div class="row margin-bottom-40">
+        {{ render(controller("TableTennisFfttFeedBundle:Default:home", {}), {}) }}
+    </div>
+
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Derniers <span class="color-green">commentaires</span></h2>
+    </div>
+    <div class="row margin-bottom-40">
+
+        {{ render(controller("BaseCommentBundle:Default:home", {}), {}) }}
+
+        {{ render(controller("BaseForumBundle:LastPost:show", {}), {}) }}
+
+    </div>
+    
+    
+    <div class="heading heading-v1 margin-bottom-30">
+        <h2>Evolutions des <span class="color-green">licenciés</span></h2>
+    </div>
+
+    <div class="row margin-bottom-40">
+        {{ render(controller("TableTennisLicenseeBundle:Default:homeEvolution", {}), {}) }}
+    </div>
+    
+    {#}
+    <hr class='separator'/>
+    {#}
+
+
+{% endblock %}

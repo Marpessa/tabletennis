@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Equipes du club | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici les équipes du club.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/tabletennisteam/css/main.css') }}" type="text/css" media="screen" />
+    <link rel="stylesheet" href="{{ asset('/css/fancybox.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('/js/jquery.fancybox.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('/js/jquery.fancybox.pack.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block title_page %}team{% endblock %}
+
+
+{% block content %}
+
+<h1 class="title">Liste des équipes du club</h1>
+
+<ul>
+ {% for team in teams_list %}
+
+    {% set height = null %}
+    {% if team.m_width is defined and team.m_width is not empty %}
+        {% set height = team.m_height * media_formats["team_small"]["width"] // team.m_width %}
+    {% endif %}
+
+    <li class="t_{{ loop.index%2 }}">
+        <h2>{{ team.name }}</h2>
+        
+        {% if height is defined and height is not empty %}
+            <a href='{% path team.m_id, 'big' %}' class="fancybox" rel="gallery" title='{{ team.content }}'>
+                <img src='{% path team.m_id, 'small' %}' alt='{{ team.name }}' title='{{ team.name }}' width='{{ media_formats["team_small"]["width"] }}' height='{{ height }}' />
+            </a>
+        {% else %}
+            <img src='/images/default/no-image.png' title='Aperçu non disponible' alt='Aperçu non disponible' width='300' height='240' />
+        {% endif %}
+    </li>
+    
+ {% endfor %}
+</ul>
+
+{% endblock %}

@@ -1,0 +1,124 @@
+{#}<h4 class='news_title'>A la une</h4>{#}
+
+<!--=== Slider ===-->
+{% if news_list_big_highlight|length > 0 %}
+<div id='slider-inner'>
+    <div id="da-slider" class="da-slider">
+        {% for news in news_list_big_highlight %}
+            <div class="da-slide">
+                <h2>
+                    <a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}" title="{{ news.title | truncate(30) | raw }}">
+                        {% set close_html_title = true %}
+                        {% set nb_rows = 0 %}
+                        {% for title in news.explode_title %}
+                            {% if nb_rows < 3 %}
+                                {% if close_html_title and loop.index0%2 == 0 %}
+                                    {% set close_html_title = false %}
+                                    <i>
+                                {% endif %}
+
+                                    {{ title }}
+
+                                {% if loop.index == news.explode_title|length or (title|length > 2 and loop.index0%2 == 1) %}
+                                    {% set close_html_title = true %}
+                                    {% set nb_rows = nb_rows + 1 %}
+                                    </i>
+                                    <br/>
+                                {% endif %}
+                            {% endif %}
+
+                        {% endfor %}
+                    </a>
+                </h2>
+
+                {% set content_raw = news.content | striptags | raw %}
+                {% if content_raw is not empty %}
+                    <p>
+                        {% set explode_content =  content_raw|split(' ') %}
+
+                        {% set close_html_content = true %}
+                        {% set nb_rows = 0 %}
+                        {% for content in explode_content %}
+                            {% if nb_rows < 3 %}
+                                {% if close_html_content and loop.index0%5 == 0 %}
+                                    {% set close_html_content = false %}
+                                    <i>
+                                {% endif %}
+
+                                    {{ content | striptags | raw }}
+
+
+                                {% if loop.index == explode_content|length or ( loop.index0%5 == 4 ) %}
+                                    {% set close_html_content = true %}
+                                    {% set nb_rows = nb_rows + 1 %}
+
+                                    {% if nb_rows == 3 %}
+                                        ...
+                                    {% endif %}
+
+                                    </i>
+                                    <br/>
+                                {% endif %}
+                            {% endif %}
+
+                        {% endfor %}
+
+                        {#}<i>{{ news.content | truncate(150) | striptags | raw }}</i>{#}
+                    </p>
+                {% endif %}
+
+                <a class="da-img" href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}" title="{{ news.title | truncate(30) | raw }}">
+                    {% if news.m_id is defined and news.m_id is not empty %}
+                        <img src='{% path news.m_id, 'big' %}' alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />
+                    {% else %}
+                        <img src="{{ asset('/images/cpfaizenay/default_news.png') }}" title='{{ news.title | truncate(40) | raw }}' alt='{{ news.title | truncate(40) | raw }}' width='707' height='618' />
+                    {% endif %}
+                </a>
+            </div>
+        {% endfor %}
+
+        <div class="da-arrows">
+            <span class="da-arrows-prev"></span>
+            <span class="da-arrows-next"></span>        
+        </div>
+    </div>
+    {#}
+    <div class='news-home-bg'></div>
+    <div class='news-big-highlight'>
+        <ul>
+            {% for news in news_list_big_highlight %}
+                <li class='l_{{ loop.index }}{% if loop.index == 1 %} selected{% endif %}{% if news.is_new == true %} new{% endif %}'>
+                    <h2><a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}">{{ news.title | truncate(30) | raw }}</a></h2>
+                    <div class='desc'>
+                        <span class='date'>Posté le {{ news.updatedAt|date("d/m/Y") }}</span>
+                        <p>{{ news.content | truncate(85) | striptags | raw }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {#}
+</div>
+{% endif %}
+
+{#}
+{% if news_list_small_highlight|length > 0 %}
+<h4 class='news_title'>Le reste de l'actualité</h4>
+
+<ul id='news-small-highlight'>
+ {% for news in news_list_small_highlight %}
+  <li class='fleft l_{{ loop.index }}{% if news.is_new == true %} new{% endif %}'>
+   <span class='date'>Posté le {{ news.updatedAt|date("d/m/Y") }}</span>
+   <h3>
+    <a href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}">
+        {{ news.title | truncate(30) | raw }}
+    </a>
+   </h3>
+  </li>
+ {% endfor %}
+</ul>
+{% endif %}
+
+
+<p class='all_news_link'>Découvrez toute <a href="{{ path('_baseNewsIndex') }}">l'actualité de CPF Aizenay</a></p>
+{#}

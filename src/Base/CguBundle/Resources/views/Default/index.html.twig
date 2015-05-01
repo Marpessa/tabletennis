@@ -1,0 +1,277 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Conditions generales d'utilisation | {{ parent() }}{% endblock %}
+{% block meta_description %}Retrouvez ici toutes les conditions générales d'utilisation du site.{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('/bundles/basecgu/css/main.css') }}" type="text/css" media="screen" />
+{% endblock %}
+
+{% block title_page %}cgu{% endblock %}
+
+{% block h1 %}
+    <h1 class="pull-left">Conditions générales d'utilisation</h1>
+{% endblock %}
+
+{% block content %}
+
+<ul class="summary">
+    <li><a href="#preambule">1.Préambule</a></li>
+    <li><a href="#utilisation-du-service">2. Utilisation du service</a></li>
+    <li><a href="#compte-utilisateur">3. Compte utilisateur</a></li>
+
+    <ul>
+        <li><a href="#utilisation-du-compte">3.1 Utilisation du compte</a></li>
+        <li><a href="#securite">3.2 Sécurité</a></li>
+        <li><a href="#mot-de-passe">3.3 Mot de passe</a></li>
+        <li><a href="#acces-du-service-aux-mineurs">3.4 Accès du service aux mineurs</a></li>
+        <li><a href="#suspension-et-fermeture-de-compte">3.5 Suspension et fermeture de Compte</a></li>
+    </ul>
+
+    <li><a href="#contenu-soumis-par-vous">4. Contenu soumis par vous</a></li>
+    <li><a href="#confidentialite">5. Confidentialité</a></li>
+    <li><a href="#propriete-intellectuelle">6. Propriété intellectuelle</a></li>
+    <li><a href="#fonctionnement-du-service-et-equipement">7. Fonctionnement du service et équipement</a></li>
+
+    <ul>
+        <li><a href="#restrictions-techniques">7.1 Restrictions techniques</a></li>
+        <li><a href="#fermeture-temporaire-du-site">7.2 Fermeture temporaire du site</a></li>
+        <li><a href="#modifications-et-annulation-du-service">7.3 Modifications et annulation du service</a></li>
+    </ul>
+
+    <li><a href="#modalites-de-modification-du-contrat">8. Modalités de modification du contrat</a></li>
+    <li><a href="#nous-ne-fournissons-aucune-garantie">9. Nous ne fournissons aucune garantie</a></li>
+    <li><a href="#assistance-utilisateur">10. Assistance utilisateur</a></li>
+</ul>
+
+<h2 class="title" id="preambule"><span>1. Préambule</span></h2>
+<p>Le présent document constitue un contrat entre vous et l'éditeur COUVREUR Emmanuel résidant 174C rue Maurice Jouaud, 44400 Rezé.</p>
+<p>Email : ecouvreur@yahoo.fr</p>
+<p>Tél : 06 29 69 77 26</p>
+
+<p>Dans le cadre de ce contrat, nous serons désignés par les termes « CPF Aizenay », « nous », « nos » ou « notre ». Vous serez désigné comme « Utilisateur », « vous », « vos » ou « votre ». L'Utilisateur est une seule et unique personne physique.</p>
+
+<p>En vous inscrivant sur le site, vous devez avoir pris connaissance du présent contrat. En cochant la case « J'ACCEPTE », vous acceptez l'ensemble des dispositions du présent contrat.
+Nous ne fournissons aucune garantie quant au Service, autres que les garanties légales fournies dans le cadre de la législation applicable.
+Le coût de l’utilisation de la technique de communication à distance utilisée est le coût normal facturé à l’Utilisateur par son fournisseur d’accès internet. Ce coût est entièrement supporté par l’Utilisateur.
+</p>
+
+<h2 class="title" id="utilisation-du-service"><span>2. Utilisation du service</span></h2>
+
+<p>Vous ne devez pas :</p>
+<ul>
+    <li>utiliser le Service pour nuire à des tiers ou au Service (par exemple, vous ne devez pas utiliser le Service pour nuire, menacer ou harceler une autre personne, un groupe de personnes, un organisme ou CPF Aizenay);</li>
+    <li>endommager, mettre hors service, saturer ou détériorer le Service (ou un réseau connecté au Service);</li>
+    <li>revendre ou redistribuer le Service ou une partie du Service ; utiliser un moyen non autorisé pour modifier ou rediriger le Service ou pour y accéder ; ou tenter d'accomplir ces activités;</li>
+    <li>utiliser le Service ou des éléments du Service à des fins commerciales sauf autorisation explicite de notre part;</li>
+    <li>utiliser un processus ou service automatisé (tel qu'un bot, un robot d'indexation, la mise en mémoire cache périodique des informations enregistrées par CPF Aizenay ou « métarecherche », « datamining ») pour accéder ou utiliser le Service ou pour copier ou extraire les données sur le Service;</li>
+    <li>utiliser un logiciel, un service ou un périphérique tiers non autorisé pour accéder au Service ;
+    <li>interrompre ou tenter d'obtenir un accès non autorisé à un compte, un ordinateur, un matériel ou un réseau lié au Service;</li>
+    <li>obtenir ou tenter d'obtenir des données du Service ou du matériel associé, à l'exception des données que nous avons l'intention de vous fournir ou de rendre disponibles;</li>
+    <li>utiliser le Service ou le matériel associé pour concevoir, développer ou mettre à jour des logiciels non autorisés;</li>
+</ul>
+
+<p>En outre, votre utilisation du Service implique que vous vous conformiez au Code de conduite de CPF Aizenay. Vous acceptez que nous puissions également interrompre votre accès au Service si vous effectuez l'une des actions suivantes lorsque vous êtes connecté au Service :</p>
+<ul>
+    <li>diffamer, injurier, violenter, abuser, harceler, traquer, menacer un tiers ou enfreindre de quelque manière que ce soit les droits (tels que les droits au respect de la vie privée et la publicité) des tiers;</li>
+    <li>publier, distribuer ou diffuser du contenu, un sujet, un nom, du matériel, un fichier ou des informations inappropriés ou à caractère grossier, diffamatoire, obscène, indécent ou illégal;</li>
+    <li>publier, distribuer ou diffuser du contenu, un sujet, un nom, du matériel, un fichier ou des informations qui incitent, préconisent, promeuvent, dépeignent, constituent ou exposent la pédopornographie, le blasphème, la haine, la bigoterie, le racisme, l'utilisation illégale de drogue, la violence gratuite ou la représentation graphique d'actes de violence, ou une activité criminelle ou frauduleuse;</li>
+    <li>usurper l’identité d’un tiers;</li>
+    <li>créer un avatar ou insérer du texte à caractère outrageant dans le Service. Ceci inclut les commentaires qui ressemblent graphiquement ou phonétiquement, soutiennent, font allusion, abrègent ou insinuent les éléments suivants : mots ou expressions obscènes, sujets ou contenus à caractère sexuel, discours de haine (y compris, mais sans s'y limiter, les injures raciales, ethniques ou religieuses), drogues illégales/substances contrôlées, ou activités illégales;</li>
+    <li>utiliser le Service, ou du matériel ou des informations rendus disponibles par l'intermédiaire du Service, d'une manière qui porte atteinte à un droit d'auteur, une marque commerciale, un brevet, un secret commercial ou à d'autres droits de propriété de CPF Aizenay ou d'un tiers;</li>
+    <li>charger des fichiers qui contiennent des virus, des chevaux de Troie, des vers, des bombes logiques, des robots d'annulation de message, des fichiers endommagés ou des programmes similaires susceptibles d'altérer le fonctionnement du Service, de l'équipement autorisé ou autre bien d'un tiers;</li>
+    <li>télécharger ou utiliser du matériel envoyé ou fourni par un autre Utilisateur du Service dont vous savez, ou devez raisonnablement savoir, qu'il ne peut pas être légalement partagé ni distribué (sauf autorisation explicite de notre part);</li>
+    <li>utiliser le Service pour participer à des ventes pyramidales ou à des chaînes de lettres ;
+    <li>récolter ou collecter de quelque manière que ce soit des informations concernant des tiers, y compris leurs adresses électroniques, et ce sans leur consentement;</li>
+    <li>faire du hameçonnage (« phishing ») ou créer une fausse identité sous n'importe quel autre forme dans l'intention de tromper autrui;</li>
+    <li>falsifier ou supprimer un droit d'auteur, un avis légal, une désignation de propriété ou des étiquettes mentionnant l'origine ou la source du logiciel ou d'un autre matériel compris dans un fichier transféré;</li>
+    <li>déposer de fausses plaintes ou fournir de faux commentaires concernant d'autres Utilisateurs du Service;</li>
+    <li>utiliser, télécharger, copier ou fournir de quelque manière que ce soit (gratuitement ou non) à un tiers : (i) un annuaire des Utilisateurs du Service, (ii) des informations concernant les Utilisateurs du Service ou (iii) des informations sur l'utilisation du Service;</li>
+    <li>consulter, intercepter ou tenter d'intercepter des communications privées qui ne vous sont pas destinées; ou</li>
+    <li>sauf autorisation explicite de notre part, utiliser les outils de communication fournis par le Service pour fournir ou proposer de fournir d'autres services externes ou des liens vers d'autres services externes à l'ensemble de services de CPF Aizenay (« spam »).</li>
+</ul>
+
+<h2 class="title" id="compte-utilisateur"><span>3. Compte utilisateur</span></h2>
+<h3 id="utilisation-du-compte">3.1 Utilisation du compte</h3>
+
+<p>Toute personne qui souhaite utiliser un des services proposés sur le Service doit préalablement s’inscrire sur le site et ouvrir un Compte.
+L’ouverture de Compte est gratuite. Lors de l’inscription, vous vous engagez à communiquer des données exactes, et à nous informer de toute modification de ces données.</p>
+
+<div class="box yellow">
+    <p>Vous SEUL pouvez utiliser VOTRE COMPTE et vous ne pouvez utiliser qu'UN COMPTE UNIQUE.</p>
+</div>
+
+<div class="box yellow">
+    <p>Vous ne devez pas révéler votre mot de passe, ni ne devez autoriser un tiers à accéder ou à utiliser le Service avec votre Compte.</p>
+    <p>Tout prêt, partage, échange, don ou vente de Compte est strictement interdit.</p>
+    <p>Vous ne devez pas accéder au Compte d'autrui.</p>
+    <p>L'usage de tout Compte utilisé par plus d'une personne est spécifié comme «prêt de Compte».</p>
+    <p>L'utilisation et/ou création de plus d'un Compte par une personne est spécifié comme « usage de multi-comptes». Ces deux usages sont strictement interdits.</p>
+</div>
+
+<div class="box red">
+    <p>CPF Aizenay peut procéder à des vérifications pour s'assurer du respect de ces conditions.
+    Toute infraction peut être passible de suppression définitive de votre Compte et des comptes en infraction sans préavis ni dédommagement.</p>
+</div>
+
+<p>CPF Aizenay se réserve le droit de limiter le nombre d'inscriptions et d'usage de comptes par foyer.</p>
+
+<h3 id="securite">3.2 Sécurité</h3>
+
+<p>Vous êtes responsable de la sécurité de votre Compte et de la fiabilité de vos données de connexion.</p>
+<p>CPF Aizenay se dégage de toute responsabilité en cas d'accès au Compte par une tierce personne.
+   Vous êtes le seul responsable de toutes les activités entreprises avec votre Compte. Vous ne devez pas autoriser un tiers à accéder et/ou
+   utiliser le Service en votre nom.</p>
+<p>Si vous soupçonnez une utilisation abusive de votre Compte ou toute autre faille de sécurité du Service, vous devez nous en aviser immédiatement via
+le <?php echo link_to('formulaire de contact', '@contact') ?>.</p>
+
+<h3 id="mot-de-passe">3.3 Mot de passe</h3>
+
+<p>Le mot de passe est choisi par l’Utilisateur lors de l’inscription sur le service.
+    Il est strictement confidentiel et ne doit jamais être communiqué à un tiers.
+    CPF Aizenay peut mettre en place des procédures automatisées permettant à l'Utilisateur de retrouver ou de modifier son mot de passe.</p>
+<p>Pour récupérer un mot de passe oublié, l'Utilisateur devra avoir indiqué au préalable un moyen,
+    parmi ceux proposés sur le service, de lui transmettre des informations de manière confidentielle
+    (en indiquant son adresse électronique par exemple).
+    L'Utilisateur est le seul responsable des informations transmises par ce moyen.</p>
+<p>Si aucun moyen de récupération de mot de passe n'a été indiqué au préalable par l'Utilisateur, le mot de passe ne pourra pas être transmis.</p>
+<div class="box red">
+    <p>Jamais CPF Aizenay ne vous demandera votre mot de passe.</p>
+</div>
+
+<h3 id="acces-du-service-aux-mineurs">3.4 Accès du service aux mineurs</h3>
+
+<p>Les mineurs ne peuvent ouvrir un Compte et utiliser le Service qu’assistés de leur représentant légal, et sous l’entière responsabilité de ce dernier.</p>
+<p>Aussi, si vous autorisez ou permettez à un mineur d’ouvrir un Compte, et d'utiliser le Service :</p>
+<ul>
+    <li>Vous déclarez être le parent ou le tuteur légal de ce mineur;</li>
+    <li>Vous reconnaissez être au courant que certaines fonctionnalités du Service ou certains contenus disponibles par l'intermédiaire du Service,
+        peuvent contenir ou exposer les Utilisateurs à du matériel ne convenant pas à des mineurs, et vous acceptez de surveiller l'utilisation du Service par
+        les mineurs auxquels vous avez donné l'autorisation d'utiliser le Service.</li>
+</ul>
+<p>CPF Aizenay insiste sur le fait qu’il est interdit de diffuser un contenu ne convenant pas à des mineurs dès lors que celui-ci est susceptible d’être vu par un mineur.</p>
+
+<h3 id="suspension-et-fermeture-de-compte">3.5 Suspension et fermerture de compte</h3>
+
+<p>À tout moment CPF Aizenay peut, sans préavis, procéder :</p>
+<ul>
+    <li>à la suspension temporaire de votre accès à votre Compte, en cas de suspicion d'utilisation abusive de nos services;</li>
+    <li>au blocage ou à la fermeture définitive d'un Compte d'Utilisateur en sanction suite à une violation d'une ou de plusieurs dispositions du présent contrat.</li>
+</ul>
+<p>Si le Service n'est pas utilisé par l'Utilisateur pendant une période excédant 12 mois consécutifs,
+    CPF Aizenay peut procéder à la fermeture automatique du Compte inutilisé.</p>
+<p>L'Utilisateur peut également procéder lui-même à la fermeture de son Compte, procédure accessible depuis son espace personnel du Service.</p>
+
+<h2 class="title" id="contenu-soumis-par-vous"><span>4. Contenu soumis par vous</span></h2>
+
+<p>Vous pouvez éditer du contenu, dans certaines parties du Service prévu à cet effet.</p>
+<p>Cette édition peut avoir lieu dans des zones accessibles à tous, (comme par exemple, le forum ou la fiche publique de l'Utilisateur).
+    Vous reconnaissez et acceptez que CPF Aizenay ne contrôle ni n'assume le contenu que vous et des tiers mettez en ligne.</p>
+<p>Vous accordez à CPF Aizenay, à titre gracieux, non exclusif, pour la durée de vos droits et pour le monde entier, l'autorisation, sur le Service :</p>
+<ul>
+    <li>d'utiliser, de modifier, de représenter, de reproduire, de distribuer et d'afficher votre contenu en relation avec le Service dont
+        vous avez donné l'autorisation d'accès;</li>
+    <li>de publier votre nom, avatar ou autre information que vous fournissez en relation avec le contenu.</li>
+</ul>
+<p>Si vous soumettez une photographie ou une autre image numérique, vous renoncez explicitement aux droits de confidentialité et de publicité
+    relatifs à l'image, et autorisez CPF Aizenay à la diffuser sur le Service.</p>
+<p>Vous êtes prié de respecter les droits des artistes, inventeurs et créateurs. Le contenu tel que la musique, les photos et les vidéos
+    peut être protégé par droit d'auteur. Si vous partagez du contenu sur le Service d'une manière qui porte atteinte aux droits
+    d'auteur, aux droits de propriété intellectuelle ou à la vie privée de tiers, vous contrevenez à ce contrat. Vous déclarez et
+    garantissez que vous détenez tous les droits nécessaires pour accorder les autorisations mentionnées dans le
+    présent article et que l'utilisation de ce contenu n'enfreint aucune loi. Nous pouvons refuser de publier votre contenu
+    pour quelque soit la raison. Nous pouvons à tout moment retirer votre contenu du Service si vous contrevenez à ce
+    contrat ou si nous annulons ou suspendons le Service.</p>
+<p>CPF Aizenay se réserve le droit de modifier les noms de Compte, les pseudos ou toute autre information soumis sur le site.
+    Le cas échéant CPF Aizenay pourra également suspendre temporairement ou définitivement l'accès au Compte sans préavis ni dédommagement.</p>
+<p>Si vous estimez qu’un contenu porte manifestement atteinte à vos droits, vous pouvez le signaler à CPF Aizenay
+    via le <?php echo link_to('formulaire de contact', '@contact') ?> ou par un autre moyen spécifié dans le Service.</p>
+<p>Si nous estimons ce contenu manifestement illicite, nous procéderons à sa suppression.</p>
+<p>Compte tenu de l'intérêt général attaché à la répression des activités illégales, CPF Aizenay a mis en place,
+    un dispositif accessible à l'adresse postmaster@cpfaizenay.com. Cela permet aux Utilisateurs de signaler les services de
+    communication au public en ligne tenus pour répréhensibles par les autorités publiques compétentes en la matière.</p>
+
+<h2 class="title" id="confidentialite"><span>5. Confidentialité</span></h2>
+
+<p>Afin de faire fonctionner et de fournir le Service, nous collectons certaines informations vous concernant. Nous protégeons ces informations.</p>
+<p>Vous êtes informés que vos données personnelles pourront être communiquées à des tiers pour répondre à des exigences légales ou règlementaires.
+    Par ailleurs, les informations vous concernant pourront être utilisées afin d’agir en toute bonne foi lorsqu’un tel accès ou divulgation semble
+    nécessaire pour protéger la sécurité personnelle des employés de CPF Aizenay, des clients ou du public.</p>
+<p>Les données personnelles recueillies par CPF Aizenay peuvent être stockées et utilisées en France ou dans un autre pays dans lequel
+    CPF Aizenay a ses serveurs implantés. Aucune utilisation de vos données ne sera réalisée à des fins commerciales, sauf accord exprès de l'Utilisateur.</p>
+<p>Certaines données vous concernant peuvent être communiquées à nos prestataires uniquement dans le cadre d'un besoin technique utile au fonctionnement du Service.</p>
+<p>Afin de vous fournir le Service et d'améliorer le Service, nous pouvons collecter certaines informations
+    relatives aux performances du Service, à l'utilisation que vous faites du Service et à votre équipement.</p>
+<p>CPF Aizenay s'engage à respecter la sécurité de la collecte, l'utilisation et la rétention de vos informations et données personnelles et s'engage
+    à ne pas distribuer, diffuser ou transmettre sous aucune forme ni publier vos informations à des filiales, revendeurs, fournisseurs ou d'autre tiers.</p>
+<p>En application de la loi n°78-17 du 6 janvier 78 relative à l'informatique, aux fichiers et aux libertés, modifiée par la loi n°2004-801
+    du 6 août 2004 du territoire français, les Utilisateurs disposent des droits d’accès, d'opposition (art.38 de la loi), d'interrogation (art.39 de la loi),
+    et de rectification/suppression (art.40 de la loi) des données à caractère personnel les concernant. Vous pouvez exercer votre droit
+    en nous contactant par voie postale et en indiquant vos noms, prénoms, adresse électronique et adresse de votre domicile et en justifiant de votre identité.
+    Les demandes doivent être adressées à l’adresse indiquée précédemment.</p>
+
+<h2 class="title" id="propriete-intellectuelle"><span>6. Propriété intellectuelle</span></h2>
+
+<p>CPF Aizenay est titulaire de droits d’auteur sur le Service et son contenu, dont les logiciels et bases de données, ainsi que titulaire du droit
+    sui generis de producteur de base de données.</p>
+<p>L’ensemble des éléments constituant le Service notamment les marques, noms de domaines, textes, données, structure, arborescence, thésaurus,
+    rubriques, logos, graphismes, images, photographies, noms, jeu, personnage ainsi que le Service lui-même, sont la propriété exclusive de CPF Aizenay.</p>
+<p>Toute extraction, réutilisation, représentation, reproduction, exploitation, adaptation, traduction, modification,
+    vente, du Service et de tout ou partie de son contenu est interdit, sauf autorisation expresse et préalable de CPF Aizenay.</p>
+<p>A ce titre, l’Utilisateur s’interdit notamment de communiquer à tous tiers, gracieusement ou non, les données extraites du Service,
+    y compris à une autre entité liée à lui administrativement, financièrement ou capitalistiquement.</p>
+<p>CPF Aizenay peut enfin librement modifier la présentation du Service et de son contenu.</p>
+<p>Tous les éléments, fonctionnalités, outils, documents qui font partie du Service fourni par CPF Aizenay sont protégés par les lois
+    françaises et internationales sur le droit d'auteur et la propriété intellectuelle et appartiennent à CPF Aizenay. Vous ne pouvez pas
+    utiliser ces éléments sans l'autorisation écrite préalable de CPF Aizenay.</p>
+<p>Vous n'avez pas le droit, en tout ou partie, de copier, reproduire, traduire, extraire, modifier le code source,
+    désassembler, décompiler, modifier, louer, vendre, distribuer ou créer des œuvres dérivées inspirées du Service
+    ou du contenu sans l'accord écrit préalable de CPF Aizenay. Le reverse engineering est strictement prohibé.</p>
+
+<h2 class="title" id="fonctionnement-du-service-et-equipement"><span>7. Fonctionnement du service et équipement</span></h2>
+<h3 id="restrictions-techniques">7.1 Restrictions techniques</h3>
+
+<p>Vous ne devez pas chercher à contourner les restrictions techniques du Service.
+    Il vous est interdit de décompiler, de créer des oeuvres dérivées, de rétroconcevoir, de modifier,
+    de sous-licencier, de distribuer ou d'utiliser le Service à d'autres fins que celles autorisées par CPF Aizenay.
+    La violation de la présente disposition peut entraîner la fermeture définitive de votre Compte et/ou de votre capacité à accéder au Service.
+    CPF Aizenay peut entreprendre une action juridique contre l'Utilisateur qui porte atteinte à la sécurité du réseau ou des systèmes CPF Aizenay.</p>
+
+<h3 id="fermeture-temporaire-du-site">7.2 Fermeture temporaire du service</h3>
+
+<p>CPF Aizenay peut interrompre temporairement, sans ou avec message préalable, l'accès à tout ou une partie du Service,
+    pour n'importe quelle raison, mais notamment en cas de maintenance automatique ou manuelle.</p>
+<p>Vous ne pouvez réclamer aucun dommage-intérêt, pour perte de bénéfices relatifs au Service ou pas, spécial,
+    indirect, accessoire ou punitif suite à une fermeture temporaire du Service.</p>
+
+<h3 id="modifications-et-annulation-du-service">7.3 Modifications et annulation du Service.</h3>
+
+<p>Nous pouvons modifier le Service dans son intégralité ou certaines fonctionnalités, pour quelque raison que ce soit (ou sans motif) et sans préavis.</p>
+<p>Nous pouvons fermer totalement et de façon définitive le Service pour quelque raison que ce soit.</p>
+<p>Votre droit d'utiliser le Service expire dès la fermeture du Service. Une fois le Service fermé, il se peut que
+    les données que vous avez stockées sur le Service ne soient pas récupérables ultérieurement.</p>
+
+<h2 class="title" id="modalites-de-modification-du-contrat"><span>8. Modalités de modification du contrat</span></h2>
+
+<p>Nous pouvons modifier le présent contrat. Si nous modifions le présent contrat, nous vous informerons avec un préavis de sept (7) jours francs.</p>
+<p>Le fait de continuer à utiliser le Service vaudra accord et acceptation du nouveau contrat de votre part.</p>
+<p>Si vous n'acceptez pas le Contrat, vous avez le droit de fermer votre Compte à tout moment et pour quelque raison que ce soit.</p>
+
+<h2 class="title" id="nous-ne-fournissons-aucune-garantie"><span>9. Nous ne fournissons aucune garantie</span></h2>
+
+<p>Nous fournissons le Service « en l'état », « avec toutes ses imperfections » et « tel que disponible ».
+    Nous ne garantissons pas l'exactitude ni l'opportunité des informations disponibles à partir du Service.
+    Vous reconnaissez et acceptez que les systèmes informatiques et de télécommunication ne sont pas exempts de défauts et que des temps d'arrêt
+    peuvent survenir. Nous ne pouvons pas garantir que le Service sera ininterrompu, opportun, ou sans erreur.
+    Nous et aucun de nos prestataires de services ne donnons aucune garantie explicite ni aucune condition.
+    Vous bénéficiez de toutes les garanties prévues par la loi, mais nous ne fournissons aucune autre garantie.
+    Nous excluons toutes les garanties implicites, notamment celles relatives à la qualité marchande, à l'adéquation à un usage particulier,
+    à l'absence de défauts de fabrication et à l'absence de contrefaçon.</p>
+
+<h2 class="title" id="assistance-utilisateur"><span>10. Assistance utilisateur</span></h2>
+
+<p>Pour prendre contact avec le Support, vous pouvez utiliser le <?php echo link_to('formulaire de contact', '@contact') ?> du site.
+CPF Aizenay a un pouvoir discrétionnaire dans la gestion du Support et se réserve le droit de ne pas répondre aux messages de l'Utilisateur.</p>
+
+{% endblock %}
