@@ -307,6 +307,10 @@
 /*           FOOTER           */
 /******************************/
 
+.footer span.title {
+    color: #dadada;
+}
+
 .footer #facebook {
 	width: 100%;
 
