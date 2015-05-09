@@ -1,5 +1,51 @@
 /* Add here all your css styles (customizations) */
 
+.heading span.title {
+  padding: 0 12px;
+  position: relative;
+  display: inline-block;
+  line-height: 34px !important;
+
+  font-size: 24px;
+
+  color: #585f69;
+  margin-top: 5px;
+  text-shadow: none;
+  font-weight: normal;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.heading-v1 span.title:before, .heading-v1 span.title:after {
+  content: ' ';
+  width: 70%;
+  position: absolute;
+  border-width: 1px;
+  border-color: #bbb;
+
+  top: 15px;
+  height: 6px;
+  border-top-style: solid;
+  border-bottom-style: solid;
+}
+
+.heading span.title:before { right: 100%; }
+.heading span.title:after { left: 100%; }
+
+.headline span.title {
+    font-size: 18px;
+    line-height: 25px;
+    border-bottom: 2px solid #3498db;
+
+    margin: 0 0 -2px 0;
+    padding-bottom: 5px;
+    display: inline-block;
+
+    color: #585f69;
+    text-shadow: none;
+    font-weight: normal;
+    font-family: 'Open Sans', sans-serif;
+}  
+
 /******************************/
 /*          HEADER            */
 /******************************/
@@ -81,13 +127,19 @@
     text-decoration: none;
 }
 
+.da-slide .da-img img {
+  width: auto;
+  height: auto;
+}
+
 .da-dots {
-	z-index: 10;
+    z-index: 10;
 }
 
 .magazine-news-img {
-	border: 1px solid #bbb;
+    border: 1px solid #bbb;
 }
+
 
 /******************************/
 /*             AD             */
@@ -131,6 +183,33 @@
 /******************************/
 /*      LAST COMMENTS         */
 /******************************/
+
+.profile.home-comments .panel-body { padding: 0; }
+.profile.home-comments .profile-event { padding: 10px 0; }
+.profile.home-comments .profile-event:first-child { padding-top: 0; }
+.profile.home-comments .profile-event:last-child { margin-bottom: 15px; }
+
+.profile.home-comments .profile-event a
+{
+    color: #555;
+    text-decoration: none;
+}
+
+.profile.home-comments .profile-event a:hover { color: #3498db; }
+
+.profile.home-comments .author {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+    text-transform: uppercase;
+
+    color: #555;
+    text-shadow: none;
+    font-weight: bold;
+    font-family: "Open Sans", Arial, sans-serif;
+}
+
+.profile.home-comments .date-formats { background: #3498db; }
 
 .testimonials .item p { min-height: 96px; }
 .testimonials .item p a { color: #555; text-decoration: none; }

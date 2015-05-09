@@ -1,5 +1,5 @@
 <div class="col-md-6">
-    <div class="headline"><h2>En progression sur {{ lastMonthPoint }}</h2></div>
+    <div class="headline"><span class="title">En progression sur {{ lastMonthPoint }}</span></div>
 
     {% for evo in evo_best_list %}
         <h3 class="heading-xs no-top-space">
@@ -15,7 +15,7 @@
 </div><!--/col-md-6-->
 
 <div class="col-md-6">
-    <div class="headline"><h2>En régression sur {{ lastMonthPoint }}</h2></div>
+    <div class="headline"><span class="title">En régression sur {{ lastMonthPoint }}</span></div>
 
     {% for evo in evo_worst_list %}
         <h3 class="heading-xs no-top-space">

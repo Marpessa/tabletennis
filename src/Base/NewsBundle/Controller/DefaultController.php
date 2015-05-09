@@ -71,7 +71,7 @@ class DefaultController extends Controller
     {
         $news_list = $this->getDoctrine()
                           ->getRepository('BaseNewsBundle:News')
-                          ->findAllOrderedByUpdatedAt(7);
+                          ->findAllOrderedByUpdatedAt(11);
 
         $first_news = reset( $news_list );
 

@@ -1,98 +1,33 @@
 <!-- Latest Comment -->
-<div class="col-md-6">
-    <div id="testimonials-2" class="carousel slide testimonials testimonials-v1">
-        <div class="carousel-inner">
-            {% for comment in comment_list %}
-                {% if loop.first == true %}
-                    <div class="item active">
-                {% else %}
-                    <div class="item">
-                {% endif %}
-
-                        <p class="rounded-2x">
-                            <a href='{{ comment.link }}#comment_{{ comment.id }}'>
-                                {{ comment.content | striptags | truncate(160) | raw }}
-                            </a>
-                        </p>
-                        <div class="testimonial-info">
-                            <img class="rounded-2x" src="{{ asset('/assets/img/testimonials/user.jpg') }}" alt="Avatar" width="60" height="60">
-                            <span class="testimonial-author">
+<div class="headline"><span class="title">Derniers commentaires</span class></div>
+<div class="profile home-comments">
+    <div iclass="panel-body no-padding _mCS_3 mCS-autoHide" data-mcs-theme="minimal-dark" style="position: relative; overflow: visible;">
+        <div class="mCustomScrollBox mCS-minimal-dark mCSB_vertical mCSB_outside" tabindex="0">
+            <div class="mCSB_container" style="position: relative; top: 0px; left: 0px;" dir="ltr">
+                {% for comment in comment_list %}
+                    <div class="profile-event">
+                        <div class="date-formats">
+                            <span>{{ comment.createdAt|date('d') }}</span>
+                            <small>{{ comment.createdAt|date('m Y') }}</small>
+                        </div>
+                        <div class="overflow-h">
+                            <span class="author heading-xs">
                                 {% if comment.u_username is not empty %}
                                     {{ comment.u_username }}
                                 {% else %}
                                     Anonyme
                                 {% endif %}
-
-                                <em>Le {{ comment.createdAt|date('d/m/Y H:i') }}</em>
                             </span>
-                        </div>
+                            <p>
+                                <a href='{{ comment.link }}#comment_{{ comment.id }}'>
+                                    {{ comment.content | striptags | truncate(160) | raw }}
+                                </a>
+                            </p>
+                        </div>    
                     </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
-        
-        <div class="carousel-arrow">
-            <a class="left carousel-control" href="#testimonials-2" data-slide="prev">
-                <i class="fa fa-angle-left rounded-x"></i>
-            </a>
-            <a class="right carousel-control" href="#testimonials-2" data-slide="next">
-                <i class="fa fa-angle-right rounded-x"></i>
-            </a>
-        </div>
-    </div>                    
+    </div>
 </div>
 <!-- End Latest Comment -->
-
-<!-- Latest Comment -->
-{#}
-<div class="headline"><h2>Derniers commentaires</h2></div>   
-<div class="margin-bottom-40">
-    {% for comment in comment_list %}
-        <div class="magazine-mini-news">
-            <div class="post-author">
-                <strong>
-                {% if comment.u_licenseeNumber is not empty %}
-                    <a href='{{ path('_sonataUserDashboard', { "licensee_number" : comment.u_licenseeNumber ,"slug": comment.u_username | url_encode } ) }}'>
-                {% else %}
-                    <a href='#anonyme'>
-                {% endif %}
-
-                {% if comment.u_username is not empty %}
-                    {{ comment.u_username }}
-                {% else %}
-                    Anonyme
-                {% endif %}
-                    </a>
-                </strong> 
-                <span>/ {{ comment.createdAt|date('d/m/Y H:i') }}</span>
-            </div>
-            <p>{{ comment.content | striptags | raw | truncate(85) }}</p>
-            <a href='{{ comment.link }}#comment_{{ comment.id }}'>Lire la suite</a>
-        </div>
-        <hr class="hr-md">
-    {% endfor %}
-</div>
-{#}
-
-{#}
-<section id='last_comments' class='fleft'>
-    <h4>Derniers commentaires</h4>
-    <ul>
-        {% for comment in comment_list %}
-            <li>
-                <span class='date'>Le {{ comment.createdAt|date('d/m/Y H:i') }}</span>
-                {% if comment.u_licenseeNumber is not empty %}
-                    <a class='author' href='{{ path('_sonataUserDashboard', { "licensee_number" : comment.u_licenseeNumber ,"slug": comment.u_username | url_encode } ) }}'>
-                {% else %}
-                    <a class='author' href='#'>
-                {% endif %}
-                            
-                {{ comment.u_username }}
-                </a>
-                <a class='comment' href='{{ comment.link }}#comment_{{ comment.id }}'>{{ comment.content | striptags | raw | truncate(85) }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <p class='all_news_link'>Voir <a href="{{ path('_baseLastCommentIndex') }}">les derniers commentaires du site</a></p>
-</section>
-{#}

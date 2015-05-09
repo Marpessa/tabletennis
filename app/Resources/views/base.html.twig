@@ -194,6 +194,8 @@
 
                             {% if app.request.attributes.get('_route') == '_homepage' %}
                                 {{ render(controller("BasePicsBundle:Default:home", {}), {}) }}
+                                {{ render(controller("BaseCommentBundle:Default:home", {}), {}) }}
+                                {{ render(controller("BaseForumBundle:LastPost:show", {}), {}) }}
                                 {#}{{ render(controller('BaseGoogleAgendaBundle:Default:home', {}), {}) }}{#}
                             {% endif %}
                         {% endblock %}
@@ -214,27 +216,21 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4 md-margin-bottom-40">
-                            <!-- About -->
-                            {#}
-                            <div class="headline"><h2>Qui sommes-nous ?</h2></div>  
-                            <p class="margin-bottom-25 md-margin-bottom-40">Unify is an incredibly beautiful responsive Bootstrap Template for corporate and creative professionals.</p>   
-                            {#} 
-                            <!-- End About -->
 
-                            <div class="headline"><h2>Suivez-nous</h2></div>
+                            <div class="headline"><span class="title">Suivez-nous</span></div>
                             {{ render(controller("BaseSocialBundle:Facebook:likebox", {}), {}) }}
                             <!-- End Monthly Newsletter -->
                         </div><!--/col-md-4-->  
                         
                         <div class="col-md-4 md-margin-bottom-40">
-                            <div class="headline"><h2>Qui sommes-nous ?</h2></div>
+                            <div class="headline"><span class="title">Qui sommes-nous ?</span></div>
                             <p class="margin-bottom-25 md-margin-bottom-40"><span class="dropcap-bg">&nbsp;CPF&nbsp;</span>CPF AIZENAY est avant toute chose votre site d'actualités pongistes agésinates. CPFAIZENAY se propose de vous faire découvrir principalement les licenciés, les événéments et l'actualité du club de tennis de table de la ville d'Aizenay.</p>
                             <a rel="grow" class="btn-u btn-u-blue grow" href="{{ path('_basePageIndex', {'slug': 'presentation-du-club'}) }}" title="Présentation de CPF Aizenay">En savoir plus</a>
                         </div><!--/col-md-4-->
 
                         <div class="col-md-4">
                             <!-- Contact Us -->
-                            <div class="headline"><h2>Contactez-nous</h2></div> 
+                            <div class="headline"><span class="title">Contactez-nous</span></div> 
                             <address class="md-margin-bottom-40">
                                 <i class="fa fa-home"></i> Complexe Sportif de La Galerne-Noroît<br />
                                 85190 Aizenay <br />
@@ -244,7 +240,7 @@
                             <!-- End Contact Us -->
 
                             <!-- Social Links -->
-                            <div class="headline"><h2>Restez connecté</h2></div> 
+                            <div class="headline"><span class="title">Restez connecté</span></div> 
                             <ul class="social-icons">
                                 <li><a href="{{ path('_baseNewsRss') }}" data-original-title="Feed" class="social_rss"></a></li>
                                 <li><a href="{{ facebook_uri }}" data-original-title="Facebook" class="social_facebook"></a></li>
