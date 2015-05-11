@@ -1,5 +1,4 @@
 # Met a jour les dépendances de symfony
-# OLD ( avec le fichier deps ) -- sudo ./bin/vendors install
 php composer.phar update -vvv
 php composer.phar update sonata-project/media-bundle -vvv
 

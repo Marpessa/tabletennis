@@ -1,5 +1,10 @@
+.logo img {
+	display: none;
+}
+
 .box .box-body:after {
 	content: " ";
 	display: table;
 	clear: both;
 }
+
