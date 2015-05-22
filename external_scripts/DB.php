@@ -174,7 +174,7 @@
 
     if( $result === FALSE )
     {
-         var_dump( $query );
+      // print_r( $query );
     }
 
     return $result;

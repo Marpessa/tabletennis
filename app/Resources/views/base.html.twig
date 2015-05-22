@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr-FR" lang="fr-FR">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr-FR" lang="fr-FR" class="loading">
     <head>
         <title>{% block title %}Tennis de table Club d'Aizenay (85) - CPF Aizenay{% endblock %}</title>
 
@@ -11,12 +11,149 @@
         <meta name="robots" content="{% block meta_robots %}index, follox{% endblock %}" />
         <meta name="author" content="{% block meta_author %}CPF Aizenay{% endblock %}" />
         
-        {% block stylesheets %}
-            {#}
-            <link rel="stylesheet" href="{{ asset('/css/normalize.css') }}" type="text/css" media="screen" />
-            <link rel="stylesheet" href="{{ asset('/css/main.css') }}" type="text/css" media="screen" />
-            {#}
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="{{ asset('/images/default/favicon.ico') }}" type="image/x-icon" />
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('/images/default/apple-touch-icon.ico') }}" />
 
+        <style>
+            html.loading { background-color: #fff !important; }
+            html.loading body { background-color: #fff !important; height: 100%; min-height: 600px; }
+            html.loading body > * { display: none; }
+            html.loading body .loader { display: block !important; }
+
+            .loader:before,
+            .loader:after,
+            .loader {
+                display: block;
+                border-radius: 50%;
+                width: 2.5em;
+                height: 2.5em;
+                -webkit-animation-fill-mode: both;
+                animation-fill-mode: both;
+                -webkit-animation: load7 1.8s infinite ease-in-out;
+                animation: load7 1.8s infinite ease-in-out;
+            }
+            .loader {
+                display: block;
+                margin: 8em auto;
+                font-size: 10px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 45%;
+                bottom: 0;
+                margin-top: -25px;
+
+                text-indent: -9999em;
+                -webkit-transform: translateZ(0);
+                -ms-transform: translateZ(0);
+                transform: translateZ(0);
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
+            .loader:before {
+                left: -3.5em;
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
+            .loader:after {
+                left: 3.5em;
+            }
+            .loader:before,
+            .loader:after {
+                content: '';
+                position: absolute;
+                top: 0;
+            }
+            @-webkit-keyframes load7 {
+              0%,
+              80%,
+              100% {
+                box-shadow: 0 2.5em 0 -1.3em #3498db;
+              }
+              40% {
+                box-shadow: 0 2.5em 0 0 #3498db;
+              }
+            }
+            @keyframes load7 {
+              0%,
+              80%,
+              100% {
+                box-shadow: 0 2.5em 0 -1.3em #3498db;
+              }
+              40% {
+                box-shadow: 0 2.5em 0 0 #3498db;
+              }
+            }
+        </style>
+
+        <!-- exported loadCSS -->
+        <script>
+            var sourcesCss = [];
+            sourcesCss.push( "{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/css/style.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/css/plugins.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css') }}" );
+
+            sourcesCss.push( "{{ asset('/assets/plugins/line-icons/line-icons.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/plugins/font-awesome/css/font-awesome.min.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/plugins/flexslider/flexslider.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/plugins/parallax-slider/css/parallax-slider.css') }}" );
+            sourcesCss.push( "{{ asset('/assets/plugins/image-hover/css/img-hover.css') }}" );
+
+            sourcesCss.push( "{{ asset('/assets/css/pages/blog_magazine.css') }}" );
+
+            sourcesCss.push( "{{ asset('/assets/css/themes/blue.css') }}" );
+
+            sourcesCss.push( "{{ asset('/assets/css/custom.css') }}" );
+
+            var nbFilesCssLoaded = 0;
+            function loadCSS( href, before, media, callback ){
+                "use strict";
+
+                var ss = window.document.createElement( "link" );
+                var ref = before || window.document.getElementsByTagName( "script" )[ 0 ];
+                var sheets = window.document.styleSheets;
+                ss.rel = "stylesheet";
+                ss.href = href;
+                // temporarily, set media to something non-matching to ensure it'll fetch without blocking render
+                ss.media = "only x";
+                // DEPRECATED
+                if( callback ) {
+                    ss.onload = callback;
+                }
+
+                // inject link
+                ref.parentNode.insertBefore( ss, ref );
+                // This function sets the link's media back to `all` so that the stylesheet applies once it loads
+                // It is designed to poll until document.styleSheets includes the new sheet.
+                ss.onloadcssdefined = function( cb ){
+                    var defined;
+                    for( var i = 0; i < sheets.length; i++ ){
+                        if( sheets[ i ].href && sheets[ i ].href.indexOf( href ) > -1 ){
+                            defined = true;
+                        }
+                    }
+                    if( defined ){
+                        cb();
+                        nbFilesCssLoaded++;
+
+                        if( sourcesCss.length == nbFilesCssLoaded ) {
+                            $('html').removeClass("loading");
+                        }
+                    } else {
+                        setTimeout(function() {
+                            ss.onloadcssdefined( cb );
+                        });
+                    }
+                };
+                ss.onloadcssdefined(function() {
+                    ss.media = media || "all";
+                });
+                return ss;
+            }
+        </script>
+        <noscript>
             <!-- CSS Global Compulsory -->
             <link rel="stylesheet" href="{{ asset('/assets/plugins/bootstrap/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
@@ -40,19 +177,7 @@
 
             <!-- CSS Customization -->
             <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}">
-        {% endblock %}
-
-        {#}
-        {% block stylesheets %}
-            {% stylesheets 'css/normalize.css' 'css/main.css' %}
-                <link rel="stylesheet" href="{{ asset_url }}" type="text/css" media="screen" />
-            {% endstylesheets %}
-        {% endblock %}
-        {#}
-        
-        <!-- Favicon -->
-        <link rel="shortcut icon" href="{{ asset('/images/default/favicon.ico') }}" type="image/x-icon" />
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('/images/default/apple-touch-icon.ico') }}" />
+        </noscript>
 
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -76,6 +201,7 @@
     </head>
     <body>
 
+        <div class="loader">Chargement...</div>
         <div class="wrapper">
             <!--=== Header ===-->    
             <div class="header">
@@ -279,50 +405,45 @@
             <!-- JS Global Compulsory -->           
             <script type="text/javascript" src="{{ asset('/assets/plugins/jquery-1.10.2.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('/assets/plugins/jquery-migrate-1.2.1.min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-            <!-- JS Implementing Plugins -->
-            <script type="text/javascript" src="{{ asset('/assets/plugins/back-to-top.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/plugins/flexslider/jquery.flexslider-min.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/plugins/parallax-slider/js/modernizr.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/plugins/parallax-slider/js/jquery.cslider.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('assets/plugins/image-hover/js/modernizr.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('assets/plugins/image-hover/js/touch.js') }}"></script>
 
-            <!-- JS Page Level -->           
-            <script type="text/javascript" src="{{ asset('/assets/js/app.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/js/pages/index.js') }}"></script>
-            <script type="text/javascript" src="{{ asset('/assets/js/custom.js') }}"></script>
-
-            <script type="text/javascript" src="{{ asset('js/cookiechoices.js') }}"></script>
             <script>
-              document.addEventListener('DOMContentLoaded', function(event) {
-                cookieChoices.showCookieConsentBar('Les cookies assurent le bon fonctionnement de nos services. En utilisant ces derniers, vous acceptez l\'utilisation des cookies.',
-                  'OK', 'En savoir plus', "{{ path('_baseCguIndex') }}");
-              });
+                (function() {
+                    var sources = [];
+
+                {% javascripts 'assets/plugins/bootstrap/js/bootstrap.min.js'
+                               'assets/plugins/back-to-top.js'
+                               'assets/plugins/flexslider/jquery.flexslider-min.js'
+                               'assets/plugins/parallax-slider/js/modernizr.js'
+                               'assets/plugins/parallax-slider/js/jquery.cslider.js'
+                               'assets/plugins/image-hover/js/modernizr.js'
+                               'assets/plugins/image-hover/js/touch.js'
+                               'assets/js/app.js'
+                               'assets/js/pages/index.js'
+                               'assets/js/custom.js'
+                               'js/cookiechoices.js'
+                               'js/main.js'
+                               %}
+                    {% autoescape 'js' %}
+                        sources.push('{{ asset_url }}');
+                    {% endautoescape %}
+                {% endjavascripts %}
+
+                    var s = document.getElementsByTagName('script')[0];
+                    var uv = null;
+                    for (var i = 0; i < sources.length; i++) {
+                         uv = document.createElement('script');
+                         uv.type = 'text/javascript';
+                         uv.async = true; 
+                         uv.src = sources[i];
+                         s.parentNode.insertBefore(uv, s);
+                    }
+                })();
             </script>
 
-            <script type="text/javascript">
-                jQuery(document).ready(function() {
-                    App.init();
-                    App.initSliders();
-                    Index.initParallaxSlider();        
-                });
-            </script>
             <!--[if lt IE 9]>
                 <script src="{{ asset('assets/plugins/respond.js') }}"></script>
                 <script src="{{ asset('assets/plugins/html5shiv.js') }}"></script>    
             <![endif]-->
-
-            {#}
-                <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-                <script src="{{ asset('/js/main.js') }}" type="text/javascript"></script>
-                <script src="{{ asset('/js/comment.js') }}" type="text/javascript"></script>
-            {#}
-            {#}
-            {% javascripts 'js/main.js' 'js/comment.js' %}
-                <script src="{{ asset_url }}" type="text/javascript"></script>
-            {% endjavascripts %}
-            {#}
                 
             <script type="text/javascript">(function(d, s, id) {
               var js, fjs = d.getElementsByTagName(s)[0];
@@ -332,8 +453,10 @@
               fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));</script>
         {% endblock %}
-        {#} 
-        <img src="{{ asset( '/images/default/background.jpg') }}" class='background' alt='fond écran tennis de table' width='1600' height='900' style='display: none;' />
-        {#}
+
     </body>
 </html>
+
+{% block stylesheets %}
+    
+{% endblock %}

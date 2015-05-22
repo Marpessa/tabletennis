@@ -49,7 +49,7 @@ class DefaultAdminController extends Controller
                                                  ->getSingleResult();
             
             // sauvegarder dernière date du cron et vérifier que le mois correspond si oui supprimer du tablau des licenciés pour éviter trop d'appels
-            echo "<pre>"; var_dump( $licenseePoint ); echo "</pre>";
+            //echo "<pre>"; var_dump( $licenseePoint ); echo "</pre>";
         }
         
         die();
@@ -463,7 +463,7 @@ class DefaultAdminController extends Controller
 
                 $em->flush();
             }catch(Exception $e){
-                var_dump( $e );
+                // var_dump( $e );
             }
         }
     }
@@ -526,7 +526,7 @@ class DefaultAdminController extends Controller
 
 
             }catch( Exception $e ){
-                var_dump( $e );
+                // var_dump( $e );
             }
         }
     }

@@ -14,8 +14,8 @@ class DefaultController extends Controller
         $ffttCommandTest = new FfttCommandTest();
         $display = $ffttCommandTest->testExecute();
 
-        var_dump( $display );
-        die();
+        // print_r( $display );
+        // die();
 
         $url = $this->container->get('router')->generate('_homepage');
         $response = new RedirectResponse($url);

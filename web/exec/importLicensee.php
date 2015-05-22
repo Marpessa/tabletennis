@@ -26,7 +26,7 @@ if( !$error )
 else
 {
     echo "error";
-    var_dump( curl_error($ch) );
+    //var_dump( curl_error($ch) );
 }
 curl_close($ch);
 
