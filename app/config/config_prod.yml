@@ -21,8 +21,15 @@ monolog:
 parameters:
   base_contact.emails.contact_email_from: contact@cpfaizenay.com
   base_contact.emails.contact_email_to: [contact@cpfaizenay.com, ecouvreur@yahoo.fr, magne.stephane@wanadoo.fr]
-  
-  
+
+# Assetic Configuration
+assetic:
+    filters:
+        yui_css:
+            jar: "%kernel.root_dir%/Resources/utilities/java/yuicompressor-2.4.8.jar"
+        yui_js:
+            jar: "%kernel.root_dir%/Resources/utilities/java/yuicompressor-2.4.8.jar"
+
 sonata_media:
     db_driver: doctrine_orm # or doctrine_mongodb
     default_context: default
