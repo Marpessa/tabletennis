@@ -19,7 +19,7 @@
             html.loading { background-color: #fff !important; }
             html.loading body { background-color: #fff !important; height: 100%; min-height: 600px; }
             html.loading body > * { display: none; }
-            html.loading body .loader { display: block !important; }
+            html.loading body .loader.show { display: block !important; }
 
             .loader:before,
             .loader:after,
@@ -34,7 +34,7 @@
                 animation: load7 1.8s infinite ease-in-out;
             }
             .loader {
-                display: block;
+                display: none;
                 margin: 8em auto;
                 font-size: 10px;
                 position: absolute;
@@ -108,7 +108,7 @@
             sourcesCss.push( "{{ asset('/assets/css/custom.css') }}" );
 
             var nbFilesCssLoaded = 0;
-            function loadCSS( href, before, media, callback ){
+            function loadCSS( href, before, media, callback ) {
                 "use strict";
 
                 var ss = window.document.createElement( "link" );
@@ -140,6 +140,7 @@
 
                         if( sourcesCss.length == nbFilesCssLoaded ) {
                             $('html').removeClass("loading");
+                            $('.loader').remove();
                         }
                     } else {
                         setTimeout(function() {
@@ -152,6 +153,10 @@
                 });
                 return ss;
             }
+
+            setTimeout( function() {
+                $('.loader').addClass("show");
+            }, 500 );
         </script>
         <noscript>
             <!-- CSS Global Compulsory -->

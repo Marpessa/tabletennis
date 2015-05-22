@@ -1,18 +1,22 @@
 /* Add here all your css styles (customizations) */
 
+.header .navbar-default {
+    z-index: 13;
+}
+
 .heading span.title {
-  padding: 0 12px;
-  position: relative;
-  display: inline-block;
-  line-height: 34px !important;
+    padding: 0 12px;
+    position: relative;
+    display: inline-block;
+    line-height: 34px !important;
 
-  font-size: 24px;
+    font-size: 24px;
 
-  color: #585f69;
-  margin-top: 5px;
-  text-shadow: none;
-  font-weight: normal;
-  font-family: 'Open Sans', sans-serif;
+    color: #585f69;
+    margin-top: 5px;
+    text-shadow: none;
+    font-weight: normal;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .heading-v1 span.title:before, .heading-v1 span.title:after {
