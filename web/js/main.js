@@ -2,10 +2,6 @@ jQuery(document).ready(function() {
     App.init();
     App.initSliders();
     Index.initParallaxSlider();
-
-    for(var i=0; i<sourcesCss.length; i++) {
-    	loadCSS(sourcesCss[i]);
-    }
 });
 
 document.addEventListener('DOMContentLoaded', function(event) {

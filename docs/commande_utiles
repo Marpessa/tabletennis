@@ -16,6 +16,12 @@ sudo php app/console assets:install web --symlink
 # Génère un bundle
 sudo app/console generate:bundle
 
+# Update un bundle
+php composer.phar update twig/extensions
+
+# Génère assets
+php app/console assetic:dump --env=prod --no-debug
+
 # Générer fixtures
 php app/console doctrine:fixtures:load
 

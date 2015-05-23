@@ -84,6 +84,9 @@ class AppKernel extends Kernel
             // Comment
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
 
+            // App
+            new App\TwigExtensionBundle\AppTwigExtensionBundle(),
+
             // Base
             new Base\CategoryBundle\BaseCategoryBundle(),
             new Base\PageBundle\BasePageBundle(),
