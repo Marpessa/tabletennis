@@ -57,6 +57,7 @@ twig:
     cache:            %kernel.cache_dir%/twig
     globals:
         facebook_uri: %facebook.uri%
+        facebook_app_id: %facebook.app_id%
     form:
         resources:
             - 'SonataCoreBundle:Form:datepicker.html.twig'
