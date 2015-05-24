@@ -120,10 +120,10 @@ class AppKernel extends Kernel
             new TableTennis\UsefulInformationBundle\TableTennisUsefulInformationBundle(),
 
             // Geolocalisation
-            /*new Geolocalisation\CountryBundle\GeolocalisationCountryBundle(),
+            new Geolocalisation\CountryBundle\GeolocalisationCountryBundle(),
             new Geolocalisation\RegionBundle\GeolocalisationRegionBundle(),
             new Geolocalisation\DepartmentBundle\GeolocalisationDepartmentBundle(),
-            new Geolocalisation\CityBundle\GeolocalisationCityBundle()*/
+            new Geolocalisation\CityBundle\GeolocalisationCityBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

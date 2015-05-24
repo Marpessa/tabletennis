@@ -216,25 +216,25 @@ fos_user_security_logout:
 #fos_user_register // sonata_registration_1.xml
 fos_user_registration_register:
     pattern: /{culture}/inscription/
-    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:register, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Registration:register, _format: "html", culture: fr }
     requirements:
         culture: fr
 
 fos_user_registration_check_email:
     pattern: /{culture}/inscription/verification-email.html
-    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:checkEmail, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Registration:checkEmail, _format: "html", culture: fr }
     requirements:
         culture: fr
 
 fos_user_registration_confirm:
     pattern: /{culture}/inscription/{token}/verification.html
-    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:confirm, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Registration:confirm, _format: "html", culture: fr }
     requirements:
         culture: fr
 
 fos_user_registration_confirmed:
     pattern: /{culture}/inscription/confirmation.html
-    defaults:       { _controller: SonataUserBundle:RegistrationFOSUser1:confirmed, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Registration:confirmed, _format: "html", culture: fr }
     requirements:
         culture: fr
 

@@ -1,9 +1,5 @@
 /* Add here all your css styles (customizations) */
 
-.header .navbar-default {
-    z-index: 13;
-}
-
 .heading span.title {
     padding: 0 12px;
     position: relative;

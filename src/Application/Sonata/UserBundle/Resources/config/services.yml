@@ -3,7 +3,6 @@ services:
         class: Application\Sonata\UserBundle\Service\PasswordEncoder
         arguments: ["md5"]
 #        public: false
-        
 
     application_sonata_user.security.user_provider:
         class: Application\Sonata\UserBundle\Service\UserProvider
@@ -15,3 +14,9 @@ services:
         arguments: [%fos_user.model.user.class%, @security.context]
         tags:
             - { name: form.type, alias: application_sonata_user_profile }
+
+    application_sonata_user.registration.form.type:
+        class: Application\Sonata\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%, @security.context]
+        tags:
+            - { name: form.type, alias: application_sonata_user_registration }

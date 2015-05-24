@@ -40,10 +40,10 @@ class RegistrationController extends FOSRegistrationController
 {
     public function registerAction()
     {
-        $user = $this->container->get('security.context')->getToken()->getUser();
+        /*$user = $this->container->get('security.context')->getToken()->getUser();
         if (is_object($user) && $user instanceof \Application\Sonata\UserBundle\Entity\User ) {
             throw new AccessDeniedException('This user does not have access to this section.');
-        }
+        }*/
 
         $form = $this->container->get('fos_user.registration.form');
         $formHandler = $this->container->get('fos_user.registration.form.handler');

@@ -381,7 +381,7 @@
                     for (var i = 0; i < sourcesJs.length; i++) {
                          uv = document.createElement('script');
                          uv.type = 'text/javascript';
-                         uv.async = true; 
+                         uv.async = true;
                          uv.src = sourcesJs[i];
                          s.parentNode.insertBefore(uv, s);
                     }
@@ -399,7 +399,28 @@
             <script>
                 (function() {
                     var sourcesCss = [];
-                    
+                    sourcesCss.push('/assets/plugins/bootstrap/css/bootstrap.min.css');
+                    sourcesCss.push('/assets/css/style.css');
+                    sourcesCss.push('/assets/css/plugins.css');
+                    sourcesCss.push('/assets/css/plugins/box-shadows.css');
+                    sourcesCss.push('/assets/css/plugins/animate.css');
+
+                    sourcesCss.push('/assets/css/app.css');
+                    sourcesCss.push('/assets/css/ie8.css');
+
+                    sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/sky-forms.css');
+                    sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css');
+
+                    sourcesCss.push('/assets/plugins/line-icons/line-icons.css');
+                    sourcesCss.push('/assets/plugins/flexslider/flexslider.css');
+                    sourcesCss.push('/assets/plugins/parallax-slider/css/parallax-slider.css');
+                    sourcesCss.push('/assets/plugins/image-hover/css/img-hover.css');
+
+                    sourcesCss.push('/assets/css/pages/blog_magazine.css');
+
+                    sourcesCss.push('/assets/css/themes/blue.css');
+                    sourcesCss.push('/assets/css/custom.css');
+                    /*
                     {% stylesheets 'assets/plugins/bootstrap/css/bootstrap.min.css'
                                    'assets/css/style.css'
                                    'assets/css/plugins.css'
@@ -425,7 +446,7 @@
                                     filter='?yui_css' output='assets/css/main.css' %}
                         sourcesCss.push('{{ asset_url }}');
                     {% endstylesheets %}
-
+                    */
 
                     /* Export Css loaded */
                     var nbFilesCssLoaded = 0;
@@ -445,6 +466,7 @@
                         }
 
                         // inject link
+                        ref.async = true;
                         ref.parentNode.insertBefore( ss, ref );
                         // This function sets the link's media back to `all` so that the stylesheet applies once it loads
                         // It is designed to poll until document.styleSheets includes the new sheet.

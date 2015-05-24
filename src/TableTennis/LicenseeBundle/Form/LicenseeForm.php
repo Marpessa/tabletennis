@@ -20,7 +20,7 @@ class LicenseeForm extends AbstractType
     {
         $user = $this->securityContext->getToken()->getUser();
 
-        $user_licensee = NULL;
+        $user_licensee_number = NULL;
         if (is_object($user) && $user instanceof UserInterface) {
           $user_licensee_number = $user->getLicenseeNumber();
 

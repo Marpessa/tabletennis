@@ -36,7 +36,7 @@ class FfttCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output) {
 
-        $logger = $this->get('logger');
+        $logger = $this->getContainer()->get('logger');
         $logger->info('CRON CPFAIZENAY START');
 
         $this->entityManager = $this->getContainer()->get('doctrine')->getManager();
@@ -107,10 +107,14 @@ class FfttCommand extends ContainerAwareCommand
     private function saveParameter( $parameter ) {
         switch( $parameter->getType() ) {
             case 'licensee':
-                $nexUpdate = clone( $parameter->getNextUpdate()->modify('+1 day') );
+                $nexUpdate = new \DateTime();
+                $nexUpdate->modify('+1 day');
+                //$nexUpdate = clone( $parameter->getNextUpdate()->modify('+1 day') );
                 break;
             case 'licensee_point':
-                $nexUpdate = clone( $parameter->getNextUpdate()->modify('+1 day') );
+                $nexUpdate = new \DateTime();
+                $nexUpdate->modify('+1 day');
+                //$nexUpdate = clone( $parameter->getNextUpdate()->modify('+1 day') );
                 break;
         }
 
