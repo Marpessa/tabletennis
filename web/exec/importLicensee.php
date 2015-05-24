@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 $error = FALSE;
@@ -30,4 +31,20 @@ else
 }
 curl_close($ch);
 
+ /*
+ ----- Test 2
+
+ header('Location: http://www.cpfaizenay.com/cron_import_fftt_data.html');
+ exit;
+
+----- Test 3
+
+*/
+
+ /*
+ #!/bin/bash
+cd /home/cpfaizen
+php.ORIG.5_4 -c /usr/local/lib/php.ini-2 /home/cpfaizen/app/console cron:fftt
+
+*/
 ?>

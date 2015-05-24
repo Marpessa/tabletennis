@@ -197,19 +197,19 @@ sonata_user_change_password:
 #fos_user // sonata_security_1.xml
 fos_user_security_login:
     pattern: /{culture}/connexion.html
-    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:login, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Security:login, _format: "html", culture: fr }
     requirements:
         culture: fr
 
 fos_user_security_check:
     pattern: /{culture}/verification-connexion.html
-    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:check, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Security:check, _format: "html", culture: fr }
     requirements:
         culture: fr
 
 fos_user_security_logout:
     pattern: /{culture}/deconnexion.html
-    defaults:       { _controller: SonataUserBundle:SecurityFOSUser1:logout, _format: "html", culture: fr }
+    defaults:       { _controller: ApplicationSonataUserBundle:Security:logout, _format: "html", culture: fr }
     requirements:
         culture: fr
 

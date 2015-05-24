@@ -17,9 +17,9 @@ use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\UserEvent;
 use FOS\UserBundle\Event\FilterUserResponseEvent;
 
-use FOS\UserBundle\Controller\RegistrationController as FOSRegistrationController;
-use Symfony\Component\HttpFoundation\Request;
+use Sonata\UserBundle\Controller\RegistrationFOSUser1Controller as RegistrationFOSUser1Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +36,7 @@ use FOS\UserBundle\Model\UserInterface;
  * @author Thibault Duplessis <thibault.duplessis@gmail.com>
  * @author Christophe Coevoet <stof@notk.org>
  */
-class RegistrationController extends FOSRegistrationController
+class RegistrationController extends RegistrationFOSUser1Controller
 {
     public function registerAction()
     {
