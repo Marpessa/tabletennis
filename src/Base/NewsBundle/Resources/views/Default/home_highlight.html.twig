@@ -69,16 +69,16 @@
 
                 <a class="da-img" href="{{ path('_baseNewsShow', {"slug": news.slug, "year": news.updatedAt|date("Y"), "month": news.updatedAt|date("m") } ) }}" title="{{ news.title | truncate(30) | raw }}">
                     {% if news.m_id is defined and news.m_id is not empty %}
-                        {#}
+                        {#}<img src="{% path news.m_id, 'big' %}" alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />{#}
                         {% set img_url = media_public_url(news.m_id, 'reference') %}
-                        <img src="{{ jpegoptim( img_url ) }}" alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />
+                        <img src="{{ asset( img_url ) | imagine_filter('news_big') }}" alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />
+                        {#}
 
                         {{ dump(img_url) }}
                         {% image img_url filter='jpegoptim' output='/images/example.jpg' %}
                             <img src="{{ asset_url }}" alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}'/>
                         {% endimage %}
                         {#}
-                        <img src="{% path news.m_id, 'big' %}" alt='{{ news.title }}' title='{{ news.title }}' width='{{ news.m_width }}' height='{{ news.m_height }}' />
                     {% else %}
                         <img src="{{ asset('/images/cpfaizenay/default_news.png') }}" title='{{ news.title | truncate(40) | raw }}' alt='{{ news.title | truncate(40) | raw }}' width='707' height='618' />
                     {% endif %}

@@ -298,6 +298,9 @@ sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
     prefix: /
 
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
 # Internal routing configuration to handle ESI
 # _internal:
    # resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

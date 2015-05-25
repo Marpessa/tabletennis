@@ -33,7 +33,8 @@
                     {% set width = partner.m_width * media_formats["partner_small"]["height"] // partner.m_height %}
                     <li style='width: {{ width }}px'>
                         <a href='{{ path('_tableTennisPartnerShow', { "slug": partner.slug } ) }}'>
-                            <img src='{% path partner.m_id, 'small' %}' alt='{{ partner.title }}' title='{{ partner.title }}' width='{{ width }}' height='{{ media_formats["partner_small"]["height"] }}' />
+                            {% set img_url = media_public_url(partner.m_id, 'reference') %}
+                            <img src='{{ asset( img_url ) | imagine_filter('partner_small') }}' alt='{{ partner.title }}' title='{{ partner.title }}' width='{{ width }}' height='{{ media_formats["partner_small"]["height"] }}' />
                         </a>
                     </li>
                 {% endfor %}

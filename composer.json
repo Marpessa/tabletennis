@@ -71,7 +71,8 @@
         "phpunit/phpunit": "~4.4",
 
         "gregwar/captcha-bundle": "dev-master",
-        "sonata-project/seo-bundle": "^2.0"
+        "sonata-project/seo-bundle": "^2.0",
+        "liip/imagine-bundle": "^1.2"
     },
     "scripts": {
         "post-install-cmd": [

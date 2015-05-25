@@ -83,6 +83,8 @@ class AppKernel extends Kernel
             new Stfalcon\Bundle\TinymceBundle\StfalconTinymceBundle(),
             // Comment
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
+            // Liip Imagine
+            new Liip\ImagineBundle\LiipImagineBundle(),
 
             // App
             new App\TwigExtensionBundle\AppTwigExtensionBundle(),

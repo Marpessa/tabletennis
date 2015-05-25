@@ -4,7 +4,8 @@
     {% for photo in photos_list %}
         <li>
             <a href="{{ url('_basePicsIndex') }}">
-                <img src="http://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}_s.jpg" alt="{{ photo.title }}" width="56" height="56" />
+            		{% set img_url = 'http://farm' ~ photo.farm ~ '.staticflickr.com/' ~ photo.server ~ '/' ~ photo.id ~ '_' ~ photo.secret ~ '_s.jpg' %}
+                <img src="{{ img_url }}" alt="{{ photo.title }}" width="56" height="56" />
             </a>
         </li>
     {% endfor %}

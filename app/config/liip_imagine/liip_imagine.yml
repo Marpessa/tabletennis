@@ -1,0 +1,44 @@
+liip_imagine:
+    resolvers:
+       default:
+           web_path:
+                web_root:  %kernel.root_dir%/../web # %kernel.root_dir%/../web
+                cache_prefix: cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../web/  # %kernel.root_dir%/../web/
+
+    controller:
+        filter_action:         liip_imagine.controller:filterAction
+        filter_runtime_action: liip_imagine.controller:filterRuntimeAction
+
+    filter_sets:
+        cache: ~
+
+        default_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [180, 80], mode: inset, allow_upscale: true }
+
+        news_big:
+            quality: 75
+            filters:
+                thumbnail: { size: [700, 280], mode: outbound, allow_upscale: true }
+            # post_processors:
+            #     jpegoptim: {}
+
+        news_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [408, 150], mode: outbound, allow_upscale: true }
+            # post_processors:
+            #     jpegoptim: {}
+
+        partner_small:
+            quality: 75
+            filters:
+                thumbnail: { size: [600, 100], mode: outbound, allow_upscale: true }
+            # post_processors:
+            #     jpegoptim: {}

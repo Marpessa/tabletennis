@@ -16,6 +16,7 @@ imports:
     - { resource: google/ivory_google_map.yml }
     - { resource: tinymce/stfalcon_tinymce.yml }
     - { resource: feed/eko_feed.yml }
+    - { resource: liip_imagine/liip_imagine.yml }
     - { resource: @BasePageBundle/Resources/config/admin.yml }
     - { resource: @BaseCategoryBundle/Resources/config/admin.yml }
     - { resource: @BaseNewsBundle/Resources/config/admin.yml }
@@ -33,6 +34,9 @@ imports:
 parameters:
     base_contact.emails.contact_email_from: contact@cpfaizenay.com
     base_contact.emails.contact_email_to: [ecouvreur@yahoo.fr]
+    # router.options.matcher.cache_class: ~ # Désactive le cache du routeur
+    # router.options.matcher_class: Symfony\Component\Routing\Matcher\ApacheUrlMatcher
+    # liip_imagine.jpegoptim.binary: "%kernel.root_dir%/Resources/utilities/jpegoptim-1.4.1"
 
 framework:
     esi:             { enabled: true }
@@ -77,14 +81,14 @@ assetic:
             jar: "%kernel.root_dir%/Resources/utilities/java/yuicompressor-2.4.7.jar"
         yui_js:
             jar: "%kernel.root_dir%/Resources/utilities/java/yuicompressor-2.4.7.jar"
-        optipng:
-            bin: "%kernel.root_dir%/Resources/utilities/optipng-0.7.5"
-            apply_to: "\.png$"
-            level:    3
-        jpegoptim:
-            bin: "%kernel.root_dir%/Resources/utilities/jpegoptim-1.4.1"
-            strip_all: true
-            max: 70
+        # optipng:
+        #     bin: "%kernel.root_dir%/Resources/utilities/optipng-0.7.5"
+        #     apply_to: "\.png$"
+        #     level:    3
+        # jpegoptim:
+        #     bin: "%kernel.root_dir%/Resources/utilities/jpegoptim-1.4.1"
+        #     strip_all: true
+        #     max: 70
     twig:
         functions:
             jpegoptim: ~

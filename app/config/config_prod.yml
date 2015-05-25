@@ -91,3 +91,15 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.simple
+
+liip_imagine:
+    resolvers:
+       default:
+           web_path:
+                web_root:  %kernel.root_dir%/../www # %kernel.root_dir%/../web
+                cache_prefix: cache
+
+    loaders:
+        default:
+            filesystem:
+                data_root: %kernel.root_dir%/../www/  # %kernel.root_dir%/../web/

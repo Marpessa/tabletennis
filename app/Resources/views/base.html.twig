@@ -181,7 +181,8 @@
                             </button>
 
                             <a class="navbar-brand" href="{{ path('_homepage') }}" title='CPF Aizenay'>
-                                <img src="{{ asset('/images/default/logo.png') }}" alt='CPF Aizenay' width='179' height='70' />
+                                {% set runtimeConfig = {"thumbnail": {"size": [179, 70] }} %}
+                                <img src="{{ asset('/images/default/logo.png')  | imagine_filter('default_small', runtimeConfig) }}" alt='CPF Aizenay' width='179' height='70' />
                                 {#}
                                 {% image '/images/default/logo.png' filter='optipng' output='/images/logo.png' %}
                                     <img src="{{ asset_url }}" alt='CPF Aizenay' width='179' height='70' />
@@ -339,8 +340,11 @@
             <!--=== End Copyright ===-->
 
     </div><!--/wrapper-->
-
-
+        <script>
+            app = {};
+            app.sourcesJs = [];
+            app.sourcesCss = [];
+        </script>
 
         {% block javascripts %}
 
@@ -353,8 +357,6 @@
                 }, 1000 );
 
                 (function() {
-                    var sourcesJs = [];
-
                     {% javascripts 'assets/plugins/jquery-migrate-1.2.1.min.js'
                                    'assets/plugins/bootstrap/js/bootstrap.min.js'
                                    'assets/plugins/back-to-top.js'
@@ -372,17 +374,17 @@
                                    filter='?yui_js' output='assets/js/main.js'
                                    %}
                         {% autoescape 'js' %}
-                            sourcesJs.push('{{ asset_url }}');
+                            app.sourcesJs.push('{{ asset_url }}');
                         {% endautoescape %}
                     {% endjavascripts %}
 
                     var s = document.getElementsByTagName('script')[0];
                     var uv = null;
-                    for (var i = 0; i < sourcesJs.length; i++) {
+                    for (var i = 0; i < app.sourcesJs.length; i++) {
                          uv = document.createElement('script');
                          uv.type = 'text/javascript';
                          uv.async = true;
-                         uv.src = sourcesJs[i];
+                         uv.src = app.sourcesJs[i];
                          s.parentNode.insertBefore(uv, s);
                     }
                 })();
@@ -398,28 +400,6 @@
         {% block stylesheets %}
             <script>
                 (function() {
-                    var sourcesCss = [];
-                    sourcesCss.push('/assets/plugins/bootstrap/css/bootstrap.min.css');
-                    sourcesCss.push('/assets/css/style.css');
-                    sourcesCss.push('/assets/css/plugins.css');
-                    sourcesCss.push('/assets/css/plugins/box-shadows.css');
-                    sourcesCss.push('/assets/css/plugins/animate.css');
-
-                    sourcesCss.push('/assets/css/app.css');
-                    sourcesCss.push('/assets/css/ie8.css');
-
-                    sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/sky-forms.css');
-                    sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css');
-
-                    sourcesCss.push('/assets/plugins/line-icons/line-icons.css');
-                    sourcesCss.push('/assets/plugins/flexslider/flexslider.css');
-                    sourcesCss.push('/assets/plugins/parallax-slider/css/parallax-slider.css');
-                    sourcesCss.push('/assets/plugins/image-hover/css/img-hover.css');
-
-                    sourcesCss.push('/assets/css/pages/blog_magazine.css');
-
-                    sourcesCss.push('/assets/css/themes/blue.css');
-                    sourcesCss.push('/assets/css/custom.css');
                     /*
                     {% stylesheets 'assets/plugins/bootstrap/css/bootstrap.min.css'
                                    'assets/css/style.css'
@@ -447,59 +427,53 @@
                         sourcesCss.push('{{ asset_url }}');
                     {% endstylesheets %}
                     */
+                    app.sourcesCss.push('/assets/plugins/bootstrap/css/bootstrap.min.css');
+                    app.sourcesCss.push('/assets/css/style.css');
+                    app.sourcesCss.push('/assets/css/plugins.css');
+                    app.sourcesCss.push('/assets/css/plugins/box-shadows.css');
+                    app.sourcesCss.push('/assets/css/plugins/animate.css');
 
-                    /* Export Css loaded */
+                    app.sourcesCss.push('/assets/css/app.css');
+                    app.sourcesCss.push('/assets/css/ie8.css');
+
+                    app.sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/sky-forms.css');
+                    app.sourcesCss.push('/assets/plugins/sky-forms/version-2.0.1/css/custom-sky-forms.css');
+
+                    app.sourcesCss.push('/assets/plugins/line-icons/line-icons.css');
+                    app.sourcesCss.push('/assets/plugins/flexslider/flexslider.css');
+                    app.sourcesCss.push('/assets/plugins/parallax-slider/css/parallax-slider.css');
+                    app.sourcesCss.push('/assets/plugins/image-hover/css/img-hover.css');
+
+                    app.sourcesCss.push('/assets/css/pages/blog_magazine.css');
+
+                    app.sourcesCss.push('/assets/css/themes/blue.css');
+                    app.sourcesCss.push('/assets/css/custom.css');
+
                     var nbFilesCssLoaded = 0;
-                    function loadCSS( href, before, media, callback ) {
-                        "use strict";
+                    var h = document.getElementsByTagName('head')[0];
+                    var l = null;
+                    var cb = function() {
+                        for(var i = 0; i < app.sourcesCss.length; i++) {
+                            var l = document.createElement('link');
+                            l.rel = 'stylesheet';
+                            l.href = app.sourcesCss[i];
+                            h.parentNode.insertBefore(l, h);
 
-                        var ss = window.document.createElement( "link" );
-                        var ref = before || window.document.getElementsByTagName( "script" )[ 0 ];
-                        var sheets = window.document.styleSheets;
-                        ss.rel = "stylesheet";
-                        ss.href = href;
-                        // temporarily, set media to something non-matching to ensure it'll fetch without blocking render
-                        ss.media = "only x";
-                        // DEPRECATED
-                        if( callback ) {
-                            ss.onload = callback;
-                        }
+                            nbFilesCssLoaded++;
 
-                        // inject link
-                        ref.async = true;
-                        ref.parentNode.insertBefore( ss, ref );
-                        // This function sets the link's media back to `all` so that the stylesheet applies once it loads
-                        // It is designed to poll until document.styleSheets includes the new sheet.
-                        ss.onloadcssdefined = function( cb ){
-                            var defined;
-                            for( var i = 0; i < sheets.length; i++ ){
-                                if( sheets[ i ].href && sheets[ i ].href.indexOf( href ) > -1 ){
-                                    defined = true;
-                                }
-                            }
-                            if( defined ){
-                                cb();
-                                nbFilesCssLoaded++;
-
-                                if( sourcesCss.length == nbFilesCssLoaded ) {
+                            if( app.sourcesCss.length == nbFilesCssLoaded ) {
+                                setTimeout( function() {
                                     $('html').removeClass("loading");
                                     $('.loader').remove();
-                                }
-                            } else {
-                                setTimeout(function() {
-                                    ss.onloadcssdefined( cb );
-                                });
+                                }, 500 );
                             }
-                        };
-                        ss.onloadcssdefined(function() {
-                            ss.media = media || "all";
-                        });
-                        return ss;
-                    }
+                        }
+                    };
+                    var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+                        webkitRequestAnimationFrame || msRequestAnimationFrame;
+                    if (raf) raf(cb);
+                    else window.addEventListener('load', cb);
 
-                    for(var i = 0; i < sourcesCss.length; i++) {
-                        loadCSS(sourcesCss[i]);
-                    }
                 })();
             </script>
         {% endblock %}
