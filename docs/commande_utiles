@@ -25,6 +25,9 @@ php app/console assetic:dump --env=prod --no-debug
 # Générer fixtures
 php app/console doctrine:fixtures:load
 
+# Optimser l'autoloader (PROD)
+php composer.phar dump-autoload --optimize
+
 # Génère getters/setters Entity
 php app/console doctrine:generate:entities TableTennis/AnnouncementBundle/Entity/Announcement
 php app/console doctrine:generate:entities Base/ContactBundle/Entity/Enquiry
