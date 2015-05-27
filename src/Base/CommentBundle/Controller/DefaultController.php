@@ -57,13 +57,13 @@ class DefaultController extends Controller
     {
         $last_comment_list = $this->getDoctrine()
                              ->getRepository('BaseCommentBundle:Comment')
-                             ->getLastComments(3)
+                             ->getLastComments( 5 )
                              ->getArrayResult();
 
 
         $last_post_list = $this->getDoctrine()
                                ->getRepository('BaseForumBundle:Post')
-                               ->findLastPost( 3 )
+                               ->findLastPost( 5 )
                                ->getArrayResult();
 
         $comment_list = array();
@@ -90,7 +90,11 @@ class DefaultController extends Controller
             $comment_list[$timestamp]['type'] = 'forum';
         }
 
-
+        array_pop( $comment_list );
+        array_pop( $comment_list );
+        array_pop( $comment_list );
+        array_pop( $comment_list );
+        array_pop( $comment_list );
 
         /*$first_comment = reset( $comment_list );
         
