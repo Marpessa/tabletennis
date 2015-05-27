@@ -19,7 +19,11 @@
                                 {% endif %}
                             </span>
                             <p>
-                                <a href='{{ comment.link }}#comment_{{ comment.id }}'>
+                                {% if comment.type == "forum" %}
+                                    <a href='{{ path('herzult_forum_topic_show', {'timestamp' : comment.createdAt|date('U'), 'categorySlug' : comment.cat_slug, 'slug' : comment.slug } )}}'>
+                                {% else %}
+                                    <a href='{{ comment.link }}#comment_{{ comment.id }}'>
+                                {% endif %}
                                     {{ comment.content | striptags | truncate(160) | raw }}
                                 </a>
                             </p>

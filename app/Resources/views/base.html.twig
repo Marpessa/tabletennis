@@ -262,7 +262,7 @@
                             {% if app.request.attributes.get('_route') == '_homepage' %}
                                 {{ render(controller("BasePicsBundle:Default:home", {}), {}) }}
                                 {{ render(controller("BaseCommentBundle:Default:home", {}), {}) }}
-                                {{ render(controller("BaseForumBundle:LastPost:show", {}), {}) }}
+                                {#}{{ render(controller("BaseForumBundle:LastPost:show", {}), {}) }}{#}
                                 {#}{{ render(controller('BaseGoogleAgendaBundle:Default:home', {}), {}) }}{#}
                             {% endif %}
                         {% endblock %}

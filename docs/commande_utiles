@@ -17,7 +17,7 @@ sudo php app/console assets:install web --symlink
 sudo app/console generate:bundle
 
 # Update un bundle
-php composer.phar update twig/extensions
+php composer.phar update twig/extensions --prefer-dist
 
 # Génère assets
 php app/console assetic:dump --env=prod --no-debug

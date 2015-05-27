@@ -55,11 +55,43 @@ class DefaultController extends Controller
 
     public function homeAction()
     {
-        $comment_list = $this->getDoctrine()
+        $last_comment_list = $this->getDoctrine()
                              ->getRepository('BaseCommentBundle:Comment')
                              ->getLastComments(3)
                              ->getArrayResult();
-        
+
+
+        $last_post_list = $this->getDoctrine()
+                               ->getRepository('BaseForumBundle:Post')
+                               ->findLastPost( 3 )
+                               ->getArrayResult();
+
+        $comment_list = array();
+
+        foreach( $last_comment_list as $cl ) {
+            $timestamp = $cl['createdAt']->getTimestamp();
+            $comment_list[$timestamp] = array();
+            $comment_list[$timestamp]['id'] = $cl['id'];
+            $comment_list[$timestamp]['createdAt'] = $cl['createdAt'];
+            $comment_list[$timestamp]['u_username'] = $cl['u_username'];
+            $comment_list[$timestamp]['content'] = $cl['content'];
+            $comment_list[$timestamp]['link'] = $cl['link'];
+            $comment_list[$timestamp]['type'] = 'comment';
+        }
+
+        foreach( $last_post_list as $cl ) {
+            $timestamp = $cl['createdAt']->getTimestamp();
+            $comment_list[$timestamp] = array();
+            $comment_list[$timestamp]['createdAt'] = $cl['createdAt'];
+            $comment_list[$timestamp]['u_username'] = $cl['m_name'];
+            $comment_list[$timestamp]['content'] = $cl['message'];
+            $comment_list[$timestamp]['slug'] = $cl['t_slug'];
+            $comment_list[$timestamp]['cat_slug'] = $cl['cat_slug'];
+            $comment_list[$timestamp]['type'] = 'forum';
+        }
+
+
+
         /*$first_comment = reset( $comment_list );
         
          // Cache
@@ -72,7 +104,7 @@ class DefaultController extends Controller
         if ($response->isNotModified($this->getRequest())) {
             return $response; // this will return the 304 if the cache is OK
         }*/
-        
+        $test =array();
         return $this->render('BaseCommentBundle:Default:home.html.twig', array('comment_list' => $comment_list));
     }
 
