@@ -172,7 +172,7 @@ class DefaultController extends Controller
         $feed->addFromArray( $news_list );
 
         $feed->add(new \Base\NewsBundle\Entity\News());
-        $feed->addItemField(new \Eko\FeedBundle\Field\MediaItemField('getFeedMediaItem'));
+        $feed->addItemField(new \Eko\FeedBundle\Field\Item\MediaItemField('getFeedMediaItem'));
 
         return new Response($feed->render('rss')); // or 'atom'
     }
